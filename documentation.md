@@ -1,4 +1,4 @@
-# Documentation for the WitchCrutch web application
+# Documentation for the 'Music Player' web application
 ## Technology stack
 - ### Frontend 
   - HTML / JS / CSS
