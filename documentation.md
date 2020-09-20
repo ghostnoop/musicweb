@@ -1,4 +1,5 @@
 # Documentation for the 'Music Player' web application
+An app for listening to music, making playlists, and uploading your own tracks.
 ## Technology stack
 - ### Frontend 
   - HTML / JS / CSS
