@@ -8,7 +8,7 @@ An app for listening to music, making playlists, and uploading your own tracks.
   
 - ### Backend
   - Java Servlets v.4.0.1 
-  - Freemarker template engine v.2.3.30
+  - jsp
   - JDBS MySQL v.8.0.21
  
 ## Сoncepts and patterns
