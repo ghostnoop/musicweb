@@ -15,7 +15,7 @@ An app for listening to music, making playlists, and uploading your own tracks.
 - ### Concept of development
   - MVC
 - ### Design pattern
-  - Repository
+  - DAO
 - ### Database design technology
   - ORM
   
