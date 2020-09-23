@@ -5,7 +5,9 @@
 body{
     font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color: #f2f4f8;
+    position: relative;
     box-sizing: border-box;
+    overflow-y: hidden;
 }
 
 .logo {
@@ -167,7 +169,13 @@ header .row {
 
 .aside-col-info {
     padding-left: 0;
+    height: calc(100vh - 120px);
+    overflow-y: hidden;
     padding-right: 0;
+}
+
+.aside-col-info:hover {
+    overflow-y: auto;
 }
 
 .list-group-item {
@@ -215,5 +223,9 @@ header .row {
 
 .footer-player {
     height: 40px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     background-color: #4cb6cb;
 }
