@@ -5,10 +5,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register - Music</title>
     <link rel="stylesheet" href="../../WEB-INF/static/bootstrap.min.css">
     <link rel="stylesheet" href="../css/home_page.css">
     <link rel="stylesheet" href="../css/login_page.css">
-    <title>Login - Music</title>
+    <link rel="stylesheet" href="../css/register_page.css">
 </head>
 <body>
 <section>
@@ -78,7 +79,7 @@
                 <div class="container-fluid login-container2">
                     <section class="login-section">
                         <article>
-                            <h1>Login</h1>
+                            <h1>Register</h1>
                             <div class="error-block"> <!-- .error-active -->
                                 <!-- Сообщение об ошибке
                                 <span class="error-text">
@@ -90,28 +91,29 @@
                             </div>
                             <form action="" class="login-form" method="post">
                                 <fieldset>
-                                    <legend>Log into Your Account</legend>
+                                    <legend>Register New Account</legend>
                                     <p class="login-username">
-                                        <label for="user-login">Username or Email</label>
+                                        <label for="user-login">Username</label>
                                         <input id="user-login" name="user-login" type="text" class="required in-user-login">
+                                    </p>
+                                    <p class="login-email">
+                                        <label for="user-email">Email</label>
+                                        <input id="user-email" name="user-email" type="email" class="required in-user-email">
                                     </p>
                                     <p class="login-password">
                                         <label for="user-password">Password</label>
                                         <input id="user-password" name="user-password" type="password" class="required in-user-password">
                                     </p>
-                                    <p class="login-remember">
-                                        <label>
-                                            <input type="checkbox" name="rememberme" id="rememberme" value="forever">
-                                            Remember Me
-                                        </label>
+                                    <p class="login-password">
+                                        <label for="user-confirm-password">Confirm Password</label>
+                                        <input id="user-confirm-password" name="user-confirm-password" type="password" class="required in-user-password">
                                     </p>
                                     <p class="login-submit">
-                                        <input id="user_submit" type="submit" class="in-user-submit" value="Log In">
+                                        <input id="user_submit" type="submit" class="in-user-submit" value="Register">
                                     </p>
                                     <!-- lost your password ?
                                         <p class="login-lost-password"></p>
                                     -->
-                                    <a href="register_page.html" class="text-info">Register New Account</a>
                                 </fieldset>
                             </form>
                         </article>

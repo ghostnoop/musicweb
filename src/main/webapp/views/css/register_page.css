@@ -1,0 +1,8 @@
+[type="email"] {
+    border: 1px solid #ddd !important;
+    color: #788188;
+    background-color: #fff !important;
+    padding: 6px 10px !important;
+    margin-bottom: 10px;
+    outline: 0;
+}
