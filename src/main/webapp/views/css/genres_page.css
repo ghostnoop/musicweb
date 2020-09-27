@@ -1,0 +1,50 @@
+.genres-list-col {
+    width: 200px;
+    background-color: #e0eaec;
+    padding: 0;
+    height: calc(100vh - 125px);
+    overflow-y: hidden;
+}
+
+.genres-list-col:hover {
+    overflow-y: auto;
+}
+
+.genres-list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.genres-list-item a{
+    color: #545a5f;
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.active-genres-item, .genres-list-item a:hover {
+    background-color: #edf2f3
+}
+
+.genres-list-item a:hover {
+    text-decoration: none;
+    color: #545a5f;
+}
+
+.genres-list-item-count {
+    background-color: #e8eff0;
+    color: #788188;
+    float: right;
+    font-weight: bold;
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 10px;
+}
