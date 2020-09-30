@@ -2,10 +2,6 @@ body {
     overflow-x: hidden;
 }
 
-.empty-block {
-    height: calc(100vh - 320px);
-    background-color: #4d5d6e;
-}
 .login-section h1 {
     font-size: 36px;
     font-weight: 500;

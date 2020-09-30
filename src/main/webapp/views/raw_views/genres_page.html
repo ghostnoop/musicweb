@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Genres - Music</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="../../WEB-INF/static/bootstrap.min.css">
+    <link rel="stylesheet" href="../../WEB-INF/static/bootsrap/bootstrap.min.css">
     <link rel="stylesheet" href="../css/home_page.css">
     <link rel="stylesheet" href="../css/genres_page.css">
 </head>
@@ -13,14 +13,19 @@
     <header>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-auto logo">
+                <div class="col-auto logo unside" id="unside_logo">
                     <a href="main_page.html" class="logo-ref">
                         <i class="fas fa-headphones-alt"></i>
                         <span>MusicPlayer</span>
                     </a>
                 </div>
+                <div class="col-auto logo side" id="side_logo">
+                    <a href="main_page.html" class="logo-ref">
+                        <i class="fas fa-headphones-alt"></i>
+                    </a>
+                </div>
                 <div class="col right_bar">
-                    <a href="#" class="text-muted">
+                    <a href="#" class="text-muted" id="side_button">
                         <i class="fa fa-bars"></i>
                     </a>
                     <form action="" role="search" class="search">
@@ -41,7 +46,7 @@
 <section>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-auto menu">
+            <div class="col-auto menu unside" id="unside_menu">
                 <aside>
                     <nav class="navigation">
                         <ul class="menu-list">
@@ -50,21 +55,47 @@
                             </li>
                             <li class="menu-item">
                                 <a href="main_page.html">
-                                    <i class="fas fa-music music-icon-green"></i>
+                                    <i class="fas fa-music music-icon-green" aria-hidden="true"></i>
                                     <span>Discover</span>
                                 </a>
                             </li>
                             <li class="menu-item active"><a href="genres_page.html">
-                                <i class="fas fa-align-left music-icon-blue"></i>
+                                <i class="fas fa-align-left music-icon-blue" aria-hidden="true"></i>
                                 <span>Genres</span>
                             </a></li>
                             <li class="menu-item"><a href="albums_page.html">
-                                <i class="fas fa-compact-disc music-icon-green"></i>
+                                <i class="fas fa-compact-disc music-icon-green" aria-hidden="true"></i>
                                 <span>Albums</span>
                             </a></li>
                             <li class="menu-item"><a href="artists_page.html">
-                                <i class="fas fa-user-friends music-icon-blue"></i>
+                                <i class="fas fa-user-friends music-icon-blue" aria-hidden="true"></i>
                                 <span>Artists</span>
+                            </a></li>
+                            <li class="menu-item-border"></li>
+                        </ul>
+                    </nav>
+                    <section>
+                        <div class="empty-block"></div>
+                    </section>
+                </aside>
+            </div>
+            <div class="col-auto menu side" id="side_menu">
+                <aside>
+                    <nav class="navigation">
+                        <ul class="menu-list">
+                            <li class="menu-item">
+                                <a href="main_page.html">
+                                    <i class="fas fa-music music-icon-green"></i>
+                                </a>
+                            </li>
+                            <li class="menu-item active"><a href="genres_page.html">
+                                <i class="fas fa-align-left music-icon-blue"></i>
+                            </a></li>
+                            <li class="menu-item"><a href="albums_page.html">
+                                <i class="fas fa-compact-disc music-icon-green"></i>
+                            </a></li>
+                            <li class="menu-item"><a href="artists_page.html">
+                                <i class="fas fa-user-friends music-icon-blue"></i>
                             </a></li>
                             <li class="menu-item-border"></li>
                         </ul>
@@ -521,10 +552,15 @@
 <section>
     <footer class="footer  footer-player">
         <div class="footer-container container-fluid">
-            <div class="col-auto login">
+            <div class="col-auto login unside" id="unside_login">
                 <a href="login_page.html">
                     <i class="fas fa-user-plus"></i>
                     <span>Login</span>
+                </a>
+            </div>
+            <div class="col-auto login side" id="side_login">
+                <a href="login_page.html" id="login-ref">
+                    <i class="fas fa-user-plus"></i>
                 </a>
             </div>
             <div class="col player"></div>
@@ -533,5 +569,7 @@
 </section>
 
 <script src="https://kit.fontawesome.com/ed6c81c467.js" crossorigin="anonymous"></script>
+<script src="../../WEB-INF/static/jquery/jquery-3.5.1.min.js"></script>
+<script src="../js/main.js"></script>
 </body>
 </html>

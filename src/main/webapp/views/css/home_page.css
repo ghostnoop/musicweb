@@ -28,13 +28,19 @@ a:hover {
     text-overflow: ellipsis;
     background-color: #4cb6cb;
     color: #eaf6f9;
-    width: 220px;
     padding-left: 0;
     padding-right: 0;
     font-size: 20px;
     font-weight: 700;
 }
 
+.unside {
+    width: 220px;
+}
+
+.side {
+    width: 64px;
+}
 .logo-ref {
     display: block;
     padding-left: 20px;
@@ -105,7 +111,6 @@ header .row {
 }
 
 .menu {
-    width: 220px;
     padding-left: 0;
     border-top: 1px solid white;
     padding-right: 0;
@@ -140,9 +145,19 @@ header .row {
     font-weight: 700;
     display: block;
     font-size: 14px;
-    padding: 7px 20px;
     transition: background-color 0.5s ease-out;
 }
+
+.side .menu-item a {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 12px;
+}
+
+.unside .menu-item a {
+    padding: 7px 20px;
+}
+
 
 .menu-item a:hover {
     background-color: #62778c;
@@ -239,7 +254,7 @@ header .row {
 }
 
 .empty-block {
-    height: calc(100vh - 357px);
+    height: calc(100vh - 277px);
     background-color: #4d5d6e;
 }
 
@@ -250,7 +265,6 @@ header .row {
 
 .login {
     background-color: #5a6a7a;
-    width: 220px;
     height: 60px;
 }
 
@@ -259,7 +273,6 @@ header .row {
     font-weight: 500;
     display: block;
     width: 100%;
-    padding-right: 21px;
     line-height: 60px;
     text-align: center;
     vertical-align: middle;
@@ -267,9 +280,24 @@ header .row {
     text-decoration: none;
 }
 
+.unside #login-ref {
+    padding-right: 21px;
+}
+
+.side #login-ref {
+    padding-right: 0;
+}
+
+.unside .fa-user-plus {
+    padding-right: 10px;
+}
+
+.side .fa-user-plus {
+    padding-right: 0;
+}
+
 .login i {
     font-size: 16px;
-    padding-right: 10px;
 }
 
 .login a:hover {
