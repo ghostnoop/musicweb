@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register - Music</title>
+    <link rel="stylesheet" href="../../WEB-INF/static/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/home_page.css">
+    <link rel="stylesheet" href="../css/login_page.css">
+    <link rel="stylesheet" href="../css/register_page.css">
+</head>
+<body>
+<section>
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-auto logo">
+                    <a href="main_page.html" class="logo-ref">
+                        <i class="fas fa-headphones-alt"></i>
+                        <span>MusicPlayer</span>
+                    </a>
+                </div>
+                <div class="col right_bar">
+                    <a href="#" class="text-muted">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                    <form action="" role="search" class="search">
+                        <div class="input-group">
+		            <span class="input__btn">
+		              <button type="submit" class="btn btn-sm bg-white btn-icon rounded"><i
+                              class="fa fa-search"></i></button>
+		            </span>
+                            <input type="text" autocomplete="off" class="rounded input-search" name="search"
+                                   placeholder="Search...">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+</section>
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-auto menu">
+                <aside>
+                    <nav class="navigation">
+                        <ul class="menu-list">
+                            <li class="menu-item header-list">
+                                <span>Discover music</span>
+                            </li>
+                            <li class="menu-item">
+                                <a href="main_page.html">
+                                    <i class="fas fa-music music-icon-green"></i>
+                                    <span>Discover</span>
+                                </a>
+                            </li>
+                            <li class="menu-item"><a href="genres_page.html">
+                                <i class="fas fa-align-left music-icon-blue"></i>
+                                <span>Genres</span>
+                            </a></li>
+                            <li class="menu-item active"><a href="albums_page.html">
+                                <i class="fas fa-compact-disc music-icon-green"></i>
+                                <span>Albums</span>
+                            </a></li>
+                            <li class="menu-item"><a href="artists_page.html">
+                                <i class="fas fa-user-friends music-icon-blue"></i>
+                                <span>Artists</span>
+                            </a></li>
+                            <li class="menu-item-border"></li>
+                        </ul>
+                    </nav>
+                    <section>
+                        <div class="empty-block"></div>
+                    </section>
+                </aside>
+            </div>
+            <div class="col content-col">
+                <div class="container-fluid login-container2">
+                    <section class="login-section">
+                        <article>
+                            <h1>Register</h1>
+                            <div class="error-block"> <!-- .error-active -->
+                                <!-- Сообщение об ошибке
+                                <span class="error-text">
+                                <strong>Error:</strong>
+                                some error text
+                                </span>
+                                -->
+
+                            </div>
+                            <form action="" class="login-form" method="post">
+                                <fieldset>
+                                    <legend>Register New Account</legend>
+                                    <p class="login-username">
+                                        <label for="user-login">Username</label>
+                                        <input id="user-login" name="user-login" type="text" class="required in-user-login">
+                                    </p>
+                                    <p class="login-email">
+                                        <label for="user-email">Email</label>
+                                        <input id="user-email" name="user-email" type="email" class="required in-user-email">
+                                    </p>
+                                    <p class="login-password">
+                                        <label for="user-password">Password</label>
+                                        <input id="user-password" name="user-password" type="password" class="required in-user-password">
+                                    </p>
+                                    <p class="login-password">
+                                        <label for="user-confirm-password">Confirm Password</label>
+                                        <input id="user-confirm-password" name="user-confirm-password" type="password" class="required in-user-password">
+                                    </p>
+                                    <p class="login-submit">
+                                        <input id="user_submit" type="submit" class="in-user-submit" value="Register">
+                                    </p>
+                                    <!-- lost your password ?
+                                        <p class="login-lost-password"></p>
+                                    -->
+                                </fieldset>
+                            </form>
+                        </article>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://kit.fontawesome.com/ed6c81c467.js" crossorigin="anonymous"></script>
+</body>
+</html>

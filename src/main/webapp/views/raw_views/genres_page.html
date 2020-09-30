@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Discover - Music</title>
+    <title>Genres - Music</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../../WEB-INF/static/bootstrap.min.css">
     <link rel="stylesheet" href="../css/home_page.css">
+    <link rel="stylesheet" href="../css/genres_page.css">
 </head>
 <body>
 <section>
@@ -47,13 +48,13 @@
                             <li class="menu-item header-list">
                                 <span>Discover music</span>
                             </li>
-                            <li class="menu-item active">
+                            <li class="menu-item">
                                 <a href="main_page.html">
                                     <i class="fas fa-music music-icon-green"></i>
                                     <span>Discover</span>
                                 </a>
                             </li>
-                            <li class="menu-item"><a href="genres_page.html">
+                            <li class="menu-item active"><a href="genres_page.html">
                                 <i class="fas fa-align-left music-icon-blue"></i>
                                 <span>Genres</span>
                             </a></li>
@@ -73,14 +74,163 @@
                     </section>
                 </aside>
             </div>
+            <div class="col-auto genres-list-col">
+                <ul class="genres-list">
+                    <!-- active-genres-item активный жанр -->
+                    <li class="genres-list-item active-genres-item"><a href=""><span class="genres-list-item-count">21</span>All</a></li>
+                    <li class="genres-list-item"><a href=""><span class="genres-list-item-count">6</span>Electronic</a></li>
+                    <li class="genres-list-item"><a href=""><span class="genres-list-item-count">3</span>Classical</a></li>
+                    <li class="genres-list-item"><a href=""><span class="genres-list-item-count">8</span>Hip Hop</a></li>
+                    <li class="genres-list-item"><a href=""><span class="genres-list-item-count">2</span>Rock</a></li>
+                    <li class="genres-list-item"><a href=""><span class="genres-list-item-count">2</span>Pop</a></li>
+                </ul>
+            </div>
             <div class="col content-col">
                 <section class="content">
                     <div class="container-fluid content-container">
-                        <h2 class="headline">What's New</h2>
+                        <h2 class="headline">All</h2> <!-- название жанра -->
                         <div class="row content-row">
 
                             <!-- должно приходить с бд-->
 
+                            <div class="col-12 col-sm-3 col-lg-2 item">
+                                <article class="item-song">
+                                    <div class="item-image">
+                                        <div class="item-hover">
+                                            <a href="#">
+                                                <i class="far fa-play-circle"></i>
+                                            </a>
+                                        </div>
+                                        <a href="#" class="image-ref">
+                                            <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/m19-150x150.jpg"
+                                                 alt>
+                                        </a>
+                                    </div>
+                                    <div class="item-desc">
+                                        <div class="item-name"><a href="#">Tempered Song</a>
+                                            <div class="item-author">
+                                                by
+                                                <a href="#">Miaow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="col-12 col-sm-3 col-lg-2 item">
+                                <article class="item-song">
+                                    <div class="item-image">
+                                        <div class="item-hover">
+                                            <a href="#">
+                                                <i class="far fa-play-circle"></i>
+                                            </a>
+                                        </div>
+                                        <a href="#" class="image-ref">
+                                            <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/m19-150x150.jpg"
+                                                 alt>
+                                        </a>
+                                    </div>
+                                    <div class="item-desc">
+                                        <div class="item-name"><a href="#">Tempered Song</a>
+                                            <div class="item-author">
+                                                by
+                                                <a href="#">Miaow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="col-12 col-sm-3 col-lg-2 item">
+                                <article class="item-song">
+                                    <div class="item-image">
+                                        <div class="item-hover">
+                                            <a href="#">
+                                                <i class="far fa-play-circle"></i>
+                                            </a>
+                                        </div>
+                                        <a href="#" class="image-ref">
+                                            <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/m19-150x150.jpg"
+                                                 alt>
+                                        </a>
+                                    </div>
+                                    <div class="item-desc">
+                                        <div class="item-name"><a href="#">Tempered Song</a>
+                                            <div class="item-author">
+                                                by
+                                                <a href="#">Miaow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="col-12 col-sm-3 col-lg-2 item">
+                                <article class="item-song">
+                                    <div class="item-image">
+                                        <div class="item-hover">
+                                            <a href="#">
+                                                <i class="far fa-play-circle"></i>
+                                            </a>
+                                        </div>
+                                        <a href="#" class="image-ref">
+                                            <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/m19-150x150.jpg"
+                                                 alt>
+                                        </a>
+                                    </div>
+                                    <div class="item-desc">
+                                        <div class="item-name"><a href="#">Tempered Song</a>
+                                            <div class="item-author">
+                                                by
+                                                <a href="#">Miaow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="col-12 col-sm-3 col-lg-2 item">
+                                <article class="item-song">
+                                    <div class="item-image">
+                                        <div class="item-hover">
+                                            <a href="#">
+                                                <i class="far fa-play-circle"></i>
+                                            </a>
+                                        </div>
+                                        <a href="#" class="image-ref">
+                                            <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/m19-150x150.jpg"
+                                                 alt>
+                                        </a>
+                                    </div>
+                                    <div class="item-desc">
+                                        <div class="item-name"><a href="#">Tempered Song</a>
+                                            <div class="item-author">
+                                                by
+                                                <a href="#">Miaow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="col-12 col-sm-3 col-lg-2 item">
+                                <article class="item-song">
+                                    <div class="item-image">
+                                        <div class="item-hover">
+                                            <a href="#">
+                                                <i class="far fa-play-circle"></i>
+                                            </a>
+                                        </div>
+                                        <a href="#" class="image-ref">
+                                            <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/m19-150x150.jpg"
+                                                 alt>
+                                        </a>
+                                    </div>
+                                    <div class="item-desc">
+                                        <div class="item-name"><a href="#">Tempered Song</a>
+                                            <div class="item-author">
+                                                by
+                                                <a href="#">Miaow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
                             <div class="col-12 col-sm-3 col-lg-2 item">
                                 <article class="item-song">
                                     <div class="item-image">
@@ -359,247 +509,10 @@
                                 </article>
                             </div>
 
-                            <!-- -->
-                        </div>
-                        <div class="container login-container">
-                            <div class="row widjet-btn justify-content-center">
-                                <div class="col-8 login-btn">
-                                    <a href="login_page.html">
-                                        <span>
-                                            <i class="fas fa-user-plus" aria-hidden="true"></i>
-                                            Login or Create account
-                                        </span>
-                                        <br>
-                                        <span class="aside-login">
-                                            Get free musics when you logged in, and give your comments to them.
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <h2 class="headline">New Albums</h2>
-                        <div class="row content-row">
-                            <div class="col-12 col-sm-3 col-lg-2 item">
-                                <article class="item-song">
-                                    <div class="item-image">
-                                        <div class="item-hover">
-                                            <a href="#">
-                                                <i class="far fa-play-circle"></i>
-                                            </a>
-                                        </div>
-                                        <a href="#" class="image-ref">
-                                            <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/m19-150x150.jpg"
-                                                 alt>
-                                        </a>
-                                    </div>
-                                    <div class="item-desc">
-                                        <div class="item-name"><a href="#">Tempered Song</a>
-                                            <div class="item-author">
-                                                by
-                                                <a href="#">Miaow</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="col-12 col-sm-3 col-lg-2 item">
-                                <article class="item-song">
-                                    <div class="item-image">
-                                        <div class="item-hover">
-                                            <a href="#">
-                                                <i class="far fa-play-circle"></i>
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/m15-150x150.jpg"
-                                                 alt>
-                                        </a>
-                                    </div>
-                                    <div class="item-desc">
-                                        <div class="item-name"><a href="#">Bubble</a>
-                                            <div class="item-author">
-                                                by
-                                                <a href="#">Miaow</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="col-12 col-sm-3 col-lg-2 item">
-                                <article class="item-song">
-                                    <div class="item-image">
-                                        <div class="item-hover">
-                                            <a href="#">
-                                                <i class="far fa-play-circle"></i>
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/b17-150x150.jpg"
-                                                 alt>
-                                        </a>
-                                    </div>
-                                    <div class="item-desc">
-                                        <div class="item-name"><a href="#">Lismore</a>
-                                            <div class="item-author">
-                                                by
-                                                <a href="#">Joe Holmes</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="col-12 col-sm-3 col-lg-2 item">
-                                <article class="item-song">
-                                    <div class="item-image">
-                                        <div class="item-hover">
-                                            <a href="#">
-                                                <i class="far fa-play-circle"></i>
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/b5-150x150.jpg"
-                                                 alt>
-                                        </a>
-                                    </div>
-                                    <div class="item-desc">
-                                        <div class="item-name"><a href="#">Beside Me</a>
-                                            <div class="item-author">
-                                                by
-                                                <a href="#">Miaow</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="col-12 col-sm-3 col-lg-2 item">
-                                <article class="item-song">
-                                    <div class="item-image">
-                                        <div class="item-hover">
-                                            <a href="#">
-                                                <i class="far fa-play-circle"></i>
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/m17-150x150.jpg"
-                                                 alt>
-                                        </a>
-                                    </div>
-                                    <div class="item-desc">
-                                        <div class="item-name">
-                                            <a href="#">Lentement</a>
-                                            <div class="item-author">
-                                                by
-                                                <a href="#">James Garsia</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="col-12 col-sm-3 col-lg-2 item">
-                                <article class="item-song">
-                                    <div class="item-image">
-                                        <div class="item-hover">
-                                            <a href="#">
-                                                <i class="far fa-play-circle"></i>
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/b16-150x150.jpg"
-                                                 alt>
-                                        </a>
-                                    </div>
-                                    <div class="item-desc">
-                                        <div class="item-name"><a href="#">The Separation</a>
-                                            <div class="item-author">
-                                                by
-                                                <a href="#">Bossr</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
                         </div>
                     </div>
                 </section>
             </div>
-            <section class="aside-info">
-                <aside>
-                    <div class="col-auto aside-col-info">
-                        <h4>Top artists</h4>
-
-                        <!-- должно приходить с бд-->
-                        <div class="list-group">
-                            <div class="list-group-item">
-                                <div class="avatar-container"><a href=""><img
-                                        src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                                        alt=""></a></div>
-                                <div class="name-container"><a href="">Miaow</a></div>
-                            </div>
-                            <div class="list-group-item">
-                                <div class="avatar-container"><a href=""><img
-                                        src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                                        alt=""></a></div>
-                                <div class="name-container"><a href="">The Stark Palace</a></div>
-                            </div>
-                            <div class="list-group-item">
-                                <div class="avatar-container"><a href=""><img
-                                        src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                                        alt=""></a></div>
-                                <div class="name-container"><a href="">Bossr</a></div>
-                            </div>
-                            <div class="list-group-item">
-                                <div class="avatar-container"><a href=""><img
-                                        src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                                        alt=""></a></div>
-                                <div class="name-container"><a href="">Crystal Guerrero</a></div>
-                            </div>
-                            <div class="list-group-item">
-                                <div class="avatar-container"><a href=""><img
-                                        src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                                        alt=""></a></div>
-                                <div class="name-container"><a href="">James Garcia</a></div>
-                            </div>
-                            <div class="list-group-item">
-                                <div class="avatar-container"><a href=""><img
-                                        src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                                        alt=""></a></div>
-                                <div class="name-container"><a href="">Jean Schneider</a></div>
-                            </div>
-                            <div class="list-group-item">
-                                <div class="avatar-container"><a href=""><img
-                                        src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                                        alt=""></a></div>
-                                <div class="name-container"><a href="">Jeremy Scott</a></div>
-                            </div>
-                            <div class="list-group-item">
-                                <div class="avatar-container"><a href=""><img
-                                        src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                                        alt=""></a></div>
-                                <div class="name-container"><a href="">Jesse Russell</a></div>
-                            </div>
-                            <div class="list-group-item">
-                                <div class="avatar-container"><a href=""><img
-                                        src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                                        alt=""></a></div>
-                                <div class="name-container"><a href="">Joe Holmes</a></div>
-                            </div>
-                            <div class="list-group-item">
-                                <div class="avatar-container"><a href=""><img
-                                        src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                                        alt=""></a></div>
-                                <div class="name-container"><a href="">Joe Holmes</a></div>
-                            </div>
-                            <div class="list-group-item">
-                                <div class="avatar-container"><a href=""><img
-                                        src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                                        alt=""></a></div>
-                                <div class="name-container"><a href="">Joe Holmes</a></div>
-                            </div>
-                        </div>
-                        <!-- -->
-                    </div>
-                </aside>
-            </section>
         </div>
     </div>
 </section>

@@ -1,0 +1,7 @@
+.item-name {
+    text-align: center;
+}
+
+.item-image:hover {
+    filter: none;
+}
