@@ -1,7 +1,4 @@
-/**
- * @author Gilyazov Marat
- * 11-905
- */
+
 
 package app;
 
