@@ -383,29 +383,42 @@ header .row {
 }
 
 .item-hover a{
-    position: absolute;
-    display: none;
-    text-align: center;
-    left: 48px;
-    top: 48px;
-}
-
-.item-hover i {
-    font-size: 40px;
     color: #96cbff;
 }
 
-.item-image:hover .item-hover a {
-    display: inline;
+.item-hover {
+    position: absolute;
+    background-color: rgba(0,0,0,0.75);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
 }
 
+.item-hover i {
+    font-size: 2em;
+}
 
 .item-hover i:hover {
     color: #84b1dd;
 }
 
-.item-image:hover {
-    filter: brightness(40%);
+.item-image:hover .item-hover{
+    display: block;
+}
+
+.item-image {
+    position: relative;
+    text-align: center;
+}
+
+.item-hover-center {
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+    left: 0;
+    right: 0;
 }
 
 .login-container {
