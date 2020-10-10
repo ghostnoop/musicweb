@@ -17,6 +17,15 @@ public class Song {
         this.album_id = album_id;
     }
 
+    public Song(int id, String title, String cover_img, String music_url, int artist_id, String name) {
+        this.id = id;
+        this.title = title;
+        this.cover_img = cover_img;
+        this.music_url = music_url;
+        this.artist_id = new Artist(artist_id, name);
+    }
+
+
     public int getId() {
         return id;
     }

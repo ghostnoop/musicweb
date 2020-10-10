@@ -2,7 +2,10 @@ package tests;
 
 import app.Constants;
 import app.DataSourcePick;
+import models.entities.Song;
 import models.entities.User;
+import models.repositories.SongRepository;
+import models.repositories.SongRepositoryJdbc;
 import models.repositories.UserRepositoryJdbc;
 
 import java.sql.Connection;
@@ -13,11 +16,19 @@ public class TestJDBC {
         DataSourcePick sourcePick = new DataSourcePick();
 
         Connection connection = sourcePick.openConnection(Constants.jdbcUrl, Constants.jdbcUser, Constants.jdbcPassword);
+        SongRepositoryJdbc songRepositoryJdbc = new SongRepositoryJdbc(connection);
+
+        List<Song> songs = songRepositoryJdbc.getAll();
+
+    }
+
+    public static void testUserJdbc(Connection connection){
+        UserRepositoryJdbc userRepositoryJdbc = new UserRepositoryJdbc(connection);
+
 
         System.out.println("USER ORM");
 
         System.out.println("GET ALL USERS ->");
-        UserRepositoryJdbc userRepositoryJdbc = new UserRepositoryJdbc(connection);
         List<User> users = userRepositoryJdbc.getAll();
 
         for (int i = 0; i < users.size(); i++) {
@@ -48,7 +59,5 @@ public class TestJDBC {
         String email="email@gmail.com";
         System.out.println(userRepositoryJdbc.emailExist(email));
         System.out.println("END");
-
-
     }
 }

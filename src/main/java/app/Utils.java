@@ -3,6 +3,9 @@
 package app;
 
 import java.lang.reflect.Field;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -63,5 +66,28 @@ public class Utils {
             e.printStackTrace();
         }
         return arrayList;
+    }
+
+    public static String hashingPassword(String password) {
+        try {
+
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            byte[] data = password.getBytes(StandardCharsets.UTF_8);
+            messageDigest.update(data);
+            byte[] hash = messageDigest.digest();
+
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < hash.length; i++) {
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

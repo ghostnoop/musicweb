@@ -1,7 +1,10 @@
 package models.entities;
 
+import app.Utils;
 import lombok.Data;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -16,6 +19,7 @@ public class User {
     private String password;
     private Date created_at;
 
+    //    GET from table
     public User(int id, String email, String name, String lastname, String avatar_img, String password, Date created_at) {
         this.id = id;
         this.email = email;
@@ -26,18 +30,20 @@ public class User {
         this.created_at = created_at;
     }
 
+    //    POST from user
     public User(String email, String name, String lastname, String avatar_img, String password) {
         this.id = 0;
         this.email = email;
         this.name = name;
         this.lastname = lastname;
         this.avatar_img = avatar_img;
-        this.password = password;
-        this.created_at = null;
+        this.password = Utils.hashingPassword(password);
     }
+
     public User() {
 
     }
+
     public User(ResultSet resultSet) {
         try {
             this.id = resultSet.getInt("id");
@@ -68,7 +74,6 @@ public class User {
     }
 
 
-
     public String getEmail() {
         return email;
     }
@@ -87,5 +92,9 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setAvatar_img(String avatar_img) {
+        this.avatar_img = avatar_img;
     }
 }

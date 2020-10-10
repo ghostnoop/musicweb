@@ -1,17 +1,16 @@
-<!doctype html>
-<html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register - Music</title>
-    <link rel="stylesheet" href="../../WEB-INF/static/bootsrap/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/home_page.css">
-    <link rel="stylesheet" href="../css/login_page.css">
-    <link rel="stylesheet" href="../css/register_page.css">
+<%--    <title>Register - Music</title>--%>
+    <title>${title}</title>
+    <style>
+    <%@include file='/views/static/V2/bootstrap.min.css' %>
+    <%@include file='/views/css/home_page.css' %>
+    </style>
+
 </head>
 <body>
+
 <section>
     <header>
         <div class="container-fluid">
@@ -56,7 +55,7 @@
                             <li class="menu-item header-list">
                                 <span>Discover music</span>
                             </li>
-                            <li class="menu-item">
+                            <li class="menu-item active">
                                 <a href="main_page.html">
                                     <i class="fas fa-music music-icon-green" aria-hidden="true"></i>
                                     <span>Discover</span>
@@ -86,7 +85,7 @@
                 <aside>
                     <nav class="navigation">
                         <ul class="menu-list">
-                            <li class="menu-item">
+                            <li class="menu-item active">
                                 <a href="main_page.html">
                                     <i class="fas fa-music music-icon-green"></i>
                                 </a>
@@ -108,57 +107,3 @@
                     </section>
                 </aside>
             </div>
-            <div class="col content-col">
-                <div class="container-fluid login-container2">
-                    <section class="login-section">
-                        <article>
-                            <h1>Register</h1>
-                            <div class="error-block">
-                                <!-- .error-active -->
-                                <!-- Сообщение об ошибке-->
-
-                                <span class="error-text">
-                                <strong>Error:</strong>
-                                some error text
-                                </span>
-                            </div>
-                            <form action="" class="login-form" method="post">
-                                <fieldset>
-                                    <legend>Register New Account</legend>
-                                    <p class="login-username">
-                                        <label for="user-login">Username</label>
-                                        <input id="user-login" name="user-login" type="text" class="required in-user-login">
-                                    </p>
-                                    <p class="login-email">
-                                        <label for="user-email">Email</label>
-                                        <input id="user-email" name="user-email" type="email" class="required in-user-email">
-                                    </p>
-                                    <p class="login-password">
-                                        <label for="user-password">Password</label>
-                                        <input id="user-password" name="user-password" type="password" class="required in-user-password">
-                                    </p>
-                                    <p class="login-password">
-                                        <label for="user-confirm-password">Confirm Password</label>
-                                        <input id="user-confirm-password" name="user-confirm-password" type="password" class="required in-user-password">
-                                    </p>
-                                    <p class="login-submit">
-                                        <input id="user_submit" type="submit" class="in-user-submit" value="Register">
-                                    </p>
-                                    <!-- lost your password ?
-                                        <p class="login-lost-password"></p>
-                                    -->
-                                </fieldset>
-                            </form>
-                        </article>
-                    </section>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<script src="https://kit.fontawesome.com/ed6c81c467.js" crossorigin="anonymous"></script>
-<script src="../../WEB-INF/static/jquery/jquery-3.5.1.min.js"></script>
-<script src="../js/main.js"></script>
-</body>
-</html>
