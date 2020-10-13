@@ -6,6 +6,8 @@
     <style>
     <%@include file='/views/static/V2/bootstrap.min.css' %>
     <%@include file='/views/css/home_page.css' %>
+    <%@include file='/views/css/login_page.css' %>
+    <%@include file='/views/css/register_page.css' %>
     </style>
 
 </head>
@@ -21,7 +23,7 @@
                         <span>MusicPlayer</span>
                     </a>
                 </div>
-                <div class="col-auto logo side" id="side_logo">
+                <div class="col-auto logo side pt-3" id="side_logo">
                     <a href="main_page.html" class="logo-ref">
                         <i class="fas fa-headphones-alt"></i>
                     </a>

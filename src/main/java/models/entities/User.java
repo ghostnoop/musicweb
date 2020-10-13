@@ -1,22 +1,25 @@
 package models.entities;
 
 import app.Utils;
-import lombok.Data;
+import lombok.*;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
 @Data
+@ToString
+@Builder
+@EqualsAndHashCode
+@Getter
+@Setter
 public class User {
     private int id;
     private String email;
     private String name;
     private String lastname;
-    private String avatar_img;
     private String password;
+    private String avatar_img;
     private Date created_at;
 
     //    GET from table
@@ -60,41 +63,4 @@ public class User {
 
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", name='" + name + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", avatar_img='" + avatar_img + '\'' +
-                ", password='" + password + '\'' +
-                ", created_at=" + created_at +
-                '}';
-    }
-
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public String getAvatar_img() {
-        return avatar_img;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setAvatar_img(String avatar_img) {
-        this.avatar_img = avatar_img;
-    }
 }

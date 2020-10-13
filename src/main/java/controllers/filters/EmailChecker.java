@@ -1,21 +1,11 @@
-package filters;
+package controllers.filters;
 
 
-import app.Constants;
-import app.DataSourcePick;
 import models.repositories.UserRepositoryJdbc;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletRequest;
-import java.awt.*;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Writer;
-import java.sql.Connection;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Enumeration;
 
 @WebFilter(urlPatterns = "/emailexist", filterName = "emailChecker")
 public class EmailChecker implements Filter {

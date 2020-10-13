@@ -1,21 +1,22 @@
-<jsp:include page="header.jsp" />
+<#ftl encoding="UTF-8"/>
+<#import "base.ftl" as base>
 
-<div class="col content-col">
+<@base.main>
+
     <div class="container-fluid login-container2">
         <section class="login-section">
             <article>
                 <h1>Register</h1>
-                <% Boolean error = (Boolean) request.getAttribute("error"); %>
-                <% if (error!=null && error){ %>
-                <div class="error-block"> <!-- .error-active -->
-                    <!-- Сообщение об ошибке-->
-                    <span class="error-text">
+                <#if error??>
+                    <div class="error-active">
+                        <span class="error-text">
                                 <strong>Error:</strong>
                                 some error text
                                 </span>
-                </div>
-                <%}%>
-                <form action="${pageContext.request.contextPath}/register" class="login-form" method="post">
+                    </div>
+                </#if>
+
+                <form action="/register" class="login-form" method="post">
                     <fieldset>
                         <legend>Register New Account</legend>
                         <p class="login-username">
@@ -41,7 +42,8 @@
                         </p>
                         <p class="login-checkbox-artist">
                             <label for="user-checkbox-artist">Are you artist ?</label>
-                            <input id="user-checkbox-artist" name="isArtist" type="checkbox" value="yes" class="required in-user-checkbox-artist">
+                            <input id="user-checkbox-artist" name="isArtist" type="checkbox" value="yes"
+                                   class="required in-user-checkbox-artist">
                         </p>
                         <p class="login-submit">
                             <input id="user_submit" type="submit" class="in-user-submit" value="Register">
@@ -51,6 +53,5 @@
             </article>
         </section>
     </div>
-</div>
 
-<jsp:include page="footer.jsp" />
+</@base.main>

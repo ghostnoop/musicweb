@@ -1,12 +1,18 @@
 package models.entities;
 
-import lombok.Data;
+import app.Utils;
+import lombok.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
 @Data
+@ToString
+@Builder
+@EqualsAndHashCode
+@Getter
+@Setter
 public class Artist {
     private int id;
     private String email;
@@ -32,29 +38,29 @@ public class Artist {
         this.name = name;
         this.lastname = lastname;
         this.avatar_img = avatar_img;
-        this.password = password;
+        this.password = Utils.hashingPassword(password);
         this.created_at = null;
+    }
+
+    public Artist(int id, String name, String avatar_img) {
+        this.id = 0;
+        this.name = name;
+        this.avatar_img = avatar_img;
+    }
+
+    public Artist(String name) {
+        this.name = name;
     }
 
     public Artist() {
     }
-    public Artist(int id, String name){
-        this.id=id;
-        this.name=name;
+
+    public Artist(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Artist{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", name='" + name + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", avatar_img='" + avatar_img + '\'' +
-                ", password='" + password + '\'' +
-                ", created_at=" + created_at +
-                '}';
-    }
+
 
     public Artist(ResultSet resultSet) {
         try {
@@ -72,23 +78,5 @@ public class Artist {
 
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public String getAvatar_img() {
-        return avatar_img;
-    }
-
-    public String getPassword() {
-        return password;
-    }
 }

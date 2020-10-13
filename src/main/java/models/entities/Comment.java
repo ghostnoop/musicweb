@@ -5,6 +5,14 @@
 
 package models.entities;
 
+import lombok.*;
+
+@Data
+@ToString
+@Builder
+@EqualsAndHashCode
+@Getter
+@Setter
 public class Comment {
     private int id;
     private User user_id;
@@ -18,19 +26,5 @@ public class Comment {
         this.user_text = user_text;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public User getUser_id() {
-        return user_id;
-    }
-
-    public Song getSong_id() {
-        return song_id;
-    }
-
-    public String getUser_text() {
-        return user_text;
-    }
 }

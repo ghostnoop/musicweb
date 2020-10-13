@@ -1,5 +1,5 @@
 
-package models.repositories;
+package models.repositories.interfaces;
 
 import java.util.List;
 

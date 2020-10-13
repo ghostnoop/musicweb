@@ -1,5 +1,7 @@
 <%@ page import="models.entities.Song" %>
 <%@ page import="java.util.List" %>
+<%@ page import="models.entities.Album" %>
+<%@ page import="models.entities.Artist" %>
 <jsp:include page="header.jsp"/>
 
 <div class="col content-col">
@@ -29,10 +31,10 @@
                             </a>
                         </div>
                         <div class="item-desc">
-                            <div class="item-name"><a href="#">Tempered Song</a>
+                            <div class="item-name"><a href="#"><%=song.getTitle()%></a>
                                 <div class="item-author">
                                     by
-                                    <a href="#">Miaow</a>
+                                    <a href="#"><%=song.getArtist_id().getName()%></a>
                                 </div>
                             </div>
                         </div>
@@ -62,6 +64,13 @@
             </div>
             <h2 class="headline">New Albums</h2>
             <div class="row content-row">
+
+                <%
+                    List<Album> albums = (List) request.getAttribute("albums");
+                    if (albums != null)
+                        for (Album album : albums) {
+                %>
+
                 <div class="col-12 col-sm-6 col-md-3 col-lg-2 item">
                     <article class="item-song">
                         <div class="item-image">
@@ -71,136 +80,23 @@
                                 </a>
                             </div>
                             <a href="#" class="image-ref">
-                                <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/m19-150x150.jpg"
+                                <img src="<%=album.getCover_img()%>"
                                      alt>
                             </a>
                         </div>
                         <div class="item-desc">
-                            <div class="item-name"><a href="#">Tempered Song</a>
+                            <div class="item-name"><a href="#"><%=album.getTitle()%></a>
                                 <div class="item-author">
                                     by
-                                    <a href="#">Miaow</a>
+                                    <a href="#"><%=album.getArtist_id().getName()%></a>
                                 </div>
                             </div>
                         </div>
                     </article>
                 </div>
-                <div class="col-12 col-sm-6 col-md-3 col-lg-2 item">
-                    <article class="item-song">
-                        <div class="item-image">
-                            <div class="item-hover">
-                                <a href="#">
-                                    <i class="far fa-play-circle"></i>
-                                </a>
-                            </div>
-                            <a href="#">
-                                <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/m15-150x150.jpg"
-                                     alt>
-                            </a>
-                        </div>
-                        <div class="item-desc">
-                            <div class="item-name"><a href="#">Bubble</a>
-                                <div class="item-author">
-                                    by
-                                    <a href="#">Miaow</a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 col-lg-2 item">
-                    <article class="item-song">
-                        <div class="item-image">
-                            <div class="item-hover">
-                                <a href="#">
-                                    <i class="far fa-play-circle"></i>
-                                </a>
-                            </div>
-                            <a href="#">
-                                <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/b17-150x150.jpg"
-                                     alt>
-                            </a>
-                        </div>
-                        <div class="item-desc">
-                            <div class="item-name"><a href="#">Lismore</a>
-                                <div class="item-author">
-                                    by
-                                    <a href="#">Joe Holmes</a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 col-lg-2 item">
-                    <article class="item-song">
-                        <div class="item-image">
-                            <div class="item-hover">
-                                <a href="#">
-                                    <i class="far fa-play-circle"></i>
-                                </a>
-                            </div>
-                            <a href="#">
-                                <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/b5-150x150.jpg"
-                                     alt>
-                            </a>
-                        </div>
-                        <div class="item-desc">
-                            <div class="item-name"><a href="#">Beside Me</a>
-                                <div class="item-author">
-                                    by
-                                    <a href="#">Miaow</a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 col-lg-2 item">
-                    <article class="item-song">
-                        <div class="item-image">
-                            <div class="item-hover">
-                                <a href="#">
-                                    <i class="far fa-play-circle"></i>
-                                </a>
-                            </div>
-                            <a href="#">
-                                <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/m17-150x150.jpg"
-                                     alt>
-                            </a>
-                        </div>
-                        <div class="item-desc">
-                            <div class="item-name">
-                                <a href="#">Lentement</a>
-                                <div class="item-author">
-                                    by
-                                    <a href="#">James Garsia</a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 col-lg-2 item">
-                    <article class="item-song">
-                        <div class="item-image">
-                            <div class="item-hover">
-                                <a href="#">
-                                    <i class="far fa-play-circle"></i>
-                                </a>
-                            </div>
-                            <a href="#">
-                                <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/b16-150x150.jpg"
-                                     alt>
-                            </a>
-                        </div>
-                        <div class="item-desc">
-                            <div class="item-name"><a href="#">The Separation</a>
-                                <div class="item-author">
-                                    by
-                                    <a href="#">Bossr</a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
+                <%}%>
+
+
             </div>
         </div>
     </section>
@@ -212,73 +108,22 @@
 
             <!-- должно приходить с бд-->
             <div class="list-group">
-                <div class="list-group-item">
-                    <div class="avatar-container"><a href=""><img
-                            src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                            alt=""></a></div>
-                    <div class="name-container"><a href="">Miaow</a></div>
-                </div>
+
+                <%
+                    List<Artist> artists = (List) request.getAttribute("artists");
+                    if (artists != null)
+                        for (Artist artist : artists) {
+                %>
 
                 <div class="list-group-item">
                     <div class="avatar-container"><a href=""><img
-                            src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
+                            src="<%=artist.getAvatar_img()%>"
                             alt=""></a></div>
-                    <div class="name-container"><a href="">The Stark Palace</a></div>
+                    <div class="name-container"><a href=""><%=artist.getName()%>></a></div>
                 </div>
-                <div class="list-group-item">
-                    <div class="avatar-container"><a href=""><img
-                            src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                            alt=""></a></div>
-                    <div class="name-container"><a href="">Bossr</a></div>
-                </div>
-                <div class="list-group-item">
-                    <div class="avatar-container"><a href=""><img
-                            src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                            alt=""></a></div>
-                    <div class="name-container"><a href="">Crystal Guerrero</a></div>
-                </div>
-                <div class="list-group-item">
-                    <div class="avatar-container"><a href=""><img
-                            src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                            alt=""></a></div>
-                    <div class="name-container"><a href="">James Garcia</a></div>
-                </div>
-                <div class="list-group-item">
-                    <div class="avatar-container"><a href=""><img
-                            src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                            alt=""></a></div>
-                    <div class="name-container"><a href="">Jean Schneider</a></div>
-                </div>
-                <div class="list-group-item">
-                    <div class="avatar-container"><a href=""><img
-                            src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                            alt=""></a></div>
-                    <div class="name-container"><a href="">Jeremy Scott</a></div>
-                </div>
-                <div class="list-group-item">
-                    <div class="avatar-container"><a href=""><img
-                            src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                            alt=""></a></div>
-                    <div class="name-container"><a href="">Jesse Russell</a></div>
-                </div>
-                <div class="list-group-item">
-                    <div class="avatar-container"><a href=""><img
-                            src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                            alt=""></a></div>
-                    <div class="name-container"><a href="">Joe Holmes</a></div>
-                </div>
-                <div class="list-group-item">
-                    <div class="avatar-container"><a href=""><img
-                            src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                            alt=""></a></div>
-                    <div class="name-container"><a href="">Joe Holmes</a></div>
-                </div>
-                <div class="list-group-item">
-                    <div class="avatar-container"><a href=""><img
-                            src="http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg"
-                            alt=""></a></div>
-                    <div class="name-container"><a href="">Joe Holmes</a></div>
-                </div>
+
+                <%}%>
+
             </div>
             <!-- -->
         </div>

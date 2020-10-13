@@ -1,5 +1,13 @@
 package models.entities;
 
+import lombok.*;
+
+@Data
+@ToString
+@Builder
+@EqualsAndHashCode
+@Getter
+@Setter
 public class Song {
     private int id;
     private Artist artist_id;
@@ -26,39 +34,4 @@ public class Song {
     }
 
 
-    public int getId() {
-        return id;
-    }
-
-    public Artist getArtist_id() {
-        return artist_id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getCover_img() {
-        return cover_img;
-    }
-
-    public String getMusic_url() {
-        return music_url;
-    }
-
-    public Album getAlbum_id() {
-        return album_id;
-    }
-
-    @Override
-    public String toString() {
-        return "Song{" +
-                "id=" + id +
-                ", artist_id=" + artist_id +
-                ", title='" + title + '\'' +
-                ", cover_img='" + cover_img + '\'' +
-                ", music_url='" + music_url + '\'' +
-                ", album_id=" + album_id +
-                '}';
-    }
 }

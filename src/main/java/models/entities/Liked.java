@@ -1,5 +1,13 @@
 package models.entities;
 
+import lombok.*;
+
+@Data
+@ToString
+@Builder
+@EqualsAndHashCode
+@Getter
+@Setter
 public class Liked {
     private User user_id;
     private Song song_id;
@@ -9,11 +17,4 @@ public class Liked {
         this.song_id = song_id;
     }
 
-    public User getUser_id() {
-        return user_id;
-    }
-
-    public Song getSong_id() {
-        return song_id;
-    }
 }

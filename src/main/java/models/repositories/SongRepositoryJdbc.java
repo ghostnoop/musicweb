@@ -5,10 +5,15 @@
 
 package models.repositories;
 
+import models.entities.Album;
+import models.entities.Artist;
 import models.entities.Song;
 import models.entities.User;
-import service.SQLGenerator;
+import models.repositories.interfaces.RowMapper;
+import models.repositories.interfaces.SongRepository;
+import models.repositories.jdbcUtils.SimpleJdbc;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,42 +22,40 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SongRepositoryJdbc implements SongRepository {
-    private Connection connection;
+    private final DataSource dataSource;
+    private final SimpleJdbc simpleJdbc;
 
-    public SongRepositoryJdbc(Connection connection) {
-        this.connection = connection;
+    public SongRepositoryJdbc(DataSource dataSource) {
+        this.dataSource = dataSource;
+        this.simpleJdbc = new SimpleJdbc(dataSource);
     }
 
+    private final RowMapper<Song> songRowMapper = row -> Song.builder()
+            .id(row.getInt(1))
+            .artist_id(Artist.builder()
+                    .id(row.getInt("artist_id"))
+                    .email(row.getString("email"))
+                    .name(row.getString("name"))
+                    .lastname(row.getString("lastname"))
+                    .avatar_img(row.getString("avatar_img"))
+                    .created_at(row.getDate("created_at")).build())
+            .title(row.getString("title"))
+            .cover_img(row.getString("cover_img"))
+            .music_url(row.getString("music_url"))
+            .album_id(Album.builder()
+                    .id(row.getObject("album_id") == null ? 0 :
+                            row.getInt("album_id")).build())
+            .build();
+
+    //SELECT song.`id`,`atist_id`,artist.email,artist.name,artist.lastname,artist.avatar_img,artist.created_at, song.title,song.cover_img,song.music_url,song.album_id AS album_id FROM `song` INNER JOIN `artist` on song.atist_id=artist.id LEFT JOIN album on song.album_id=album.id
     @Override
     public List<Song> getAll() {
-        String GET_ALL_SONGS = "SELECT `song`.`id`,`title`,`cover_img`,`music_url`,`artist`.`id`," +
-                "`artist`.`name` FROM `song` INNER JOIN `artist` on `song`.`atist_id`= `artist`.`id`";
-        List<Song> songs = new LinkedList<>();
+        String GET_ALL = "SELECT song.`id`,`atist_id`,artist.email,artist.name,artist.lastname," +
+                "artist.avatar_img,artist.created_at, song.title,song.cover_img,song.music_url," +
+                "song.album_id AS album_id FROM `song` INNER JOIN `artist` on song.atist_id=artist.id " +
+                "LEFT JOIN album on song.album_id=album.id";
 
-        PreparedStatement preparedStatement;
-        try {
-            preparedStatement = connection.prepareStatement(GET_ALL_SONGS);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                songs.add(new Song(
-                        resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getInt(5),
-                        resultSet.getString(6)
-                ));
-            }
-            System.out.println(songs.get(0));
-            return songs;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
-        return null;
-
+        return simpleJdbc.query(GET_ALL, songRowMapper);
     }
 
     @Override
