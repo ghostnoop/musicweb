@@ -5,6 +5,7 @@
 
 package controllers.servlets;
 
+import app.Utils;
 import models.entities.Artist;
 import models.entities.User;
 import models.repositories.ArtistRepositoryJdbc;
@@ -17,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,9 +39,9 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("title", "Register - Music");
 
-        UserRepositoryJdbc userRepositoryJdbc = (UserRepositoryJdbc) req.getServletContext().getAttribute("jdbc");
-        ArtistRepositoryJdbc artistRepositoryJdbc = (ArtistRepositoryJdbc) req.getServletContext().getAttribute("jdbc");
-
+        DataSource dataSource = (DataSource) req.getServletContext().getAttribute("datasource");
+        UserRepositoryJdbc usersRepository = new UserRepositoryJdbc(dataSource);
+        ArtistRepositoryJdbc artistRepositoryJdbc = new ArtistRepositoryJdbc(dataSource);
 
         String email = req.getParameter("user-email");
 
@@ -47,54 +49,54 @@ public class RegisterServlet extends HttpServlet {
         Matcher matcher = pattern.matcher(email);
 
         if (!matcher.matches()) {
-            setError(req,resp);
+            setError(req, resp,"your email not in email pattern");
         }
 
-        boolean isArtist = req.getParameter("isArtist").equals("yes");
-        boolean saved;
-        boolean ans = isArtist ? artistRepositoryJdbc.emailExist(email) : userRepositoryJdbc.emailExist(email);
+        boolean isArtist = req.getParameter("isArtist") != null;
+        boolean saved = false;
+        boolean ans = isArtist ? artistRepositoryJdbc.emailExist(email) : usersRepository.emailExist(email);
 
         if (ans) {
-            setError(req,resp);
+            setError(req, resp,"User is exist");
         }
 
-        Object user = isArtist?saveArtist(req):saveUser(req);
-        saved=isArtist?artistRepositoryJdbc.save((Artist) user):userRepositoryJdbc.save((User) user);
+        Object user = isArtist ? saveArtist(req) : saveUser(req);
+        saved = isArtist ? artistRepositoryJdbc.save((Artist) user) : usersRepository.save((User) user);
 
         if (saved) {
-            req.getSession().setAttribute("isArtist",isArtist);
+            req.getSession().setAttribute("isArtist", isArtist);
             req.getSession().setAttribute("user", user);
             resp.sendRedirect(req.getContextPath() + "/index");
 
 
         } else {
-            setError(req,resp);
+            setError(req, resp,"Some error");
         }
 
 
     }
 
     private Artist saveArtist(HttpServletRequest req) {
-        return new Artist(
-                req.getParameter("user-email"),
-                req.getParameter("user-login"),
-                req.getParameter("user-lastname"),
-                "",
-                req.getParameter("user-password"));
+        return Artist.builder()
+                .email(req.getParameter("user-email"))
+                .name(req.getParameter("user-login"))
+                .lastname(req.getParameter("user-lastname"))
+                .password(Utils.hashingPassword(req.getParameter("user-password")))
+                .build();
     }
 
     private User saveUser(HttpServletRequest req) {
-        return new User(
-                req.getParameter("user-email"),
-                req.getParameter("user-login"),
-                req.getParameter("user-lastname"),
-                "",
-                req.getParameter("user-password"));
+        return User.builder()
+                .email(req.getParameter("user-email"))
+                .name(req.getParameter("user-login"))
+                .lastname(req.getParameter("user-lastname"))
+                .password(Utils.hashingPassword(req.getParameter("user-password")))
+                .build();
     }
 
-    private void setError(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("error", true);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/jsp/register.jsp");
+    private void setError(HttpServletRequest req, HttpServletResponse resp,String message) throws ServletException, IOException {
+        req.setAttribute("error", message);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/register.ftl");
         requestDispatcher.forward(req, resp);
     }
 }

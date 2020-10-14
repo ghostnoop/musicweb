@@ -18,6 +18,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,25 +43,28 @@ public class SongRepositoryJdbc implements SongRepository {
             .title(row.getString("title"))
             .cover_img(row.getString("cover_img"))
             .music_url(row.getString("music_url"))
-            .album_id(Album.builder()
-                    .id(row.getObject("album_id") == null ? 0 :
-                            row.getInt("album_id")).build())
+            .album_id(
+                    Album.builder()
+                            .id(row.getInt("album_id")).title(row.getString("album_title"))
+                            .description(row.getString("album_description"))
+                            .cover_img(row.getString("album_img"))
+                            .build())
             .build();
+    private final String GET_ALL = "SELECT song.id,song.artist_id,artist.email,artist.name,artist.lastname," +
+            " artist.avatar_img,artist.created_at, song.title,song.cover_img,song.music_url,song.album_id" +
+            " AS album_id, album.title AS album_title, album.description as album_description, album.cover_img" +
+            " as album_img FROM song INNER JOIN artist on song.artist_id=artist.id LEFT JOIN album on " +
+            "song.album_id=album.id";
 
-    //SELECT song.`id`,`atist_id`,artist.email,artist.name,artist.lastname,artist.avatar_img,artist.created_at, song.title,song.cover_img,song.music_url,song.album_id AS album_id FROM `song` INNER JOIN `artist` on song.atist_id=artist.id LEFT JOIN album on song.album_id=album.id
     @Override
     public List<Song> getAll() {
-        String GET_ALL = "SELECT song.`id`,`atist_id`,artist.email,artist.name,artist.lastname," +
-                "artist.avatar_img,artist.created_at, song.title,song.cover_img,song.music_url," +
-                "song.album_id AS album_id FROM `song` INNER JOIN `artist` on song.atist_id=artist.id " +
-                "LEFT JOIN album on song.album_id=album.id";
-
         return simpleJdbc.query(GET_ALL, songRowMapper);
     }
 
     @Override
     public Song getById(int id) {
-        return null;
+        List<Song> songs = simpleJdbc.query(GET_ALL + " WHERE song.id= ?", songRowMapper, id);
+        return !songs.isEmpty() ? songs.get(0) : null;
     }
 
     @Override
@@ -76,5 +80,11 @@ public class SongRepositoryJdbc implements SongRepository {
     @Override
     public boolean deleteById(int _id) {
         return false;
+    }
+
+    @Override
+    public List<Song> searchByWords(String words) {
+        String SEARCH_BY=GET_ALL+" WHERE song.title LIKE \"%"+words+"%\" or album.title LIKE \"%"+words+"%\"";
+        return simpleJdbc.query(SEARCH_BY,songRowMapper);
     }
 }

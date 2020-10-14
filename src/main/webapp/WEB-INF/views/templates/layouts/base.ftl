@@ -1,12 +1,15 @@
-<#macro main css=[]>
+<#macro main css=[] js=[]>
     <html>
     <head>
-        <title>Register - Music</title>
         <title>${(title??)?then(title, "Music player")}</title>
-        <link rel="stylesheet" href="../../../views/static/V2/bootstrap.min.css">
-        <link rel="stylesheet" href="../../../views/css/home_page.css">
-        <link rel="stylesheet" href="../../../views/css/login_page.css">
-        <link rel="stylesheet" href="../../../views/css/register_page.css">
+        <link rel="stylesheet" href="../../../../views/static/V2/bootstrap.min.css">
+        <link rel="stylesheet" href="../../../../views/css/home_page.css">
+<#--        <link rel="stylesheet" href="../../../../views/css/login_page.css">-->
+<#--        <link rel="stylesheet" href="../../../../views/css/register_page.css">-->
+        <#list css as styles>
+            <link rel="stylesheet" href="../../../../views/css/${styles}.css">
+
+        </#list>
     </head>
     <body>
 
@@ -106,20 +109,24 @@
                         </section>
                     </aside>
                 </div>
-                <div class="col content-col">
-                    <#nested>
-                </div>
+                <#nested>
+
+
             </div>
         </div>
     </section>
 
     <#if !user??>
-        <#include "layouts/loginrequired.ftl">
+        <#include "loginrequired.ftl">
     </#if>
 
     <script src="https://kit.fontawesome.com/ed6c81c467.js" crossorigin="anonymous"></script>
-    <script src="../../../views/js/jquery-3.5.1.min.js"></script>
-    <script src="../../../views/js/main.js"></script>
+    <script src="../../../../views/js/jquery-3.5.1.min.js"></script>
+    <#list js as jscript>
+        <script src="../../../../views/js/${jscript}.js"></script>
+    </#list>
+
+    <script src="../../../../views/js/main.js"></script>
     </body>
     </html>
 

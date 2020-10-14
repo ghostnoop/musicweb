@@ -6,12 +6,14 @@ import models.repositories.UserRepositoryJdbc;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public class GlobalListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        servletContextEvent.getServletContext().setAttribute("datasource", DataSourcePick.getDataSource());
+        DataSourcePick dataSourcePick = new DataSourcePick(Constants.jdbcUrl,Constants.jdbcUser,Constants.jdbcPassword);
+        servletContextEvent.getServletContext().setAttribute("datasource", dataSourcePick.getDataSourcePick());
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {

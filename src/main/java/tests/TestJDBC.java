@@ -2,6 +2,7 @@ package tests;
 
 import app.Constants;
 import app.DataSourcePick;
+import com.google.gson.Gson;
 import models.entities.Album;
 import models.entities.Artist;
 import models.entities.Song;
@@ -30,7 +31,8 @@ public class TestJDBC {
 //        System.out.println(userRepositoryJdbc.deleteById(2));
 //        System.out.println(userRepositoryJdbc.getById(2));
 
-        AlbumRepositoryJdbc albumRepositoryJdbc = new AlbumRepositoryJdbc(DataSourcePick.getDataSource());
+//        SongRepositoryJdbc songRepositoryJdbc = new SongRepositoryJdbc(DataSourcePick.getDataSource());
+//        System.out.println(songRepositoryJdbc.getById(1));
 //        System.out.println(albumRepositoryJdbc.getAll());
 //        String s= SQLGenerator.generateSave(Album.class);
 //        System.out.println(s);
@@ -40,8 +42,10 @@ public class TestJDBC {
 //        System.out.println(ans);
 //        String UPD_BY_ID=SQLGenerator.generateUpdateById(Album.class);
 //        System.out.println(UPD_BY_ID);
-        System.out.println(albumRepositoryJdbc.deleteById(3));
+        boolean answ=false;
 
+        String json = new Gson().toJson(answ );
+        System.out.println(json);
     }
 
     public static void testUserJdbc(Connection connection) {

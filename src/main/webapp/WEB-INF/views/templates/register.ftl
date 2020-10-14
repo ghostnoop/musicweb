@@ -1,7 +1,8 @@
 <#ftl encoding="UTF-8"/>
-<#import "base.ftl" as base>
+<#import "layouts/base.ftl" as base>
 
-<@base.main>
+<@base.main css=["register_page"]>
+<div class="col content-col">
 
     <div class="container-fluid login-container2">
         <section class="login-section">
@@ -11,7 +12,7 @@
                     <div class="error-active">
                         <span class="error-text">
                                 <strong>Error:</strong>
-                                some error text
+                                ${error}
                                 </span>
                     </div>
                 </#if>
@@ -53,5 +54,5 @@
             </article>
         </section>
     </div>
-
+</div>
 </@base.main>

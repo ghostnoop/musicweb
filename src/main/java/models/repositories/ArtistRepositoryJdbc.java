@@ -8,7 +8,11 @@ package models.repositories;
 import app.Constants;
 import models.entities.Artist;
 import models.repositories.interfaces.ArtistRepository;
+import models.repositories.interfaces.RowMapper;
+import models.repositories.jdbcUtils.SimpleJdbc;
+import service.SQLGenerator;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,78 +21,75 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ArtistRepositoryJdbc implements ArtistRepository {
-    private Connection connection;
+    private final DataSource dataSource;
+    private final SimpleJdbc simpleJdbc;
 
-    public ArtistRepositoryJdbc(Connection connection) {
-        this.connection = connection;
+    public ArtistRepositoryJdbc(DataSource dataSource) {
+        this.dataSource = dataSource;
+        this.simpleJdbc = new SimpleJdbc(dataSource);
     }
+
+    private final RowMapper<Artist> artistRowMapper = row -> Artist.builder()
+            .id(row.getInt("id"))
+            .email(row.getString("email"))
+            .name(row.getString("name"))
+            .lastname(row.getString("lastname"))
+            .password(row.getString("password"))
+            .avatar_img(row.getString("avatar_img"))
+            .created_at(row.getDate("created_at"))
+            .build();
+
+    private final String IS_EMAIL_EXIST = "SELECT * FROM artist WHERE email= ? LIMIT 1";
 
 
     @Override
     public List<Artist> getAll() {
-        String GET_ALL_SONGS = "SELECT `id`,`name`,`avatar_img` FROM `artist` WHERE 1";
-//        SELECT `song`.`id`,`song`.`title`,`song`.`cover_img`,`song`.`music_url`,`artist`.`id`,`artist`.`name` FROM `song` INNER JOIN `artist` on `song`.`atist_id`= `artist`.`id` INNER JOIN `album` on `song`.`album_id`=`album`.`id`
-        List<Artist> artists = new LinkedList<>();
-
-        PreparedStatement preparedStatement;
-        try {
-            preparedStatement = connection.prepareStatement(GET_ALL_SONGS);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                artists.add(new Artist(
-                        resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3)
-                ));
-            }
-            System.out.println(artists);
-            return artists;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
-        return null;
+        return simpleJdbc.query(SQLGenerator.generateGetAll(Artist.class), artistRowMapper);
     }
 
     @Override
     public Artist getById(int id) {
-        return null;
+        List<Artist> artists = simpleJdbc.query(SQLGenerator.generateGetById(Artist.class), artistRowMapper, id);
+        return !artists.isEmpty() ? artists.get(0) : null;
     }
 
     @Override
     public boolean save(Artist entity) {
-        return false;
+        return simpleJdbc.update(SQLGenerator.generateSave(Artist.class),
+                entity.getEmail(),
+                entity.getName(),
+                entity.getLastname(),
+                entity.getAvatar_img(),
+                entity.getPassword()
+        );
     }
 
     @Override
     public boolean updateById(Artist entity, int _id) {
-        return false;
+        return simpleJdbc.update(SQLGenerator.generateUpdateById(Artist.class),
+                entity.getEmail(),
+                entity.getName(),
+                entity.getLastname(),
+                entity.getAvatar_img(),
+                entity.getPassword(),
+                _id
+        );
     }
 
     @Override
     public boolean deleteById(int _id) {
-        return false;
+        return simpleJdbc.update(SQLGenerator.generateDeleteById(Artist.class), _id);
     }
 
     @Override
     public boolean emailExist(String email) {
-        PreparedStatement preparedStatement = null;
-        try {
-            preparedStatement = connection.prepareStatement("SELECT email FROM artist WHERE email= ? LIMIT 1");
-            preparedStatement.setString(1, email);
+        List<Artist> Artist = simpleJdbc.query(IS_EMAIL_EXIST, artistRowMapper, email);
+        return !Artist.isEmpty();
+    }
 
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                return true;
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
-        return false;
-
+    @Override
+    public Artist getByEmail(String email) {
+        List<Artist> Artist = simpleJdbc.query(IS_EMAIL_EXIST, artistRowMapper, email);
+        return !Artist.isEmpty() ? Artist.get(0) : null;
     }
 }

@@ -8,9 +8,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import static app.Constants.*;
 
 public class DataSourcePick {
+    public HikariDataSource getDataSourcePick() {
+        return hikariDataSource;
+    }
+
+    private HikariDataSource hikariDataSource;
     public Connection openConnection(String url, String username, String pass) {
         try {
             return DriverManager.getConnection(url, username, pass);
@@ -18,14 +22,14 @@ public class DataSourcePick {
             throw new IllegalArgumentException();
         }
     }
-    public static DataSource getDataSource(){
+    public DataSourcePick(String jdbcUrl,String jdbcUser,String jdbcPassword){
         HikariConfig hikariConfig = new HikariConfig();
         hikariConfig.setJdbcUrl(jdbcUrl);
         hikariConfig.setUsername(jdbcUser);
         hikariConfig.setPassword(jdbcPassword);
         hikariConfig.setMaximumPoolSize(10);
-
-        return new HikariDataSource(hikariConfig);
+        hikariDataSource=new HikariDataSource(hikariConfig);
+        DataSource dataSource = hikariDataSource;
     }
 
     public void closeConnection(Connection connection) {

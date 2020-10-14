@@ -1,7 +1,8 @@
 <#ftl encoding="UTF-8"/>
-<#import "base.ftl" as base>
+<#import "layouts/base.ftl" as base>
 
-<@base.main>
+<@base.main css=["login_page"]>
+<div class="col content-col">
 
     <div class="container-fluid login-container2">
         <section class="login-section">
@@ -11,7 +12,7 @@
                     <div class="error-active">
                         <span class="error-text">
                                 <strong>Error:</strong>
-                                some error text
+                                ${error}
                                 </span>
                     </div>
                 </#if>
@@ -32,17 +33,23 @@
                                 Remember Me
                             </label>
                         </p>
+                        <p class="login-artist">
+                            <label>
+                                <input type="checkbox" name="is-artist" id="isartist" value="forever">
+                                Artist ?
+                            </label>
+                        </p>
                         <p class="login-submit">
                             <input id="user_submit" type="submit" class="in-user-submit" value="Log In">
                         </p>
                         <!-- lost your password ?
                             <p class="login-lost-password"></p>
                         -->
-                        <a href="register_page.html" class="text-info">Register New Account</a>
+                        <a href="/register" class="text-info">Register New Account</a>
                     </fieldset>
                 </form>
             </article>
         </section>
     </div>
-
+</div>
 </@base.main>
