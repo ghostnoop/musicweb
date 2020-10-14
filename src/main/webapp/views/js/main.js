@@ -2,7 +2,7 @@ $(function () {
     $("#side_logo").hide();
     $("#side_login").hide();
     $("#side_menu").hide();
-    let win = $(window);
+    var win = $(window);
     win.resize(function () {
         if (win.width() < 850) {
             $(".aside-info").hide();
@@ -13,12 +13,12 @@ $(function () {
     });
 
     $("#side_button").click(function () {
-        let unside_login = $("#unside_login");
-        let unside_logo = $("#unside_logo");
-        let unside_menu = $("#unside_menu");
-        let side_logo = $("#side_logo");
-        let side_login = $("#side_login");
-        let side_menu = $("#side_menu");
+        var unside_login = $("#unside_login");
+        var unside_logo = $("#unside_logo");
+        var unside_menu = $("#unside_menu");
+        var side_logo = $("#side_logo");
+        var side_login = $("#side_login");
+        var side_menu = $("#side_menu");
         if (side_logo.is(":visible")) {
             unside_logo.show();
             unside_menu.show();

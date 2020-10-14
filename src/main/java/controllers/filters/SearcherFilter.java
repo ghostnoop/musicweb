@@ -13,6 +13,7 @@ import models.repositories.UserRepositoryJdbc;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.List;
@@ -26,7 +27,17 @@ public class SearcherFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        String words = servletRequest.getParameter("words");
+        HttpServletRequest req = (HttpServletRequest) servletRequest;
+
+        System.out.println(req.getMethod());
+
+        if (req.getMethod().equals("GET")){
+            filterChain.doFilter(servletRequest, servletResponse);
+            return;
+        }
+        System.out.println(req.getParameterMap());
+
+        String words = servletRequest.getParameter("searchField");
         DataSource dataSource = (DataSource) servletRequest.getServletContext().getAttribute("datasource");
         SongRepositoryJdbc songRepositoryJdbc = new SongRepositoryJdbc(dataSource);
         List<Song> songs = songRepositoryJdbc.searchByWords(words==null?"":words);

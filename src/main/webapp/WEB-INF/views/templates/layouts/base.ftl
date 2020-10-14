@@ -32,13 +32,13 @@
                         <a href="#" class="text-muted" id="side_button">
                             <i class="fa fa-bars"></i>
                         </a>
-                        <form action="" role="search" class="search">
+                        <form action="/searcher" id="methodForm" role="search" class="search">
                             <div class="input-group">
 		            <span class="input__btn">
-		              <button type="submit" class="btn btn-sm bg-white btn-icon rounded"><i
+		              <button type="submit" id="search_btn" class="btn btn-sm bg-white btn-icon rounded"><i
                                   class="fa fa-search"></i></button>
 		            </span>
-                                <input type="text" autocomplete="off" class="rounded input-search" name="search"
+                                <input type="text" autocomplete="off" id="search_input" class="rounded input-search" name="search"
                                        placeholder="Search...">
                             </div>
                         </form>
