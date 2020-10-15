@@ -67,6 +67,14 @@
     vertical-align: middle;
 }
 
+.form-group div {
+    margin-bottom: 30px;
+}
+
+.form-group input, .form-group select {
+    width: 40%;
+}
+
 .overlay {
     background-color: rgba(0,0,0,0.75);
     border-radius: 2px 2px 2px 2px;
