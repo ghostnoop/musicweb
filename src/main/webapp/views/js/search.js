@@ -1,9 +1,10 @@
-function searchAjax(link){
+function searchAjax(link) {
     return $.ajax({
-        url : link,
-        type:'HEAD'
+        url: link,
+        type: 'HEAD'
     });
 }
+
 //<div class="search-result">
 //             <article>
 //                 <div class="search-result-image"><img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/m5-150x150.jpg" alt=""></div>
@@ -16,41 +17,59 @@ function searchAjax(link){
 //                 <div class="result-link"><a href="#">Read More...</a></div>
 //             </article>
 //         </div>
-function searcherAjax(link){
+function searcherAjax(link) {
     $.ajax({
         url: link,
         type: "POST",
         data: {
-            'searchField': $("#search_input").val()
+            'searchField': $("#search_input").val(),
+            'ajax':true
         },
         dataType: 'json',
         success: function (data) {
-            alert(data.size);
-            var i =0;
-            $( ".search-results" ).append( $(
-                '<div class="search-result"> <article> ' +
-                ' <div class="search-result-image"><img src="'+data[i]['cover_img']+'" alt=""></div>'+
-                '<div class="search-result-text">'+
-                '<h2 class="search-result-text-name search_header"><a href="/detail/song?id='+data[i]['id']+'">'+data[i]['title']+'</a></h2>'+
-                '<div class="search-result-text-desc">'+
-                'artist: '+data[i]['artist_id']['name']+
-                '</div></div></article></div>'
-            ) );
+            console.log(data.length);
+            // alert(data.size);
+            $('.nothing_found').remove();
+            $('.search-result').remove();
+            // alert(data.length);
+            if (data.length === 0) {
+                $(".search-results").append($(
+                '<div class="nothing_found">' +
+                '<h1 class="search_header">Nothing Found</h1>' +
+                '</div>'
+                ));
+                return;
+            }
 
-            alert(data[0]['id'])
+            for (var i = 0; i < data.length; i++) {
+                $(".search-results").append($(
+                    '<div class="search-result"> <article> ' +
+                    ' <div class="search-result-image"><img src="' + data[i]['cover_img'] + '" alt=""></div>' +
+                    '<div class="search-result-text">' +
+                    '<h2 class="search-result-text-name search_header"><a href="/detail/song?id=' + data[i]['id'] + '">' + data[i]['title'] + '</a></h2>' +
+                    '<a href="/detail/artist?id='+ data[i]['artist_id']['id']+'">'+
+                    '<div class="search-result-text-desc">' +
+                    'artist: ' + data[i]['artist_id']['name'] +
+                    '</div>v</div></article></div>'
+                ));
+            }
+
+            // alert(data[0]['id'])
         }
 
     });
 }
 
-$("#methodForm").submit(function(e){
-    e.preventDefault();
-    alert($("#search_input").val());
 
-    var form = this;
-    searcherAjax('/searcher').done(function() {
-        // form.submit(); // submit bypassing the jQuery bound event
-    }).fail(function () {
-        alert("No index present!");
-    });
+$("#methodForm").submit(function (e) {
+    e.preventDefault();
+    var stateObj = { id: "100" };
+    window.history.pushState(stateObj,
+        "Search music", "/searcher?search="+$("#search_input").val());
+    $('#search_query').last().html( $("#search_input").val() );
+
+    $('.nothing_found').remove();
+    $('.search-result').remove();
+
+    searcherAjax('/searcher');
 });

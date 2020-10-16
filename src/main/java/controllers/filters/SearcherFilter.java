@@ -30,8 +30,9 @@ public class SearcherFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
 
         System.out.println(req.getMethod());
+        System.out.println(req.getParameter("ajax")+"     :test");
 
-        if (req.getMethod().equals("GET")){
+        if (req.getParameter("ajax")==null){
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }
@@ -42,6 +43,7 @@ public class SearcherFilter implements Filter {
         SongRepositoryJdbc songRepositoryJdbc = new SongRepositoryJdbc(dataSource);
         List<Song> songs = songRepositoryJdbc.searchByWords(words==null?"":words);
         System.out.println(songs);
+
         String json = new Gson().toJson(songs);
         System.out.println(json);
         servletResponse.setContentType("application/json");

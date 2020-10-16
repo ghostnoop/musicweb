@@ -7,19 +7,13 @@ package models.repositories;
 
 import models.entities.Album;
 import models.entities.Artist;
+import models.entities.Genre;
 import models.entities.Song;
-import models.entities.User;
 import models.repositories.interfaces.RowMapper;
 import models.repositories.interfaces.SongRepository;
 import models.repositories.jdbcUtils.SimpleJdbc;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 public class SongRepositoryJdbc implements SongRepository {
@@ -49,12 +43,19 @@ public class SongRepositoryJdbc implements SongRepository {
                             .description(row.getString("album_description"))
                             .cover_img(row.getString("album_img"))
                             .build())
+            .genre_id(Genre.builder()
+                    .id(row.getInt("genre_id"))
+                    .name(row.getString("genre_name"))
+                    .description(row.getString("genre_description"))
+                    .type(row.getString("genre_type"))
+                    .build())
             .build();
     private final String GET_ALL = "SELECT song.id,song.artist_id,artist.email,artist.name,artist.lastname," +
             " artist.avatar_img,artist.created_at, song.title,song.cover_img,song.music_url,song.album_id" +
             " AS album_id, album.title AS album_title, album.description as album_description, album.cover_img" +
-            " as album_img FROM song INNER JOIN artist on song.artist_id=artist.id LEFT JOIN album on " +
-            "song.album_id=album.id";
+            " as album_img, genre.id AS genre_id, genre.name AS genre_name, genre.description as genre_description, " +
+            "genre.type as genre_type FROM song INNER JOIN artist on song.artist_id=artist.id LEFT JOIN album on " +
+            "song.album_id=album.id LEFT JOIN genre on song.genre_id = genre.id ";
 
     @Override
     public List<Song> getAll() {
@@ -84,7 +85,8 @@ public class SongRepositoryJdbc implements SongRepository {
 
     @Override
     public List<Song> searchByWords(String words) {
-        String SEARCH_BY=GET_ALL+" WHERE song.title LIKE \"%"+words+"%\" or album.title LIKE \"%"+words+"%\"";
+        String SEARCH_BY=GET_ALL+" WHERE song.title LIKE \"%"+words+"%\" or album.title LIKE \"%"+words+"%\"" +
+                " or artist.name LIKE \"%"+words+"%\" or genre.name LIKE \"%"+words+"%\" LIMIT 100";
         return simpleJdbc.query(SEARCH_BY,songRowMapper);
     }
 }

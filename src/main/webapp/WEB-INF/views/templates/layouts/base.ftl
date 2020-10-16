@@ -120,7 +120,7 @@
         <#include "loginrequired.ftl">
     </#if>
 
-    <script src="https://kit.fontawesome.com/ed6c81c467.js" crossorigin="anonymous"></script>
+    <script src="../../../../views/js/fontawesome.js" crossorigin="anonymous"></script>
     <script src="../../../../views/js/jquery-3.5.1.min.js"></script>
     <#list js as jscript>
         <script src="../../../../views/js/${jscript}.js"></script>
