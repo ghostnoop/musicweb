@@ -264,20 +264,31 @@
                                 <span class="required">*</span>
                             </p>
                             <div class="form-group row">
-                                <div class="col-sm-4">
+                                <div class="col-sm-12">
                                     <label for="track_name">Track Name:</label>
                                     <span class="required">*</span>
                                     <input class="form-control" id="track_name" name="track_name" type="text">
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-12">
                                     <label for="track_img">Track image:</label>
                                     <span class="required">*</span>
-                                    <input id="track_img"type="file" name="track_img" accept="image/*,image/jpeg">
+                                    <input id="track_img" type="file" name="track_img" accept="image/*,image/jpeg">
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-12">
                                     <label for="track">Track</label>
                                     <span class="required">*</span>
                                     <input id="track" type="file" name="track" accept="audio/*">
+                                </div>
+                                <div class="col-sm-12">
+                                    <label for="genre">genre</label>
+                                    <span class="required">*</span>
+                                    <select class="form-control" id="genre">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
                                 </div>
                             </div>
                             <input name="submit" class="btn comment-submit" type="submit" value="Push Track">
