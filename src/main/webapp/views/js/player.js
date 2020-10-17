@@ -1,5 +1,5 @@
 $(function () {
-    var elms = ['track', 'timer', 'duration', 'playBtn', 'pauseBtn', 'prevBtn', 'nextBtn', 'playlistBtn', 'volumeBtn', 'progress', 'bar', 'loading', 'playlist', 'list', 'volume', 'barEmpty', 'barFull'];
+    var elms = ['track', 'timer', 'duration', 'playBtn', 'playlist-list', 'pauseBtn', 'prevBtn', 'nextBtn', 'playlistBtn', 'volumeBtn', 'progress', 'bar', 'loading', 'playlist', 'list', 'volume', 'barEmpty', 'barFull'];
     elms.forEach(function (elm) {
         window[elm] = document.getElementById(elm);
     });
@@ -16,16 +16,21 @@ $(function () {
         // Display the title of the first track.
         track.innerHTML = '1. ' + playlist[0].title;
 
-        // Setup the playlist display.
-        /*playlist.forEach(function(song) {
-            var div = document.createElement('div');
-            div.className = 'list-song';
-            div.innerHTML = song.title;
+        playlist.forEach(function(song) {
+            var div = document.createElement('li');
+            /*div.innerHTML = song.title;*/
+            div.innerHTML = '<div class="playlist-item">\n' +
+                '                                    <a href=""><i class="far fa-play-circle interface-activity" aria-hidden="true"></i></a>\n' +
+                '                                    <a class="playlist-item-remove">×</a>\n' +
+                '                                    <a class="jp-playlist-item jp-playlist-current" tabindex="0"></a>\n' +
+                '                                    <a href="http://flatfull.com/wp/musik/music/lentement/" class="playlist-item-title">' + song.title + '</a>\n' +
+                '                                    <span class="playlist-item-autor">by ' + song.author + '</span>\n' +
+                '                                </div>';
             div.onclick = function() {
                 player.skipTo(playlist.indexOf(song));
             };
-            list.appendChild(div);
-        });*/
+            document.getElementById('playlist-list').appendChild(div);
+        });
     };
     Player.prototype = {
         /**
@@ -202,19 +207,6 @@ $(function () {
         },
 
         /**
-         * Toggle the playlist display on/off.
-         */
-        togglePlaylist: function () {
-            var self = this;
-            var display = (playlist.style.display === 'table-cell') ? 'none' : 'table-cell';
-
-            setTimeout(function () {
-                playlist.style.display = display;
-            }, (display === 'table-cell') ? 0 : 500);
-            playlist.className = (display === 'table-cell') ? 'fadein' : 'fadeout';
-        },
-
-        /**
          * Format the time from seconds to M:SS.
          * @param  {Number} secs Seconds to format.
          * @return {String}      Formatted time.
@@ -230,7 +222,50 @@ $(function () {
 // Setup our new audio player class and pass it the playlist.
     var player = new Player([
         {
-            title: 'komety',
+            title: 'komety 1',
+            author: 'polnalyubvi',
+            file: 'komety.mp3',
+            howl: null
+        },
+        {
+            title: 'komety 2',
+            author: 'polnalyubvi',
+            file: 'komety.mp3',
+            howl: null
+        },
+        {
+            title: 'komety 2',
+            author: 'polnalyubvi',
+            file: 'komety.mp3',
+            howl: null
+        },
+        {
+            title: 'komety 2',
+            author: 'polnalyubvi',
+            file: 'komety.mp3',
+            howl: null
+        },
+        {
+            title: 'komety 2',
+            author: 'polnalyubvi',
+            file: 'komety.mp3',
+            howl: null
+        },
+        {
+            title: 'komety 2',
+            author: 'polnalyubvi',
+            file: 'komety.mp3',
+            howl: null
+        },
+        {
+            title: 'komety 2',
+            author: 'polnalyubvi',
+            file: 'komety.mp3',
+            howl: null
+        },
+        {
+            title: 'komety 2',
+            author: 'polnalyubvi',
             file: 'komety.mp3',
             howl: null
         },
@@ -261,9 +296,6 @@ $(function () {
     });
     playlistBtn.addEventListener('click', function () {
         $('#playlist').toggleClass('hide');
-    });
-    playlist.addEventListener('click', function () {
-        player.togglePlaylist();
     });
     barEmpty.addEventListener('click', function (event) {
         var per;
