@@ -1,5 +1,5 @@
 $(function () {
-    var elms = ['track', 'timer', 'duration', 'playBtn', 'playlist-list', 'pauseBtn', 'prevBtn', 'nextBtn', 'playlistBtn', 'volumeBtn', 'progress', 'bar', 'loading', 'playlist', 'list', 'volume', 'barEmpty', 'barFull'];
+    var elms = ['track', 'timer', 'duration', 'playBtn', 'playlist-list', 'pauseBtn', 'prevBtn', 'nextBtn', 'playlistBtn', 'volumeBtn', 'playlist', 'volume', 'barEmpty', 'barFull'];
     elms.forEach(function (elm) {
         window[elm] = document.getElementById(elm);
     });
@@ -18,7 +18,6 @@ $(function () {
 
         playlist.forEach(function(song) {
             var div = document.createElement('li');
-            /*div.innerHTML = song.title;*/
             div.innerHTML = '<div class="playlist-item">\n' +
                 '                                    <a href=""><i class="far fa-play-circle interface-activity" aria-hidden="true"></i></a>\n' +
                 '                                    <a class="playlist-item-remove">×</a>\n' +
@@ -58,24 +57,11 @@ $(function () {
 
                         // Start upating the progress of the track.
                         requestAnimationFrame(self.step.bind(self));
-
-                        bar.style.display = 'none';
                         pauseBtn.style.display = 'table-cell';
                     },
                     onend: function () {
-                        bar.style.display = 'table-cell';
                         self.skip('next');
                     },
-                    onpause: function () {
-                        bar.style.display = 'table-cell';
-                    },
-                    onstop: function () {
-                        bar.style.display = 'table-cell';
-                    },
-                    onseek: function () {
-                        // Start upating the progress of the track.
-                        requestAnimationFrame(self.step.bind(self));
-                    }
                 });
             }
 
@@ -151,9 +137,6 @@ $(function () {
                 self.playlist[self.index].howl.stop();
             }
 
-            // Reset progress.
-            progress.style.width = '0%';
-
             // Play the new track.
             self.play(index);
         },
@@ -198,8 +181,6 @@ $(function () {
             // Determine our current seek position.
             var seek = sound.seek() || 0;
             timer.innerHTML = self.formatTime(Math.round(seek));
-            progress.style.width = (((seek / sound.duration()) * 100) || 0) + '%';
-
             // If the sound is still playing, continue stepping.
             if (sound.playing()) {
                 requestAnimationFrame(self.step.bind(self));
@@ -296,6 +277,9 @@ $(function () {
     });
     playlistBtn.addEventListener('click', function () {
         $('#playlist').toggleClass('hide');
+    });
+    playlist.addEventListener('click', function () {
+        player.togglePlaylist();
     });
     barEmpty.addEventListener('click', function (event) {
         var per;
