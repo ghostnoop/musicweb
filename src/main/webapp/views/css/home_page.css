@@ -266,6 +266,149 @@ header .row {
 .login {
     background-color: #5a6a7a;
     height: 60px;
+    width: 235px;
+}
+
+.player .row div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    padding-left: 8px;
+    padding-right: 8px;
+    height: 60px;
+}
+
+.interface-activity {
+    font-size: 2em;
+}
+
+.player-interface .row i:hover{
+    color: #c2d2de;
+}
+
+.player .track-progress {
+    padding: 0 15px;
+    vertical-align: top;
+    position: relative;
+}
+
+.track-progress a{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    padding-left: 8px;
+    padding-right: 8px;
+    height: 60px;
+}
+
+.track-progress {
+    color: #e6eaed;
+}
+
+.list-song {
+    cursor: pointer;
+}
+
+.player .left-buttons .hide {
+    display: none;
+}
+
+.hide {
+    display: none;
+}
+
+.playlist {
+    position: relative;
+}
+
+.playlist ul {
+    position: absolute;
+    bottom: 45px;
+    left: 163px;
+    list-style: none;
+    display: block;
+    max-height: 320px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0;
+    width: 300px;
+}
+
+.playlist li {
+    margin-bottom: 10px;
+}
+.playlist li div {
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 2px;
+}
+
+.playlist-item {
+    font-size: 14px;
+    color: #eaf6f9;
+}
+
+.playlist-item i {
+    font-size: 1em;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.playlist-item-title:hover {
+    color: #eaf6f9;
+}
+
+.playlist-item-autor {
+    opacity: 0.6;
+}
+
+.playlist-item {
+    padding: 5px;
+    background-color: #2ea0b6;
+}
+
+.playlist-item-remove {
+    float: right;
+}
+
+.player .row .volume-bar {
+    width: 76px;
+    padding-right: 10px;
+}
+
+.player-interface .row i{
+    color: #e6eaed;
+    cursor: pointer;
+}
+
+.player .row .volume-bar-scale {
+    display: block;
+    height: 6px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #36b0c8;
+}
+
+.track-time {
+    color: #c3e6ed;
+}
+
+.player .row .volume-bar-scale-status {
+    display: block;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #78c3d2;
+    height: 6px;
+    width: 50%;
+}
+
+.player-interface {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.interface-btn {
+    font-size: 20px;
 }
 
 .login a{
@@ -451,4 +594,9 @@ header .row {
     height: 100%;
     width: 100%;
     color: #545a5f;
+}
+
+.player {
+    background-color: #4cb6cb;
+    padding-left: 0;
 }
