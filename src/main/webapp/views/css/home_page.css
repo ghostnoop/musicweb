@@ -321,6 +321,13 @@ header .row {
     position: relative;
 }
 
+#sliderBtn {
+    position: absolute;
+    font-size: 7px;
+    top: 24px;
+    left: 177px;
+}
+
 .playlist ul {
     position: absolute;
     bottom: 45px;
@@ -384,6 +391,7 @@ header .row {
 .player .row .volume-bar-scale {
     display: block;
     height: 6px;
+    width: 100%;
     padding-left: 0;
     padding-right: 0;
     background-color: #36b0c8;
@@ -399,7 +407,7 @@ header .row {
     padding-right: 0;
     background-color: #78c3d2;
     height: 6px;
-    width: 50%;
+    width: 100%;
 }
 
 .player-interface {

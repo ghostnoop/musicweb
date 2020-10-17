@@ -736,11 +736,10 @@
                                     <i class="far fa-play-circle interface-activity" aria-hidden="true"></i>
                                 </div>
                                 <div class="hide stop" id="pauseBtn">
-                                    <a href=""><i class="far fa-pause-circle interface-activity"></i></a>
+                                    <i class="far fa-pause-circle interface-activity" aria-hidden="true"></i>
                                 </div>
-                                <div id="loading"></div>
                                 <div class="next" id="nextBtn">
-                                    <a href=""><i class="fas fa-forward interface-btn"></i></a>
+                                    <i class="fas fa-forward interface-btn"></i>
                                 </div>
                                 <div class="playlist" id="playlistBtn">
                                     <i class="fas fa-list-ul"></i>
@@ -749,11 +748,6 @@
                             <div class="col progress-track-interface">
                                 <div class="track-progress">
                                     <a id="track"></a>
-                                    <div id="volume" class="fadeout">
-                                        <div id="barFull" class="bar"></div>
-                                        <div id="barEmpty" class="bar"></div>
-                                        <div id="sliderBtn"></div>
-                                    </div>
                                     <div id="waveform"></div>
                                     <div id="bar"></div>
                                     <div id="progress"></div>
@@ -763,11 +757,11 @@
                                 <div class="track-current-time track-time" id="timer">00:00</div>
                                 <div class="track-duration-time track-time" id="duration">00:00</div>
                                 <div class="volume" id="volumeBtn">
-                                    <a href=""><i class="fas fa-volume-up"></i></a>
+                                    <i class="fas fa-volume-up"></i></a>
                                 </div>
-                                <div class="volume-bar">
-                                    <div class="volume-bar-scale">
-                                        <div class="volume-bar-scale-status"></div>
+                                <div class="volume-bar" id="volume">
+                                    <div class="volume-bar-scale" id="barEmpty">
+                                        <div class="volume-bar-scale-status" id="barFull"></div>
                                     </div>
                                 </div>
                                 <div class="random">

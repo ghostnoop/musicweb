@@ -1,6 +1,6 @@
 $(function () {
-    var elms = ['track', 'timer', 'duration', 'playBtn', 'pauseBtn', 'prevBtn', 'nextBtn', 'playlistBtn', 'volumeBtn', 'progress', 'bar', 'loading', 'playlist', 'list', 'volume', 'barEmpty', 'barFull', 'sliderBtn'];
-    elms.forEach(function(elm) {
+    var elms = ['track', 'timer', 'duration', 'playBtn', 'pauseBtn', 'prevBtn', 'nextBtn', 'playlistBtn', 'volumeBtn', 'progress', 'bar', 'loading', 'playlist', 'list', 'volume', 'barEmpty', 'barFull'];
+    elms.forEach(function (elm) {
         window[elm] = document.getElementById(elm);
     });
 
@@ -9,7 +9,7 @@ $(function () {
      * Includes all methods for playing, skipping, updating the display, etc.
      * @param {Array} playlist Array of objects with playlist song details ({title, file, howl}).
      */
-    var Player = function(playlist) {
+    var Player = function (playlist) {
         this.playlist = playlist;
         this.index = 0;
 
@@ -32,7 +32,7 @@ $(function () {
          * Play a song in the playlist.
          * @param  {Number} index Index of the song in the playlist (leave empty to play the first or current).
          */
-        play: function(index) {
+        play: function (index) {
             var self = this;
             var sound;
 
@@ -47,7 +47,7 @@ $(function () {
                 sound = data.howl = new Howl({
                     src: ['../audio/' + data.file, './audio/' + data.file],
                     html5: true, // Force to HTML5 so that the audio can stream in (best for large files).
-                    onplay: function() {
+                    onplay: function () {
                         // Display the duration.
                         duration.innerHTML = self.formatTime(Math.round(sound.duration()));
 
@@ -57,21 +57,17 @@ $(function () {
                         bar.style.display = 'none';
                         pauseBtn.style.display = 'table-cell';
                     },
-                    onload: function() {
-                        bar.style.display = 'none';
-                        loading.style.display = 'none';
-                    },
-                    onend: function() {
+                    onend: function () {
                         bar.style.display = 'table-cell';
                         self.skip('next');
                     },
-                    onpause: function() {
+                    onpause: function () {
                         bar.style.display = 'table-cell';
                     },
-                    onstop: function() {
+                    onstop: function () {
                         bar.style.display = 'table-cell';
                     },
-                    onseek: function() {
+                    onseek: function () {
                         // Start upating the progress of the track.
                         requestAnimationFrame(self.step.bind(self));
                     }
@@ -89,7 +85,6 @@ $(function () {
                 playBtn.style.display = 'none';
                 pauseBtn.style.display = 'table-cell';
             } else {
-                loading.style.display = 'table-cell';
                 playBtn.style.display = 'none';
                 pauseBtn.style.display = 'none';
             }
@@ -101,7 +96,7 @@ $(function () {
         /**
          * Pause the currently playing track.
          */
-        pause: function() {
+        pause: function () {
             var self = this;
 
             // Get the Howl we want to manipulate.
@@ -119,7 +114,7 @@ $(function () {
          * Skip to the next or previous track.
          * @param  {String} direction 'next' or 'prev'.
          */
-        skip: function(direction) {
+        skip: function (direction) {
             var self = this;
 
             // Get the next track based on the direction of the track.
@@ -143,7 +138,7 @@ $(function () {
          * Skip to a specific track based on its playlist index.
          * @param  {Number} index Index in the playlist.
          */
-        skipTo: function(index) {
+        skipTo: function (index) {
             var self = this;
 
             // Stop the current track.
@@ -162,23 +157,19 @@ $(function () {
          * Set the volume and update the volume slider display.
          * @param  {Number} val Volume between 0 and 1.
          */
-        volume: function(val) {
-            var self = this;
-
-            // Update the global volume (affecting all Howls).
+        volume: function (val) {
             Howler.volume(val);
 
             // Update the display on the slider.
-            var barWidth = (val * 90) / 100;
+            var barWidth = (val * 100) / 100;
             barFull.style.width = (barWidth * 100) + '%';
-            sliderBtn.style.left = (window.innerWidth * barWidth + window.innerWidth * 0.05 - 25) + 'px';
         },
 
         /**
          * Seek to a new position in the currently playing track.
          * @param  {Number} per Percentage through the song to skip.
          */
-        seek: function(per) {
+        seek: function (per) {
             var self = this;
 
             // Get the Howl we want to manipulate.
@@ -193,7 +184,7 @@ $(function () {
         /**
          * The step called within requestAnimationFrame to update the playback position.
          */
-        step: function() {
+        step: function () {
             var self = this;
 
             // Get the Howl we want to manipulate.
@@ -213,27 +204,14 @@ $(function () {
         /**
          * Toggle the playlist display on/off.
          */
-        togglePlaylist: function() {
+        togglePlaylist: function () {
             var self = this;
             var display = (playlist.style.display === 'table-cell') ? 'none' : 'table-cell';
 
-            setTimeout(function() {
+            setTimeout(function () {
                 playlist.style.display = display;
             }, (display === 'table-cell') ? 0 : 500);
             playlist.className = (display === 'table-cell') ? 'fadein' : 'fadeout';
-        },
-
-        /**
-         * Toggle the volume display on/off.
-         */
-        toggleVolume: function() {
-            var self = this;
-            var display = (volume.style.display === 'table-cell') ? 'none' : 'table-cell';
-
-            setTimeout(function() {
-                volume.style.display = display;
-            }, (display === 'table-cell') ? 0 : 500);
-            volume.className = (display === 'table-cell') ? 'fadein' : 'fadeout';
         },
 
         /**
@@ -241,7 +219,7 @@ $(function () {
          * @param  {Number} secs Seconds to format.
          * @return {String}      Formatted time.
          */
-        formatTime: function(secs) {
+        formatTime: function (secs) {
             var minutes = Math.floor(secs / 60) || 0;
             var seconds = (secs - minutes * 60) || 0;
 
@@ -258,68 +236,43 @@ $(function () {
         },
     ]);
 
-// Bind our player controls.
-    playBtn.addEventListener('click', function() {
+    var isPlaying = false;
+
+    playBtn.addEventListener('click', function () {
+        isPlaying = true;
         player.play();
     });
-    pauseBtn.addEventListener('click', function() {
+    volumeBtn.addEventListener('click', function () {
+        if (Howler.volume() === 0) {
+            player.volume(1);
+        } else {
+            player.volume(0);
+        }
+    });
+    pauseBtn.addEventListener('click', function () {
+        isPlaying = false;
         player.pause();
     });
-    prevBtn.addEventListener('click', function() {
+    prevBtn.addEventListener('click', function () {
         player.skip('prev');
     });
-    nextBtn.addEventListener('click', function() {
+    nextBtn.addEventListener('click', function () {
         player.skip('next');
     });
-    waveform.addEventListener('click', function(event) {
-        player.seek(event.clientX / window.innerWidth);
+    playlistBtn.addEventListener('click', function () {
+        $('#playlist').toggleClass('hide');
     });
-    playlistBtn.addEventListener('click', function() {
-        togglePlaylist();
-    });
-    playlist.addEventListener('click', function() {
+    playlist.addEventListener('click', function () {
         player.togglePlaylist();
     });
-    volumeBtn.addEventListener('click', function() {
-        player.toggleVolume();
-    });
-    volume.addEventListener('click', function() {
-        player.toggleVolume();
-    });
-
-// Setup the event listeners to enable dragging of volume slider.
-    barEmpty.addEventListener('click', function(event) {
-        var per = event.layerX / parseFloat(barEmpty.scrollWidth);
+    barEmpty.addEventListener('click', function (event) {
+        var per;
+        if (isPlaying) {
+            per = (event.layerX - 141) / 58;
+        } else {
+            per = (event.layerX - 159) / 57;
+        }
         player.volume(per);
     });
-    sliderBtn.addEventListener('mousedown', function() {
-        window.sliderDown = true;
-    });
-    sliderBtn.addEventListener('touchstart', function() {
-        window.sliderDown = true;
-    });
-    volume.addEventListener('mouseup', function() {
-        window.sliderDown = false;
-    });
-    volume.addEventListener('touchend', function() {
-        window.sliderDown = false;
-    });
-
-    var move = function(event) {
-        if (window.sliderDown) {
-            var x = event.clientX || event.touches[0].clientX;
-            var startX = window.innerWidth * 0.05;
-            var layerX = x - startX;
-            var per = Math.min(1, Math.max(0, layerX / parseFloat(barEmpty.scrollWidth)));
-            player.volume(per);
-        }
-    };
-
-    volume.addEventListener('mousemove', move);
-    volume.addEventListener('touchmove', move);
-
-    function togglePlaylist() {
-        $('#playlist').toggleClass('hide');
-    }
 
 })
