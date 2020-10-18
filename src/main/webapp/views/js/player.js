@@ -20,7 +20,7 @@ $(function () {
             var div = document.createElement('li');
             div.innerHTML = '<div class="playlist-item">\n' +
                 '                                    <a href=""><i class="far fa-play-circle interface-activity" aria-hidden="true"></i></a>\n' +
-                '                                    <a class="playlist-item-remove">×</a>\n' +
+                '                                    <a class="playlist-item-remove" >×</a>\n' +
                 '                                    <a class="jp-playlist-item jp-playlist-current" tabindex="0"></a>\n' +
                 '                                    <a href="http://flatfull.com/wp/musik/music/lentement/" class="playlist-item-title">' + song.title + '</a>\n' +
                 '                                    <span class="playlist-item-autor">by ' + song.author + '</span>\n' +
@@ -49,7 +49,7 @@ $(function () {
                 sound = data.howl;
             } else {
                 sound = data.howl = new Howl({
-                    src: ['../audio/' + data.file, './audio/' + data.file],
+                    src: ['../audio/' + data.file],
                     html5: true, // Force to HTML5 so that the audio can stream in (best for large files).
                     onplay: function () {
                         // Display the duration.
@@ -208,54 +208,11 @@ $(function () {
             file: 'komety.mp3',
             howl: null
         },
-        {
-            title: 'komety 2',
-            author: 'polnalyubvi',
-            file: 'komety.mp3',
-            howl: null
-        },
-        {
-            title: 'komety 2',
-            author: 'polnalyubvi',
-            file: 'komety.mp3',
-            howl: null
-        },
-        {
-            title: 'komety 2',
-            author: 'polnalyubvi',
-            file: 'komety.mp3',
-            howl: null
-        },
-        {
-            title: 'komety 2',
-            author: 'polnalyubvi',
-            file: 'komety.mp3',
-            howl: null
-        },
-        {
-            title: 'komety 2',
-            author: 'polnalyubvi',
-            file: 'komety.mp3',
-            howl: null
-        },
-        {
-            title: 'komety 2',
-            author: 'polnalyubvi',
-            file: 'komety.mp3',
-            howl: null
-        },
-        {
-            title: 'komety 2',
-            author: 'polnalyubvi',
-            file: 'komety.mp3',
-            howl: null
-        },
     ]);
 
     var isPlaying = false;
 
     playBtn.addEventListener('click', function () {
-        isPlaying = true;
         player.play();
     });
     volumeBtn.addEventListener('click', function () {
@@ -282,13 +239,7 @@ $(function () {
         player.togglePlaylist();
     });
     barEmpty.addEventListener('click', function (event) {
-        var per;
-        if (isPlaying) {
-            per = (event.layerX - 141) / 58;
-        } else {
-            per = (event.layerX - 159) / 57;
-        }
+        var per = (event.layerX - barEmpty.offsetLeft) / barEmpty.offsetWidth;
         player.volume(per);
     });
-
 })

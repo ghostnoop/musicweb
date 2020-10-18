@@ -328,6 +328,10 @@ header .row {
     left: 177px;
 }
 
+.playlist-item-remove {
+    cursor:pointer;
+}
+
 .playlist ul {
     position: absolute;
     bottom: 45px;
