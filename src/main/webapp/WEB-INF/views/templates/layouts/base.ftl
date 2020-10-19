@@ -34,12 +34,20 @@
                         </a>
                         <form action="/searcher" id="methodForm" role="search" class="search">
                             <div class="input-group">
-		            <span class="input__btn">
-		              <button type="submit" id="search_btn" class="btn btn-sm bg-white btn-icon rounded"><i
-                                  class="fa fa-search"></i></button>
-		            </span>
-                                <input type="text" autocomplete="off" id="search_input" class="rounded input-search" name="search"
-                                       placeholder="Search...">
+		                    <span class="input__btn">
+		                        <button type="submit" id="search_btn" class="btn btn-sm bg-white btn-icon rounded">
+                                    <i class="fa fa-search"></i>
+                                </button>
+		                    </span>
+                                <input type="text" autocomplete="true" id="search_input" class="rounded input-search"
+                                       name="search"
+                                       placeholder="Search..."
+                                >
+                                <select class="form-control form-control-sm">
+                                    <option selected>--</option>
+                                    <option>Likes</option>
+                                    <option>New</option>
+                                </select>
                             </div>
                         </form>
                     </div>
@@ -63,15 +71,15 @@
                                         <span>Discover</span>
                                     </a>
                                 </li>
-                                <li class="menu-item"><a href="genres_page.html">
+                                <li class="menu-item"><a href="/genres">
                                         <i class="fas fa-align-left music-icon-blue" aria-hidden="true"></i>
                                         <span>Genres</span>
                                     </a></li>
-                                <li class="menu-item"><a href="albums_page.html">
+                                <li class="menu-item"><a href="/albums">
                                         <i class="fas fa-compact-disc music-icon-green" aria-hidden="true"></i>
                                         <span>Albums</span>
                                     </a></li>
-                                <li class="menu-item"><a href="artists_page.html">
+                                <li class="menu-item"><a href="/artists">
                                         <i class="fas fa-user-friends music-icon-blue" aria-hidden="true"></i>
                                         <span>Artists</span>
                                     </a></li>
@@ -92,13 +100,13 @@
                                         <i class="fas fa-music music-icon-green"></i>
                                     </a>
                                 </li>
-                                <li class="menu-item"><a href="genres_page.html">
+                                <li class="menu-item"><a href="/genres">
                                         <i class="fas fa-align-left music-icon-blue"></i>
                                     </a></li>
-                                <li class="menu-item"><a href="albums_page.html">
+                                <li class="menu-item"><a href="/albums">
                                         <i class="fas fa-compact-disc music-icon-green"></i>
                                     </a></li>
-                                <li class="menu-item"><a href="artists_page.html">
+                                <li class="menu-item"><a href="/artists">
                                         <i class="fas fa-user-friends music-icon-blue"></i>
                                     </a></li>
                                 <li class="menu-item-border"></li>

@@ -5,6 +5,8 @@
 
 package models.entities;
 
+import annotation.Constraint;
+import annotation.Table;
 import lombok.*;
 
 @Data
@@ -13,8 +15,9 @@ import lombok.*;
 @EqualsAndHashCode
 @Getter
 @Setter
+@Table(name = "genre")
 public class Genre  {
-//    todo orm
+    @Constraint(pk = true)
     int id;
     String name;
     String description;

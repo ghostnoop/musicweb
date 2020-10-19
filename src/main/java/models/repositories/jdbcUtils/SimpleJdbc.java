@@ -57,6 +57,7 @@ public class SimpleJdbc {
                 statement.setObject(i + 1, args[i]);
             }
 
+
             return statement.executeUpdate()!= 0;
 
         } catch (SQLException e) {

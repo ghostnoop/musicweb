@@ -10,14 +10,9 @@ import models.entities.Artist;
 import models.repositories.interfaces.AlbumRepository;
 import models.repositories.interfaces.RowMapper;
 import models.repositories.jdbcUtils.SimpleJdbc;
-import service.SQLGenerator;
+import app.SQLGenerator;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.LinkedList;
 import java.util.List;
 
 public class AlbumRepositoryJdbc implements AlbumRepository {

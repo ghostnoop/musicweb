@@ -5,14 +5,10 @@ import models.entities.User;
 import models.repositories.interfaces.RowMapper;
 import models.repositories.interfaces.UserRepository;
 import models.repositories.jdbcUtils.SimpleJdbc;
-import service.SQLGenerator;
+import app.SQLGenerator;
 
 import javax.sql.DataSource;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
-
-import static app.Utils.fromResultSetToObjectList;
 
 public class UserRepositoryJdbc implements UserRepository {
     private final DataSource dataSource;

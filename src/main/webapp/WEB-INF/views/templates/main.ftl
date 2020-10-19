@@ -4,6 +4,7 @@
 <@base.main>
 <div class="col content-col">
 
+
     <section class="content">
         <div class="container-fluid content-container">
             <h2 class="headline">What's New</h2>

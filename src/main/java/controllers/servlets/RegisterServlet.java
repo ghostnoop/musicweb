@@ -38,6 +38,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("title", "Register - Music");
+        req.setCharacterEncoding("UTF-8");
 
         DataSource dataSource = (DataSource) req.getServletContext().getAttribute("datasource");
         UserRepositoryJdbc usersRepository = new UserRepositoryJdbc(dataSource);
@@ -65,7 +66,7 @@ public class RegisterServlet extends HttpServlet {
 
         if (saved) {
             req.getSession().setAttribute("isArtist", isArtist);
-            req.getSession().setAttribute("user", user);
+            req.getSession().setAttribute("user", isArtist?artistRepositoryJdbc.getByEmail(email):usersRepository.getByEmail(email));
             resp.sendRedirect(req.getContextPath() + "/index");
 
 
@@ -91,6 +92,7 @@ public class RegisterServlet extends HttpServlet {
                 .name(req.getParameter("user-login"))
                 .lastname(req.getParameter("user-lastname"))
                 .password(Utils.hashingPassword(req.getParameter("user-password")))
+                .avatar_img("http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg")
                 .build();
     }
 
