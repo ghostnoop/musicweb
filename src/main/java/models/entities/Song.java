@@ -1,5 +1,8 @@
 package models.entities;
 
+import annotation.Constraint;
+import annotation.ManyToOne;
+import annotation.Table;
 import lombok.*;
 
 @Data
@@ -8,13 +11,21 @@ import lombok.*;
 @EqualsAndHashCode
 @Getter
 @Setter
+@Table(name = "song")
 public class Song {
+    @Constraint(pk = true, uniq = true)
     private int id;
+    @Constraint(notNull = true)
+    @ManyToOne
     private Artist artist_id;
     private String title;
     private String cover_img;
     private String music_url;
+    @Constraint(notNull = false)
+    @ManyToOne
     private Album album_id;
+    @Constraint(notNull = true)
+    @ManyToOne
     private Genre genre_id;
 
     public Song(int id, Artist artist_id, String title, String cover_img, String music_url, Album album_id) {

@@ -1,5 +1,7 @@
 package models.entities;
 
+import annotation.Constraint;
+import annotation.Table;
 import app.Utils;
 import lombok.*;
 
@@ -13,7 +15,9 @@ import java.util.Date;
 @EqualsAndHashCode
 @Getter
 @Setter
+@Table(name = "liked")
 public class User {
+    @Constraint(pk = true, uniq = true)
     private int id;
     private String email;
     private String name;

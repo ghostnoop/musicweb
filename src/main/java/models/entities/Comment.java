@@ -5,6 +5,9 @@
 
 package models.entities;
 
+import annotation.Constraint;
+import annotation.ManyToOne;
+import annotation.Table;
 import lombok.*;
 
 import java.util.Date;
@@ -15,9 +18,15 @@ import java.util.Date;
 @EqualsAndHashCode
 @Getter
 @Setter
+@Table(name = "comment")
 public class Comment {
+    @Constraint(pk = true, uniq = true)
     private int id;
+    @Constraint(notNull = true)
+    @ManyToOne
     private User user_id;
+    @Constraint(notNull = true)
+    @ManyToOne
     private Song song_id;
     private String user_text;
     private Date created_at;
