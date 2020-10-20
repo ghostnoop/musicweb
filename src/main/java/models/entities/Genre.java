@@ -23,6 +23,7 @@ public class Genre  {
     String description;
     String type;
 
+    public Genre(){}
 
     public Genre(int id, String name, String description, String type) {
         this.id = id;

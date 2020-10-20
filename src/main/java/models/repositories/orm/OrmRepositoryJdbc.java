@@ -66,7 +66,7 @@ public class OrmRepositoryJdbc {
                     }
                 });
 
-        String finalSql = fromQuery.substring(0, fromQuery.length() - 1);
+        String finalSql = fromQuery.substring(0, fromQuery.length());
         System.out.println(finalSql);
         ResultSet resultSet = statement.executeQuery(finalSql);
 

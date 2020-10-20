@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface SongRepository extends OrmRepository<Song> {
     List<Song> searchByWords(String words);
+    List<Song> getByArtistId(int artist_id);
 
 }
 

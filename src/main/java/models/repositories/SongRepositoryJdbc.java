@@ -85,8 +85,14 @@ public class SongRepositoryJdbc implements SongRepository {
 
     @Override
     public List<Song> searchByWords(String words) {
-        String SEARCH_BY=GET_ALL+" WHERE song.title LIKE \"%"+words+"%\" or album.title LIKE \"%"+words+"%\"" +
-                " or artist.name LIKE \"%"+words+"%\" or genre.name LIKE \"%"+words+"%\" LIMIT 100";
-        return simpleJdbc.query(SEARCH_BY,songRowMapper);
+        String SEARCH_BY = GET_ALL + " WHERE song.title LIKE \"%" + words + "%\" or album.title LIKE \"%" + words + "%\"" +
+                " or artist.name LIKE \"%" + words + "%\" or genre.name LIKE \"%" + words + "%\" LIMIT 100";
+        return simpleJdbc.query(SEARCH_BY, songRowMapper);
+    }
+
+    @Override
+    public List<Song> getByArtistId(int artist_id) {
+        String GetByArtistId = GET_ALL + " WHERE song.artist_id = ?";
+        return simpleJdbc.query(GetByArtistId, songRowMapper,artist_id);
     }
 }
