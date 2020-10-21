@@ -15,10 +15,9 @@ var Player = function (playlist) {
     playlist.forEach(function (song) {
         var div = document.createElement('li');
         div.innerHTML = '<div class="playlist-item">\n' +
-            '                                    <a href=""><i class="far fa-play-circle interface-activity" aria-hidden="true"></i></a>\n' +
-            '                                    <a class="playlist-item-remove" >×</a>\n' +
+            '                                    <i class="far fa-play-circle interface-activity" aria-hidden="true"></i>\n' +
             '                                    <a class="jp-playlist-item jp-playlist-current" tabindex="0"></a>\n' +
-            '                                    <a href="http://flatfull.com/wp/musik/music/lentement/" class="playlist-item-title">' + song.title + '</a>\n' +
+            '                                    <span>' + song.title + '</span>\n' +
             '                                    <span class="playlist-item-autor">by ' + song.author + '</span>\n' +
             '                                </div>';
         div.onclick = function () {
