@@ -30,7 +30,7 @@
                         <div class="music-img">
                             <div class="overlay">
                                 <div class="item-overlay">
-                                    <a href="detail/song?id=${song.getId()}">
+                                    <a href="/detail/song?id=${song.getId()}">
                                         <i class="far fa-play-circle" aria-hidden="true"></i>
                                     </a>
                                 </div>
