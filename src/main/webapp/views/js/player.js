@@ -66,7 +66,6 @@ Player.prototype = {
             list[0].stop();
             list.splice(0, 1);
         }
-        console.log(list);
         sound.play();
         list.push(sound);
         // Update the track display.
@@ -264,5 +263,31 @@ function playTrack(id) {
         ]);
         player.play();
 
+    });
+}
+
+function playAlbum(id) {
+    $.ajax({
+        url: "/searchalbum",
+        type: "GET",
+        data: {
+            'id':id,
+        },
+        dataType: 'json',
+    }).done(function (data) {
+
+
+// Setup our new audio player class and pass it the playlist.
+        playlist = [];
+        for (let i = 0; i < data.length; i++) {
+            playlist.push({
+                title: data[i]['title'],
+                author: data[i]['album_id']['title'],
+                file: data[i]['music_url'],
+                howl: null
+            })
+        }
+        player = new Player(playlist);
+        player.play();
     });
 }
