@@ -52,9 +52,6 @@
                                         <div class="volume-bar-scale-status" id="barFull"></div>
                                     </div>
                                 </div>
-                                <div class="random">
-                                    <a href=""><i class="fas fa-random"></i></a>
-                                </div>
                                 <div class="loop">
                                     <a href=""><i class="fas fa-circle-notch"></i></a>
                                 </div>
