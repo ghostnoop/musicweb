@@ -49,7 +49,5 @@ public class SearcherFilter implements Filter {
         servletResponse.setContentType("application/json");
         servletResponse.setCharacterEncoding("UTF-8");
         servletResponse.getOutputStream().print(json);
-
-
     }
 }
