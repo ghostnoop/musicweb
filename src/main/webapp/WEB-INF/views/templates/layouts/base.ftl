@@ -135,6 +135,8 @@
     </#list>
 
     <script src="../../../../views/js/main.js"></script>
+    <script src="../../../../views/js/howler.core.js"></script>
+    <script src="../../../../views/js/player.js"></script>
     </body>
     </html>
 

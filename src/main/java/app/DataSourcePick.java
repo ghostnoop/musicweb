@@ -27,6 +27,7 @@ public class DataSourcePick {
         hikariConfig.setJdbcUrl(jdbcUrl);
         hikariConfig.setUsername(jdbcUser);
         hikariConfig.setPassword(jdbcPassword);
+        hikariConfig.setDriverClassName("com.mysql.cj.jdbc.Driver");
         hikariConfig.setMaximumPoolSize(10);
         hikariDataSource=new HikariDataSource(hikariConfig);
         DataSource dataSource = hikariDataSource;
