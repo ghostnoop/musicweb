@@ -550,6 +550,7 @@ header .row {
 
 .item-hover i {
     font-size: 2em;
+    cursor: pointer;
 }
 
 .item-hover i:hover {
