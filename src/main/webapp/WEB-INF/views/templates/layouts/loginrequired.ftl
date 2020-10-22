@@ -58,7 +58,7 @@
                                     </div>
                                 </div>
                                 <div class="loop">
-                                    <a href=""><i class="fas fa-circle-notch"></i></a>
+                                    <i class="fas fa-circle-notch" id="loopBtn"></i>
                                 </div>
                             </div>
                         </div>
