@@ -18,7 +18,7 @@
                                 <div class="item-image">
                                     <div class="item-hover">
                                         <div class="item-hover-center">
-                                            <i class="far fa-play-circle" onclick="playAlbum(${song.getId()})"></i>
+                                            <i class="far fa-play-circle" onclick="playTrack(${song.getId()})"></i>
                                         </div>
                                     </div>
                                     <a href="/detail/song?id=${song.getId()}" class="image-ref">

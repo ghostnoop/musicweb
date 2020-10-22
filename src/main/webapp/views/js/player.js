@@ -12,14 +12,16 @@ var Player = function (playlist) {
     // Display the title of the first track.
     track.innerHTML = '1. ' + playlist[0].title;
 
+    document.getElementById('playlist-list').innerHTML = "";
+
     playlist.forEach(function (song) {
         var div = document.createElement('li');
-        div.innerHTML = '<div class="playlist-item">\n' +
+        div.innerHTML = '<li></li><div class="playlist-item">\n' +
             '                                    <i class="far fa-play-circle interface-activity" aria-hidden="true"></i>\n' +
             '                                    <a class="jp-playlist-item jp-playlist-current" tabindex="0"></a>\n' +
             '                                    <span>' + song.title + '</span>\n' +
             '                                    <span class="playlist-item-autor">by ' + song.author + '</span>\n' +
-            '                                </div>';
+            '                                </div></li>';
         div.onclick = function () {
             player.skipTo(playlist.indexOf(song));
         };
