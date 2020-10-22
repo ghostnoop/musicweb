@@ -22,7 +22,7 @@ public class Artist {
     private String email;
     private String name;
     private String lastname;
-    private String avatar_img;
+    private String avatar_img = "";
     private String password;
     private Date created_at;
 
@@ -63,7 +63,6 @@ public class Artist {
         this.id = id;
         this.name = name;
     }
-
 
 
     public Artist(ResultSet resultSet) {

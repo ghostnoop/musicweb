@@ -2,6 +2,12 @@
 
 package app;
 
+import org.apache.commons.io.IOUtils;
+
+import javax.servlet.http.Part;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -9,6 +15,9 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.UUID;
+
+import static app.Constants.upload_dir;
 
 public class Utils {
     public Connection openConnection(String url, String username, String pass) {
@@ -101,5 +110,24 @@ public class Utils {
             }
         }
         return true;
+    }
+    public static String fileSaver(Part file) {
+        try {
+            String file_name = UUID.randomUUID().toString() +
+                    "-" +
+                    file.getSubmittedFileName();
+
+            IOUtils.copyLarge(
+                    file.getInputStream(),
+                    new FileOutputStream(upload_dir +
+                            File.separator +
+                            file_name
+                    )
+            );
+            return file_name;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

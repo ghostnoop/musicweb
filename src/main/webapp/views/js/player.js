@@ -247,7 +247,7 @@ function playTrack(id) {
         url: "/searchsong",
         type: "GET",
         data: {
-            'id':id,
+            'id': id,
         },
         dataType: 'json',
     }).done(function (data) {
@@ -272,7 +272,7 @@ function playAlbum(id) {
         url: "/searchalbum",
         type: "GET",
         data: {
-            'id':id,
+            'id': id,
         },
         dataType: 'json',
     }).done(function (data) {
@@ -280,7 +280,7 @@ function playAlbum(id) {
 
 // Setup our new audio player class and pass it the playlist.
         playlist = [];
-        for (let i = 0; i < data.length; i++) {
+        for (var i = 0; i < data.length; i++) {
             playlist.push({
                 title: data[i]['title'],
                 author: data[i]['album_id']['title'],

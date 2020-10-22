@@ -22,7 +22,7 @@
                                         </div>
                                     </div>
                                     <a href="/detail/song?id=${song.getId()}" class="image-ref">
-                                        <img src="${song.getCover_img()}"
+                                        <img src="/img/get?name=${song.getCover_img()}"
                                              alt>
                                     </a>
                                 </div>
@@ -67,33 +67,33 @@
                 <h2 class="headline">New Albums</h2>
                 <div class="row content-row">
                     <#--            new albums-->
-                    <div class="col-12 col-sm-6 col-md-3 col-lg-2 item">
-                        <article class="item-song">
-                            <div class="item-image">
-                                <div class="item-hover">
-                                    <a href="#">
-                                        <div class="item-hover-center">
-                                            <a href="#">
-                                                <i class="far fa-play-circle"></i>
-                                            </a>
-                                        </div>
+                    <#list albums as album>
+                        <div class="col-12 col-sm-6 col-md-3 col-lg-2 item">
+                            <article class="item-song">
+                                <div class="item-image">
+                                    <div class="item-hover">
+                                        <a href="#">
+                                            <div class="item-hover-center">
+                                                <i class="far fa-play-circle" onclick="playAlbum(${album.getId()})"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <a href="#" class="image-ref">
+                                        <img src="/img/get?name=${album.getCover_img()}"
+                                             alt>
                                     </a>
                                 </div>
-                                <a href="#" class="image-ref">
-                                    <img src="http://flatfull.com/wp/musik/wp-content/uploads/2015/07/m19-150x150.jpg"
-                                         alt>
-                                </a>
-                            </div>
-                            <div class="item-desc">
-                                <div class="item-name"><a href="#">Tempered Song</a>
-                                    <div class="item-author">
-                                        by
-                                        <a href="#">Miaow</a>
+                                <div class="item-desc">
+                                    <div class="item-name"><a href="/detail/album?id=${album.getId()}">${album.getTitle()}</a>
+                                        <div class="item-author">
+                                            by
+                                            <a href="/detail/artist?id=${album.getArtist_id().getId()}">${album.getArtist_id().getName()}</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </article>
-                    </div>
+                            </article>
+                        </div>
+                    </#list>
 
                 </div>
             </div>

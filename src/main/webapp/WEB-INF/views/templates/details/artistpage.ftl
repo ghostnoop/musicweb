@@ -30,13 +30,13 @@
                         <div class="music-img">
                             <div class="overlay">
                                 <div class="item-overlay">
-                                    <a href="detail/song?id=${song.getId()}">
+                                    <a href="/detail/song?id=${song.getId()}">
                                         <i class="far fa-play-circle" aria-hidden="true"></i>
                                     </a>
                                 </div>
                             </div>
                             <a href="">
-                                <img src="${song.getCover_img()}"
+                                <img src="/img/get?name=${song.getCover_img()}"
                                      alt="">
                             </a>
                         </div>
@@ -79,12 +79,14 @@
                         <div class="col-sm-12">
                             <label for="genre">genre</label>
                             <span class="required">*</span>
-                            <select class="form-control" id="genre">
+                            <select class="form-control" id="genre" name="genre" onchange="check()">
                                 <#list genres as genre>
                                     <option>${genre.getName()}</option>
                                 </#list>
                             </select>
                         </div>
+                        <input name="genre_selected"  id="genre_selected" value="0" hidden>
+
                     </div>
                     <input name="submit" class="btn comment-submit" type="submit" value="Push Track">
                 </form>
@@ -93,6 +95,12 @@
     </div>
 
     <#include "../layouts/sideartists.ftl">
+    <script>
+        function check() {
+            var a = $("#genre").prop('selectedIndex').toString();
+            document.getElementById("genre_selected").value = a.toString();
 
+        }
+    </script>
 
 </@base.main>

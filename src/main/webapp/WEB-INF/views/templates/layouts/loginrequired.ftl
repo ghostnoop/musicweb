@@ -3,15 +3,20 @@
         <div class="footer-container container-fluid">
             <div class="row">
                 <div class="col-auto login unside" id="unside_login">
-                    <a href="/login">
-                        <i class="fas fa-user-plus"></i>
-                        <span>Login</span>
-                    </a>
+                    <#if !user??>
+                        <a href="/login">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Login</span>
+                        </a>
+                    </#if>
+
                 </div>
-                <div class="col-auto login side" id="side_login">
-                    <a href="/login" id="login-ref">
-                        <i class="fas fa-user-plus"></i>
-                    </a>
+                <div class="col-auto login side pt-4" id="side_login">
+                    <#if !user??>
+                        <a href="/login" id="login-ref">
+                            <i class="fas fa-user-plus"></i>
+                        </a>
+                    </#if>
                 </div>
                 <div class="col player">
                     <div class="player-interface">

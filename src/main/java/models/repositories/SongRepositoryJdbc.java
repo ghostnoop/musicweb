@@ -70,7 +70,12 @@ public class SongRepositoryJdbc implements SongRepository {
 
     @Override
     public boolean save(Song entity) {
-        return false;
+        String songSaveSql =
+                "INSERT INTO `song`(`artist_id`, `title`, `cover_img`, `music_url`, `album_id`, `genre_id`) " +
+                        "VALUES (?, ?, ?, ?, ?, ?)";
+
+        return simpleJdbc.update(songSaveSql, entity.getArtist_id().getId(), entity.getTitle(), entity.getCover_img(),
+                entity.getMusic_url(), entity.getAlbum_id(), entity.getGenre_id().getId());
     }
 
     @Override
@@ -93,6 +98,12 @@ public class SongRepositoryJdbc implements SongRepository {
     @Override
     public List<Song> getByArtistId(int artist_id) {
         String GetByArtistId = GET_ALL + " WHERE song.artist_id = ?";
-        return simpleJdbc.query(GetByArtistId, songRowMapper,artist_id);
+        return simpleJdbc.query(GetByArtistId, songRowMapper, artist_id);
+    }
+
+    @Override
+    public List<Song> getByGenreId(int genre_id) {
+        String GetByGenreId = GET_ALL + " WHERE song.genre_id = ?";
+        return simpleJdbc.query(GetByGenreId, songRowMapper, genre_id);
     }
 }

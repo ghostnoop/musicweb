@@ -58,10 +58,11 @@ public class AuthFilter implements Filter {
                     resp.sendRedirect("/index");
                 }
             }
-
+            else
+                filterChain.doFilter(servletRequest, servletResponse);
         }
 
-        filterChain.doFilter(servletRequest, servletResponse);
+
 
     }
 

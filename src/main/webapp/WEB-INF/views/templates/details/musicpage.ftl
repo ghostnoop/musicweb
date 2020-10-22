@@ -8,14 +8,14 @@
         <div class="artist-inf">
             <div class="row">
                 <div class="col-sm-4 artist-image">
-                    <img src="${song.getCover_img()}" alt="">
+                    <img src="/img/get?name=${song.getCover_img()}" alt="">
                 </div>
                 <div class="col-sm-8 artist-desc">
                     <!-- Название трека -->
                     <h1>${song.getTitle()}</h1>
                     <div class="meta">
                         <span>Artist: <a href="/detail/artist?id=${song.getArtist_id().getId()}">${song.getArtist_id().getName()}</a></span>
-                        <span>In: <a href="detail/genre?id=${song.getGenre_id().getId()}">${song.getGenre_id().getName()}</a></span>
+                        <span>In: <a href="/genres?id=${song.getGenre_id().getId()}">${song.getGenre_id().getName()}</a></span>
 
                     </div>
                     <div class="music-buttons">
