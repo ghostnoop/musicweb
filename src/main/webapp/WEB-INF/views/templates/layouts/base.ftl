@@ -124,9 +124,9 @@
         </div>
     </section>
 
-    <#if !user??>
-        <#include "loginrequired.ftl">
-    </#if>
+    <#include "loginrequired.ftl">
+
+
 
     <script src="../../../../views/js/fontawesome.js" crossorigin="anonymous"></script>
     <script src="../../../../views/js/jquery-3.5.1.min.js"></script>

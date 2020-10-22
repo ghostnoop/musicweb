@@ -20,7 +20,7 @@
 
         <div class="search-result">
             <article>
-                <div class="search-result-image"><img src="${song.getCover_img()}" alt=""></div>
+                <div class="search-result-image"><img src="/img/get?name=${song.getCover_img()}" alt=""></div>
                 <div class="search-result-text">
                     <h2 class="search-result-text-name search_header"><a href="/detail/song?id=${song.getId()}">${song.getTitle()}</a></h2>
                     <a href="/detail/artist?id=${song.getArtist_id().getId()}">
