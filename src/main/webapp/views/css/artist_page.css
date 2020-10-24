@@ -13,7 +13,7 @@
 }
 
 .artist-image img {
-    width: 100%;
+    width: 420px; height: 420px;
 }
 
 .artist-desc h1, .artist-music-header{

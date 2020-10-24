@@ -14,7 +14,7 @@
 .search-result {
     border-radius: 3px;
     background-color: #fff;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
     margin-bottom: 15px;
     margin-right: 50px;
     height: 190px;
@@ -31,6 +31,11 @@
     padding: 20px;
 }
 
+.search-img {
+    width: 150px;
+    height: 150px;
+}
+
 .search-result-image img {
     border-radius: 5px;
 }
@@ -40,7 +45,7 @@
     padding-top: 20px;
 }
 
-.search-result-text-name a{
+.search-result-text-name a {
     color: #545a5f;
 }
 

@@ -4,6 +4,7 @@ function searcherAjax(link) {
         type: "POST",
         data: {
             'searchField': $("#search_input").val(),
+            'filter':$("#filt").val(),
             'ajax':true
         },
         dataType: 'json',
@@ -25,7 +26,7 @@ function searcherAjax(link) {
             for (var i = 0; i < data.length; i++) {
                 $(".search-results").append($(
                     '<div class="search-result"> <article> ' +
-                    ' <div class="search-result-image"><img src="' + data[i]['cover_img'] + '" alt=""></div>' +
+                    ' <div class="search-result-image"><img class="search-img" src="img/get?name=' + data[i]['cover_img'] + '" alt=""></div>' +
                     '<div class="search-result-text">' +
                     '<h2 class="search-result-text-name search_header"><a href="/detail/song?id=' + data[i]['id'] + '">' + data[i]['title'] + '</a></h2>' +
                     '<a href="/detail/artist?id='+ data[i]['artist_id']['id']+'">'+

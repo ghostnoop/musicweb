@@ -10,7 +10,7 @@ public class Constants {
     public static String jdbcPassword = "";
 
     public static final String regexEmail = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-    public static String SQL_USER_EMAIL_EXIST="SELECT * FROM user WHERE email= ? LIMIT 1";
+    public static String SQL_USER_EMAIL_EXIST="SELECT id, email, name, lastname,  password, created_at FROM user WHERE email= ? LIMIT 1";
     public static String upload_dir="C:\\Users\\Marat\\Documents\\GitHub\\musicweb\\uploads";
 
     public String SQL_SELECT_ALL = "SELECT * FROM user";

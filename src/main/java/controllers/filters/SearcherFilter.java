@@ -5,6 +5,7 @@
 
 package controllers.filters;
 
+import app.Utils;
 import com.google.gson.Gson;
 import models.entities.Song;
 import models.repositories.SongRepositoryJdbc;
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebFilter(urlPatterns = "/searcher", filterName = "searcher")
@@ -29,25 +31,28 @@ public class SearcherFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
 
-        System.out.println(req.getMethod());
-        System.out.println(req.getParameter("ajax")+"     :test");
+
 
         if (req.getParameter("ajax")==null){
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }
-        System.out.println(req.getParameterMap());
-
         String words = servletRequest.getParameter("searchField");
+        String filter = servletRequest.getParameter("filter");
+        System.out.println(filter);
+
         DataSource dataSource = (DataSource) servletRequest.getServletContext().getAttribute("datasource");
         SongRepositoryJdbc songRepositoryJdbc = new SongRepositoryJdbc(dataSource);
-        List<Song> songs = songRepositoryJdbc.searchByWords(words==null?"":words);
+
+        List<Song> songs = songRepositoryJdbc.searchByWords(words==null?"":words, Utils.parseFilter(filter));
         System.out.println(songs);
 
         String json = new Gson().toJson(songs);
         System.out.println(json);
-        servletResponse.setContentType("application/json");
+        servletResponse.setContentType("application/json; charset=UTF-8");
         servletResponse.setCharacterEncoding("UTF-8");
-        servletResponse.getOutputStream().print(json);
+        PrintWriter out = servletResponse.getWriter();
+        out.print(json);
+//        servletResponse.getOutputStream().print(json);
     }
 }

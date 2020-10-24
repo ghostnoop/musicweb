@@ -1,6 +1,7 @@
 package models.repositories;
 
 import app.Constants;
+import models.entities.Artist;
 import models.entities.User;
 import models.repositories.interfaces.RowMapper;
 import models.repositories.interfaces.UserRepository;
@@ -24,8 +25,17 @@ public class UserRepositoryJdbc implements UserRepository {
             .email(row.getString("email"))
             .name(row.getString("name"))
             .lastname(row.getString("lastname"))
-            .password(row.getString("password"))
             .avatar_img(row.getString("avatar_img"))
+            .password(row.getString("password"))
+            .created_at(row.getDate("created_at"))
+            .build();
+
+    private final RowMapper<User> userv2RowMapper = row -> User.builder()
+            .id(row.getInt("id"))
+            .email(row.getString("email"))
+            .name(row.getString("name"))
+            .lastname(row.getString("lastname"))
+            .password(row.getString("password"))
             .created_at(row.getDate("created_at"))
             .build();
 
@@ -76,7 +86,8 @@ public class UserRepositoryJdbc implements UserRepository {
 
     @Override
     public User getByEmail(String email) {
-        List<User> user = simpleJdbc.query(Constants.SQL_USER_EMAIL_EXIST, userRowMapper, email);
+        String getByEmail = "Select id, email,name,lastname,avatar_img,password,created_at from user where email = ? ;";
+        List<User> user = simpleJdbc.query(getByEmail, userRowMapper, email);
         return !user.isEmpty() ? user.get(0) : null;
     }
 

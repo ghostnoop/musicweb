@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebFilter(urlPatterns = {"/login", "/register"})
 public class AuthFilter implements Filter {
@@ -32,6 +34,8 @@ public class AuthFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
         DataSource dataSource = (DataSource) req.getServletContext().getAttribute("datasource");
+
+
         UserRepositoryJdbc usersRepository = new UserRepositoryJdbc(dataSource);
         ArtistRepositoryJdbc artistRepositoryJdbc = new ArtistRepositoryJdbc(dataSource);
 
@@ -58,9 +62,8 @@ public class AuthFilter implements Filter {
                     resp.sendRedirect("/index");
                 }
             }
-            else
-                filterChain.doFilter(servletRequest, servletResponse);
         }
+        filterChain.doFilter(servletRequest, servletResponse);
 
 
 

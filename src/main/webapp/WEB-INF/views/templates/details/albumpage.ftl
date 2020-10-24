@@ -224,6 +224,7 @@
             </div>
         </div>
     </div>
+    <#include "../layouts/sideartists.ftl">
 
 
 

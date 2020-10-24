@@ -42,14 +42,17 @@ public class LoginServlet extends HttpServlet {
         password = Utils.hashingPassword(password);
         if (email != null && password != null) {
             Object user = isArtist ? artistRepositoryJdbc.getByEmail(email) : usersRepository.getByEmail(email);
-            if (user==null){
-                setError(req,resp,"Does not exist");
+            if (user == null) {
+                setError(req, resp, "Does not exist");
                 return;
             }
-            String passwordVerify = isArtist?((Artist) user).getPassword():((User) user).getPassword();
+            String passwordVerify = isArtist ? ((Artist) user).getPassword() : ((User) user).getPassword();
+            System.out.println(password);
+            System.out.println(passwordVerify);
 
             if (!password.equals(passwordVerify)) {
                 setError(req, resp, "Password mismatch");
+                return;
             }
             if (remember) {
                 resp.addCookie(new Cookie("email", email));
@@ -63,11 +66,12 @@ public class LoginServlet extends HttpServlet {
             resp.sendRedirect("/index");
         } else {
             setError(req, resp, "Data mismatch");
+            return;
         }
     }
 
     private void setError(HttpServletRequest req, HttpServletResponse resp, String message) throws ServletException, IOException {
-        req.setAttribute(message, true);
+        req.setAttribute("error", message);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.ftl");
         requestDispatcher.forward(req, resp);
     }

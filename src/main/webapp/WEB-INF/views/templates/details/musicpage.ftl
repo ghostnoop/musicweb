@@ -32,9 +32,10 @@
                         </button>
                         </#if>
 
-                        <span class="playing_count">
+                        <span class="playing_count" >
                                         <i class="fa fa-caret-right"></i>
-                                        ${likes}
+                                        <span id="counter">${likes}</span>
+
                                     </span>
                     </div>
 

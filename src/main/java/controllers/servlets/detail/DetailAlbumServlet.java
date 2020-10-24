@@ -6,7 +6,11 @@
 package controllers.servlets.detail;
 
 import models.entities.Album;
+import models.entities.Artist;
+import models.entities.Song;
 import models.repositories.AlbumRepositoryJdbc;
+import models.repositories.ArtistRepositoryJdbc;
+import models.repositories.SongRepositoryJdbc;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,12 +27,18 @@ public class DetailAlbumServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             int album_id = Integer.parseInt(req.getParameter("id"));
+
             DataSource dataSource = (DataSource) req.getServletContext().getAttribute("datasource");
-            AlbumRepositoryJdbc albumRepositoryJdbc = new AlbumRepositoryJdbc(dataSource);
-            List<Album> albums = albumRepositoryJdbc.getAll();
+            SongRepositoryJdbc songRepositoryJdbc = new SongRepositoryJdbc(dataSource);
+            ArtistRepositoryJdbc artistRepositoryJdbc = new ArtistRepositoryJdbc(dataSource);
+
+            List<Song> songs = songRepositoryJdbc.getByAlbumId(album_id);
+            List<Artist> topArtists = artistRepositoryJdbc.getTopArtistByLiked();
+
+            req.setAttribute("songs", songs);
+            req.setAttribute("topArtists", topArtists);
+
             req.getRequestDispatcher("/details/albumpage.ftl").forward(req, resp);
-
-
 
         } catch (NumberFormatException except) {
             resp.sendRedirect("/404");

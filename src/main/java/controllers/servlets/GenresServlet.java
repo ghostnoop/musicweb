@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.sun.deploy.config.JREInfo.getAll;
 
 @WebServlet(urlPatterns = "/genres")
 public class GenresServlet extends HttpServlet {

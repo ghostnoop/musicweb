@@ -13,7 +13,7 @@
                             <article class="item-song">
                                 <div class="item-image">
                                     <a href="#" class="image-ref">
-                                        <img src="/img/get?name=${artist.getAvatar_img()}"
+                                        <img class="img-fluid" src="/img/get?name=${artist.getAvatar_img()}"
                                              alt>
                                     </a>
                                 </div>

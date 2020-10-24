@@ -440,6 +440,10 @@ header .row {
     padding-right: 0;
 }
 
+.side #user-ref {
+    padding-right: 0;
+}
+
 .unside .fa-user-plus {
     padding-right: 10px;
 }
@@ -486,8 +490,8 @@ header .row {
 
 .item-image img {
     border-radius: 3px;
-    width: 100%;
-
+    width: 250px !important;
+    height: 250px !important;
 }
 
 .item-desc {
@@ -564,6 +568,8 @@ header .row {
 .item-image {
     position: relative;
     text-align: center;
+    width: 250px;
+    height: 250px;
 }
 
 .input-group select {

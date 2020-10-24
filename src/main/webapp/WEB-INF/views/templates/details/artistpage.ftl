@@ -8,7 +8,7 @@
             <div class="artist-inf">
                 <div class="row">
                     <div class="col-sm-4 artist-image">
-                        <img src="${artist.getAvatar_img()}" alt="">
+                        <img src="/img/get?name=${artist.getAvatar_img()}" alt="">
                     </div>
                     <div class="col-sm-8 artist-desc">
                         <h1>Artist</h1>
@@ -41,7 +41,7 @@
                             </a>
                         </div>
                         <div class="item-name">
-                            <a href="#"><strong>${song.getTitle()}</strong></a>
+                            <a href="detail/song?id=${song.getId()}"><strong>${song.getTitle()}</strong></a>
                             <div class="item-author">
                                 by
                                 <a href="#">${song.getArtist_id().getName()}</a>

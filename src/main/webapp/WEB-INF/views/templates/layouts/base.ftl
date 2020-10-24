@@ -43,7 +43,7 @@
                                        name="search"
                                        placeholder="Search..."
                                 >
-                                <select class="form-control form-control-sm">
+                                <select class="form-control form-control-sm" name="filt" id="filt">
                                     <option selected>--</option>
                                     <option>Likes</option>
                                     <option>New</option>
@@ -124,7 +124,7 @@
         </div>
     </section>
 
-    <#include "loginrequired.ftl">
+    <#include "bottombar.ftl">
 
 
 

@@ -1,5 +1,4 @@
 <#if topArtists??>
-
     <section class="aside-info">
         <aside>
             <h4>Top ${topArtists?size} artist</h4>

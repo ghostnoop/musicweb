@@ -22,7 +22,7 @@
                                         </div>
                                     </div>
                                     <a href="/detail/song?id=${song.getId()}" class="image-ref">
-                                        <img src="/img/get?name=${song.getCover_img()}"
+                                        <img class="img" src="/img/get?name=${song.getCover_img()}"
                                              alt>
                                     </a>
                                 </div>

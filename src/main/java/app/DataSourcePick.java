@@ -30,7 +30,6 @@ public class DataSourcePick {
         hikariConfig.setDriverClassName("com.mysql.cj.jdbc.Driver");
         hikariConfig.setMaximumPoolSize(20);
         hikariDataSource=new HikariDataSource(hikariConfig);
-        DataSource dataSource = hikariDataSource;
     }
 
     public void closeConnection(Connection connection) {

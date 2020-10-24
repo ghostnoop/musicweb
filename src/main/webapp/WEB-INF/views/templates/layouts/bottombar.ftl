@@ -8,6 +8,16 @@
                             <i class="fas fa-user-plus"></i>
                             <span>Login</span>
                         </a>
+                    <#elseif profile??>
+                        <a href="/exit">
+                            <i class="fa fa-sign-out"></i>
+                            <span>Exit</span>
+                        </a>
+                    <#else>
+                        <a href="/profile">
+                            <i class="fa fa-user"></i>
+                            <span>Profile</span>
+                        </a>
                     </#if>
 
                 </div>
@@ -15,6 +25,10 @@
                     <#if !user??>
                         <a href="/login" id="login-ref">
                             <i class="fas fa-user-plus"></i>
+                        </a>
+                    <#else>
+                        <a href="/profile" id="user-ref">
+                            <i class="fa fa-user"></i>
                         </a>
                     </#if>
                 </div>

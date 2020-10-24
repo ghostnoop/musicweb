@@ -14,12 +14,20 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.HashMap;
 import java.util.UUID;
 
 import static app.Constants.upload_dir;
 
 public class Utils {
+    private static HashMap<String, Integer> filterItems = new HashMap<String, Integer>() {
+        {
+            put("--", 0);
+            put("Likes", 1);
+            put("New", 2);
+        }
+    };
+
     public Connection openConnection(String url, String username, String pass) {
         try {
             return DriverManager.getConnection(url, username, pass);
@@ -99,6 +107,7 @@ public class Utils {
         }
         return null;
     }
+
     public static boolean isNumeric(String str) {
         if (str == null) {
             return false;
@@ -111,6 +120,7 @@ public class Utils {
         }
         return true;
     }
+
     public static String fileSaver(Part file) {
         try {
             String file_name = UUID.randomUUID().toString() +
@@ -130,4 +140,10 @@ public class Utils {
         }
         return null;
     }
+
+    public static int parseFilter(String filterName) {
+        Integer filterIndex = filterItems.get(filterName);
+        return filterIndex != null ? filterIndex : 0;
+    }
+
 }

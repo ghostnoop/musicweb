@@ -59,13 +59,15 @@ public class RegisterServlet extends HttpServlet {
 
         if (ans) {
             setError(req, resp,"User is exist");
+            return;
         }
 
         Object user = isArtist ? saveArtist(req) : saveUser(req);
         saved = isArtist ? artistRepositoryJdbc.save((Artist) user) : usersRepository.save((User) user);
 
         if (saved) {
-            req.getSession().setAttribute("isArtist", isArtist);
+            if (isArtist)
+                req.getSession().setAttribute("isArtist", true);
             req.getSession().setAttribute("user", isArtist?artistRepositoryJdbc.getByEmail(email):usersRepository.getByEmail(email));
             resp.sendRedirect(req.getContextPath() + "/index");
 
@@ -83,6 +85,7 @@ public class RegisterServlet extends HttpServlet {
                 .name(req.getParameter("user-login"))
                 .lastname(req.getParameter("user-lastname"))
                 .password(Utils.hashingPassword(req.getParameter("user-password")))
+                .avatar_img("placeholder.png")
                 .build();
     }
 
@@ -92,7 +95,7 @@ public class RegisterServlet extends HttpServlet {
                 .name(req.getParameter("user-login"))
                 .lastname(req.getParameter("user-lastname"))
                 .password(Utils.hashingPassword(req.getParameter("user-password")))
-                .avatar_img("http://flatfull.com/wp/musik/wp-content/themes/musiks/assets/images/default_300_300.jpg")
+                .avatar_img("placeholder.png")
                 .build();
     }
 
