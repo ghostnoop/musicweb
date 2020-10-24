@@ -46,7 +46,7 @@ Player.prototype = {
             sound = data.howl;
         } else {
             sound = data.howl = new Howl({
-                src: ['../../../views/audio/' + data.file],
+                src: ['/mp3/get?name=' + data.file],
                 html5: true, // Force to HTML5 so that the audio can stream in (best for large files).
                 onplay: function () {
                     // Display the duration.
@@ -278,7 +278,7 @@ function playTrack(id) {
         player = new Player([
             {
                 title: data['title'],
-                author: data['album_id']['title'],
+                author: data['artist_id']['name'],
                 file: data['music_url'],
                 howl: null
             },
@@ -304,7 +304,7 @@ function playAlbum(id) {
         for (var i = 0; i < data.length; i++) {
             playlist.push({
                 title: data[i]['title'],
-                author: data[i]['album_id']['title'],
+                author: data[i]['artist_id']['name'],
                 file: data[i]['music_url'],
                 howl: null
             })
