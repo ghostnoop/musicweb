@@ -20,16 +20,16 @@ public class TestServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.getWriter().write("ZE WARDOO");
 
-//        String id = req.getParameter("id");
-//        resp.setContentType("application/json");
-//        resp.setCharacterEncoding("UTF-8");
-//        Song song = null;
-//        if (id.equals("1"))
-//            song  = Song.builder().title("test").album_id(Album.builder().title("test Album").build()).music_url("test.mp3").build();
-//        else if (id.equals("2"))
-//            song  = Song.builder().title("komety").album_id(Album.builder().title("komety Album").build()).music_url("komety.mp3").build();
-//        String json = new Gson().toJson(song);
-//        resp.getWriter().write(json);
+        /*String id = req.getParameter("id");
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        Song song = null;
+        if (id.equals("1"))
+            song  = Song.builder().title("test").album_id(Album.builder().title("test Album").build()).music_url("test.mp3").build();
+        else if (id.equals("2"))
+            song  = Song.builder().title("komety").album_id(Album.builder().title("komety Album").build()).music_url("komety.mp3").build();
+        String json = new Gson().toJson(song);
+        resp.getWriter().write(json);*/
 
         // album
 

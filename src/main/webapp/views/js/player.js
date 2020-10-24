@@ -1,4 +1,4 @@
-var elms = ['track', 'timer', 'duration', 'playBtn', 'playlist-list', 'pauseBtn', 'prevBtn', 'nextBtn', 'playlistBtn', 'volumeBtn', 'playlist', 'volume', 'barEmpty', 'barFull'];
+var elms = ['track', 'timer', 'duration', 'playBtn', 'loopBtn', 'playlist-list', 'pauseBtn', 'prevBtn', 'nextBtn', 'playlistBtn', 'volumeBtn', 'playlist', 'volume', 'barEmpty', 'barFull'];
 elms.forEach(function (elm) {
     window[elm] = document.getElementById(elm);
 });
@@ -12,14 +12,16 @@ var Player = function (playlist) {
     // Display the title of the first track.
     track.innerHTML = '1. ' + playlist[0].title;
 
+    document.getElementById('playlist-list').innerHTML = "";
+
     playlist.forEach(function (song) {
         var div = document.createElement('li');
-        div.innerHTML = '<div class="playlist-item">\n' +
+        div.innerHTML = '<li></li><div class="playlist-item">\n' +
             '                                    <i class="far fa-play-circle interface-activity" aria-hidden="true"></i>\n' +
             '                                    <a class="jp-playlist-item jp-playlist-current" tabindex="0"></a>\n' +
             '                                    <span>' + song.title + '</span>\n' +
             '                                    <span class="playlist-item-autor">by ' + song.author + '</span>\n' +
-            '                                </div>';
+            '                                </div></li>';
         div.onclick = function () {
             player.skipTo(playlist.indexOf(song));
         };
@@ -55,7 +57,9 @@ Player.prototype = {
                     pauseBtn.style.display = 'table-cell';
                 },
                 onend: function () {
-                    self.skip('next');
+                    if (!list[0].loop()) {
+                        self.skip('next');
+                    }
                 },
             });
         }
@@ -105,6 +109,10 @@ Player.prototype = {
      */
     skip: function (direction) {
         var self = this;
+        if (list[0].loop()) {
+            list[0].loop(false);
+            loopBtn.style.color = '#e6eaed';
+        }
 
         // Get the next track based on the direction of the track.
         var index = 0;
@@ -128,6 +136,10 @@ Player.prototype = {
      * @param  {Number} index Index in the playlist.
      */
     skipTo: function (index) {
+        if (list[0].loop()) {
+            list[0].loop(false);
+            loopBtn.style.color = '#e6eaed';
+        }
         var self = this;
 
         // Stop the current track.
@@ -237,6 +249,17 @@ barEmpty.addEventListener('click', function (event) {
     var per = (event.layerX - barEmpty.offsetLeft) / barEmpty.offsetWidth;
     player.volume(per);
 });
+loopBtn.addEventListener('click', function () {
+    if (!list.empty) {
+        if (!list[0].loop()) {
+            loopBtn.style.color = "#b2dcfc";
+        } else {
+            loopBtn.style.color = "#e6eaed";
+        }
+        list[0].loop(!list[0].loop());
+    }
+})
+
 
 list = [];
 
