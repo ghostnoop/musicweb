@@ -26,6 +26,10 @@
                         <a href="/login" id="login-ref">
                             <i class="fas fa-user-plus"></i>
                         </a>
+                    <#elseif profile??>
+                        <a href="/exit">
+                            <i class="fa fa-sign-out"></i>
+                        </a>
                     <#else>
                         <a href="/profile" id="user-ref">
                             <i class="fa fa-user"></i>

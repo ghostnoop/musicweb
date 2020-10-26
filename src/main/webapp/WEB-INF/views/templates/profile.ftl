@@ -1,17 +1,21 @@
 <#ftl encoding="UTF-8"/>
 <#import "layouts/base.ftl" as base>
 
-<@base.main css=["artist_page","music_page"] >
+<@base.main css=["artist_page","music_page"] js=["profile"]>
 
     <div class="col content-col ">
         <div class="main-panel">
             <div class="artist-inf">
                 <div class="row">
-                    <div class="col-sm-4 artist-image">
-                        <img src="/img/get?name=${user.getAvatar_img()}" alt="">
-                    </div>
+                    <form method="post" id="avatar_form" action="/changeavatar" enctype="multipart/form-data">
+                        <div class="col-sm-4 artist-image">
+                            <img src="/img/get?name=${user.getAvatar_img()}" alt="">
+                            <input type="file" name="avatar" class="file_upload" id="file_upload" accept=".png, .jpg, .jpeg"/>
+
+                        </div>
+                    </form>
                     <div class="col-sm-8 artist-desc">
-                        <h1>User</h1>
+                        <h1>${(isArtist??)?then("Artis", "User")}</h1>
                         <p>${user.getName()} ${user.getLastname()}</p>
                         <p><b>Email</b></p>
                         <p>${user.getEmail()}</p>
@@ -98,12 +102,6 @@
     </div>
 
     <#include "layouts/sideartists.ftl">
-    <script>
-        function check() {
-            var a = $("#genre").prop('selectedIndex').toString();
-            document.getElementById("genre_selected").value = a.toString();
 
-        }
-    </script>
 
 </@base.main>

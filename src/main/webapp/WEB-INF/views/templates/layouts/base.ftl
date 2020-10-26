@@ -4,8 +4,8 @@
         <title>${(title??)?then(title, "Music player")}</title>
         <link rel="stylesheet" href="../../../../views/static/V2/bootstrap.min.css">
         <link rel="stylesheet" href="../../../../views/css/home_page.css">
-<#--        <link rel="stylesheet" href="../../../../views/css/login_page.css">-->
-<#--        <link rel="stylesheet" href="../../../../views/css/register_page.css">-->
+        <#--        <link rel="stylesheet" href="../../../../views/css/login_page.css">-->
+        <#--        <link rel="stylesheet" href="../../../../views/css/register_page.css">-->
         <#list css as styles>
             <link rel="stylesheet" href="../../../../views/css/${styles}.css">
 
@@ -127,7 +127,6 @@
     <#include "bottombar.ftl">
 
 
-
     <script src="../../../../views/js/fontawesome.js" crossorigin="anonymous"></script>
     <script src="../../../../views/js/jquery-3.5.1.min.js"></script>
     <#list js as jscript>
@@ -137,6 +136,7 @@
     <script src="../../../../views/js/main.js"></script>
     <script src="../../../../views/js/howler.core.js"></script>
     <script src="../../../../views/js/player.js"></script>
+
     </body>
     </html>
 

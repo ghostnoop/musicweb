@@ -12,7 +12,7 @@
                         <div class="col-12 col-sm-3 col-lg-2 item">
                             <article class="item-song">
                                 <div class="item-image">
-                                    <a href="#" class="image-ref">
+                                    <a href="/detail/artist?id=${artist.getId()}" class="image-ref">
                                         <img class="img-fluid" src="/img/get?name=${artist.getAvatar_img()}"
                                              alt>
                                     </a>
