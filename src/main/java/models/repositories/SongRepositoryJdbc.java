@@ -94,11 +94,23 @@ public class SongRepositoryJdbc implements SongRepository {
 
     @Override
     public List<Song> searchByWords(String words, int filt) {
+        System.out.println();
+        System.out.println("_---------------");
+        System.out.println(filt);
+        System.out.println();
         String searchByWords = GET_ALL + " WHERE song.title LIKE \"%" + words + "%\" or album.title LIKE \"%" + words + "%\"" +
-                " or artist.name LIKE \"%" + words + "%\" or genre.name LIKE \"%" + words + "%\" ORDER BY song.id DESC LIMIT 100";
-
-
-        return simpleJdbc.query(searchByWords, songRowMapper);
+                " or artist.name LIKE \"%" + words + "%\" or genre.name LIKE \"%" + words + "%\"";
+        switch (filt) {
+            case (1):
+                searchByWords=GET_ALL + " LEFT JOIN liked ON song.id=liked.song_id WHERE song.id=liked.song_id and ( song.title LIKE \"%" + words + "%\" or album.title LIKE \"%" + words + "%\"" +
+                        " or artist.name LIKE \"%" + words + "%\" or genre.name LIKE \"%" + words + "%\" ) GROUP BY song.id LIMIT 100";
+                break;
+            case (2):
+                searchByWords = searchByWords + " ORDER BY song.id DESC LIMIT 100";
+                break;
+        }
+        System.out.println(searchByWords);
+        return simpleJdbc.query(searchByWords + "", songRowMapper);
     }
 
     @Override
@@ -121,7 +133,7 @@ public class SongRepositoryJdbc implements SongRepository {
 
     @Override
     public List<Song> getFromLiked(int user_id) {
-        String getFromLiked=GET_ALL + "INNER JOIN liked on song.id = liked.song_id WHERE liked.user_id = ?";
-        return simpleJdbc.query(getFromLiked,songRowMapper,user_id);
+        String getFromLiked = GET_ALL + "INNER JOIN liked on song.id = liked.song_id WHERE liked.user_id = ?";
+        return simpleJdbc.query(getFromLiked, songRowMapper, user_id);
     }
 }

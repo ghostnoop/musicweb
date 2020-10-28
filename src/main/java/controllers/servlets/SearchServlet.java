@@ -26,7 +26,8 @@ public class SearchServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String words = req.getParameter("search");
-        String filter = req.getParameter("filter");
+        String filter = req.getParameter("filt");
+        System.out.println(filter);
 
         DataSource dataSource = (DataSource) req.getServletContext().getAttribute("datasource");
         SongRepositoryJdbc songRepositoryJdbc = new SongRepositoryJdbc(dataSource);
