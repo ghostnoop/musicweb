@@ -1,12 +1,11 @@
 package models.repositories;
 
 import app.Constants;
-import models.entities.Artist;
+import app.SQLGenerator;
 import models.entities.User;
 import models.repositories.interfaces.RowMapper;
 import models.repositories.interfaces.UserRepository;
 import models.repositories.jdbcUtils.SimpleJdbc;
-import app.SQLGenerator;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -14,11 +13,6 @@ import java.util.List;
 public class UserRepositoryJdbc implements UserRepository {
     private final DataSource dataSource;
     private final SimpleJdbc simpleJdbc;
-
-    public UserRepositoryJdbc(DataSource dataSource) {
-        this.dataSource = dataSource;
-        this.simpleJdbc = new SimpleJdbc(dataSource);
-    }
 
     private final RowMapper<User> userRowMapper = row -> User.builder()
             .id(row.getInt("id"))
@@ -38,6 +32,11 @@ public class UserRepositoryJdbc implements UserRepository {
             .password(row.getString("password"))
             .created_at(row.getDate("created_at"))
             .build();
+
+    public UserRepositoryJdbc(DataSource dataSource) {
+        this.dataSource = dataSource;
+        this.simpleJdbc = new SimpleJdbc(dataSource);
+    }
 
     @Override
     public List<User> getAll() {

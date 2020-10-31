@@ -1,4 +1,3 @@
-
 package models.repositories.interfaces;
 
 import java.util.List;

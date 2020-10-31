@@ -16,14 +16,15 @@ import lombok.*;
 @Getter
 @Setter
 @Table(name = "genre")
-public class Genre  {
+public class Genre {
     @Constraint(pk = true)
     int id;
     String name;
     String description;
     String type;
 
-    public Genre(){}
+    public Genre() {
+    }
 
     public Genre(int id, String name, String description, String type) {
         this.id = id;

@@ -11,9 +11,8 @@ import models.entities.User;
 import models.repositories.ArtistRepositoryJdbc;
 import models.repositories.UserRepositoryJdbc;
 
-import javax.servlet.*;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,27 +28,28 @@ public class ProfileAvatarServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         if (req.getSession().getAttribute("user") == null) {
-            resp.sendRedirect("/404");
+            resp.sendRedirect("/index");
             return;
         }
-        boolean isArtist = req.getSession().getAttribute("isArtist") != null;
 
         DataSource dataSource = (DataSource) req.getServletContext().getAttribute("datasource");
 
+        boolean isArtist = req.getSession().getAttribute("isArtist") != null;
         String avatar = Utils.fileSaver(req.getPart("avatar"));
+
         if (isArtist) {
             ArtistRepositoryJdbc artistRepositoryJdbc = new ArtistRepositoryJdbc(dataSource);
             Artist artist = (Artist) req.getSession().getAttribute("user");
             artist.setAvatar_img(avatar);
             artistRepositoryJdbc.updateById(artist, artist.getId());
+
         } else {
             UserRepositoryJdbc userRepositoryJdbc = new UserRepositoryJdbc(dataSource);
             User user = (User) req.getSession().getAttribute("user");
             user.setAvatar_img(avatar);
             userRepositoryJdbc.updateById(user, user.getId());
         }
+
         resp.sendRedirect("/profile");
-
-
     }
 }

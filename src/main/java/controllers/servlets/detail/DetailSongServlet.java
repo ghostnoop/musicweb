@@ -5,12 +5,14 @@
 
 package controllers.servlets.detail;
 
-import app.Utils;
 import models.entities.Artist;
 import models.entities.Comment;
 import models.entities.Song;
 import models.entities.User;
-import models.repositories.*;
+import models.repositories.ArtistRepositoryJdbc;
+import models.repositories.CommentRepositoryJdbc;
+import models.repositories.LikedRepositoryJdbc;
+import models.repositories.SongRepositoryJdbc;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,46 +28,45 @@ import java.util.List;
 public class DetailSongServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String s = req.getParameter("id");
+
         try {
-            int songId = Integer.parseInt(s);
+            int songId = Integer.parseInt(req.getParameter("id"));
             DataSource dataSource = (DataSource) req.getServletContext().getAttribute("datasource");
 
             SongRepositoryJdbc songRepositoryJdbc = new SongRepositoryJdbc(dataSource);
             CommentRepositoryJdbc commentRepositoryJdbc = new CommentRepositoryJdbc(dataSource);
             LikedRepositoryJdbc likedRepositoryJdbc = new LikedRepositoryJdbc(dataSource);
             ArtistRepositoryJdbc artistRepositoryJdbc = new ArtistRepositoryJdbc(dataSource);
-            UserRepositoryJdbc userRepositoryJdbc = new UserRepositoryJdbc(dataSource);
 
 
-            List<Comment> comments = commentRepositoryJdbc.getAllBySongId(songId);
             Song song = songRepositoryJdbc.getById(songId);
             int countOfLikes = likedRepositoryJdbc.getCountOfLikesBySongId(songId);
+
+            List<Comment> comments = commentRepositoryJdbc.getAllBySongId(songId);
             List<Artist> artists = artistRepositoryJdbc.getTopArtistByLiked();
 
 
             if (req.getSession().getAttribute("isArtist") == null) {
                 User user = (User) req.getSession().getAttribute("user");
+
                 if (user != null) {
                     req.setAttribute("user", user);
-                    boolean liked = likedRepositoryJdbc.isUserLikedSong(user.getId(),songId);
-                    req.setAttribute("liked",liked);
+                    boolean liked = likedRepositoryJdbc.isUserLikedSong(user.getId(), songId);
+                    req.setAttribute("liked", liked);
                 }
             }
 
-
-//            todo is liked
-
-            req.setAttribute("comments", comments);
             req.setAttribute("song", song);
             req.setAttribute("likes", countOfLikes);
+            req.setAttribute("comments", comments);
             req.setAttribute("topArtists", artists);
+
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/details/musicpage.ftl");
             requestDispatcher.forward(req, resp);
 
 
         } catch (NumberFormatException exp) {
-            resp.sendRedirect("/404");
+            resp.sendRedirect("/index");
         }
     }
 

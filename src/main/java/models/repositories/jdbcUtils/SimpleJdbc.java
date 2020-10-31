@@ -58,7 +58,7 @@ public class SimpleJdbc {
             }
 
 
-            return statement.executeUpdate()!= 0;
+            return statement.executeUpdate() != 0;
 
         } catch (SQLException e) {
             throw new IllegalStateException(e);
