@@ -21,7 +21,6 @@ public class PlayerAlbumFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
 
     @Override
@@ -31,7 +30,8 @@ public class PlayerAlbumFilter implements Filter {
 
             DataSource dataSource = (DataSource) servletRequest.getServletContext().getAttribute("datasource");
             SongRepositoryJdbc songRepositoryJdbc = new SongRepositoryJdbc(dataSource);
-            List<Song> songs=songRepositoryJdbc.getByAlbumId(albumId);
+
+            List<Song> songs = songRepositoryJdbc.getByAlbumId(albumId);
 
             String json = new Gson().toJson(songs);
             servletResponse.setContentType("application/json; charset=UTF-8");
@@ -40,11 +40,8 @@ public class PlayerAlbumFilter implements Filter {
             out.print(json);
 
 
-
         } catch (NumberFormatException ex) {
             filterChain.doFilter(servletRequest, servletResponse);
         }
-
-
     }
 }

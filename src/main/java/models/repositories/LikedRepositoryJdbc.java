@@ -5,8 +5,6 @@
 
 package models.repositories;
 
-import models.entities.Artist;
-import models.entities.Comment;
 import models.entities.Liked;
 import models.repositories.interfaces.LikedRepository;
 import models.repositories.interfaces.RowMapper;
@@ -17,7 +15,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LikedRepositoryJdbc implements LikedRepository {
@@ -25,13 +22,13 @@ public class LikedRepositoryJdbc implements LikedRepository {
     private final DataSource dataSource;
     private final SimpleJdbc simpleJdbc;
 
+    private final RowMapper<Liked> simpleLikedRowMapper = row -> Liked.builder()
+            .id(row.getInt("liked_id")).build();
+
     public LikedRepositoryJdbc(DataSource dataSource) {
         this.dataSource = dataSource;
         this.simpleJdbc = new SimpleJdbc(dataSource);
     }
-
-    private final RowMapper<Liked> simpleLikedRowMapper = row -> Liked.builder()
-            .id(row.getInt("liked_id")).build();
 
     @Override
     public boolean isUserLikedSong(int user_id, int song_id) {
@@ -63,8 +60,6 @@ public class LikedRepositoryJdbc implements LikedRepository {
     }
 
 
-
-
     @Override
     public List<Liked> getAll() {
         return null;
@@ -80,6 +75,7 @@ public class LikedRepositoryJdbc implements LikedRepository {
         String save = "Insert into liked (user_id, song_id) values( ?, ?)";
         return simpleJdbc.update(save, entity.getUser_id().getId(), entity.getSong_id().getId());
     }
+
     @Override
     public boolean deleteLike(Liked entity) {
         String deleteLike = "DELETE FROM `liked` WHERE liked.user_id = ? and liked.song_id = ?";

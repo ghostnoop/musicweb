@@ -30,13 +30,12 @@ public class FileDistributionServlet extends HttpServlet {
         }
 
         try {
+            IOUtils.copyLarge(
+                    new FileInputStream(Constants.upload_dir + File.separator + filename),
+                    resp.getOutputStream()
+            );
 
-        IOUtils.copyLarge(
-                new FileInputStream(Constants.upload_dir + File.separator + filename),
-                resp.getOutputStream()
-        );
-        }
-        catch (IOException ioExp){
+        } catch (IOException ioExp) {
             ioExp.printStackTrace();
         }
 

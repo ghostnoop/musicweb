@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,28 +26,35 @@ public class GenresServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String probablyId = req.getParameter("id");
+
         DataSource dataSource = (DataSource) req.getServletContext().getAttribute("datasource");
+
         SongRepositoryJdbc songRepositoryJdbc = new SongRepositoryJdbc(dataSource);
         OrmRepositoryJdbc ormRepositoryJdbc = new OrmRepositoryJdbc(dataSource, new DataMapper());
+
         List<Genre> genres = ormRepositoryJdbc.findAll(Genre.class);
 
         req.setAttribute("genres", genres);
-
 
         if (probablyId == null || probablyId.equals("")) {
             List<Song> songs = songRepositoryJdbc.getAll();
             req.setAttribute("songs", songs);
             req.setAttribute("name", "ALL");
+
             req.getRequestDispatcher("/genres.ftl").forward(req, resp);
+
         } else {
             int genreId = Integer.parseInt(probablyId);
             Genre genre = genres.stream().filter(i -> i.getId() == genreId).findFirst().orElse(null);
+
             if (genre == null) {
-                resp.sendRedirect("/404");
+                resp.sendRedirect("/index");
+
             } else {
                 req.setAttribute("name", genre.getName());
                 List<Song> songs = songRepositoryJdbc.getByGenreId(genreId);
-                req.setAttribute("songs",songs);
+                req.setAttribute("songs", songs);
+
                 req.getRequestDispatcher("/genres.ftl").forward(req, resp);
             }
 

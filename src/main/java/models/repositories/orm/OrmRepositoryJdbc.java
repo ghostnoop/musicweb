@@ -71,8 +71,7 @@ public class OrmRepositoryJdbc {
             ResultSet resultSet = statement.executeQuery(finalSql);
 
             return dataMapper.collectionMap(resultSet, tClass);
-        }
-        catch (SQLException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+        } catch (SQLException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
             return null;
         }

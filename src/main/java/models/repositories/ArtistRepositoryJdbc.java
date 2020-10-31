@@ -5,11 +5,11 @@
 
 package models.repositories;
 
+import app.SQLGenerator;
 import models.entities.Artist;
 import models.repositories.interfaces.ArtistRepository;
 import models.repositories.interfaces.RowMapper;
 import models.repositories.jdbcUtils.SimpleJdbc;
-import app.SQLGenerator;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -17,11 +17,6 @@ import java.util.List;
 public class ArtistRepositoryJdbc implements ArtistRepository {
     private final DataSource dataSource;
     private final SimpleJdbc simpleJdbc;
-
-    public ArtistRepositoryJdbc(DataSource dataSource) {
-        this.dataSource = dataSource;
-        this.simpleJdbc = new SimpleJdbc(dataSource);
-    }
 
     private final RowMapper<Artist> artistRowMapper = row -> Artist.builder()
             .id(row.getInt("id"))
@@ -43,6 +38,10 @@ public class ArtistRepositoryJdbc implements ArtistRepository {
 
     private final String IS_EMAIL_EXIST = "SELECT * FROM artist WHERE email= ? LIMIT 1";
 
+    public ArtistRepositoryJdbc(DataSource dataSource) {
+        this.dataSource = dataSource;
+        this.simpleJdbc = new SimpleJdbc(dataSource);
+    }
 
     @Override
     public List<Artist> getAll() {
@@ -51,11 +50,11 @@ public class ArtistRepositoryJdbc implements ArtistRepository {
 
     @Override
     public List<Artist> getTopArtistByLiked() {
-        String topArtistSql="SELECT song.artist_id as id,artist.email,artist.name,artist.lastname," +
+        String topArtistSql = "SELECT song.artist_id as id,artist.email,artist.name,artist.lastname," +
                 "artist.avatar_img, COUNT(liked.song_id) as liked_count  FROM liked  INNER JOIN song ON " +
                 "liked.song_id=song.id INNER JOIN artist ON artist_id=artist.id GROUP BY artist_id HAVING " +
                 "MAX(liked.song_id) ORDER BY liked_count DESC LIMIT 5";
-        return simpleJdbc.query(topArtistSql,publicArtistRowMapper);
+        return simpleJdbc.query(topArtistSql, publicArtistRowMapper);
 
     }
 

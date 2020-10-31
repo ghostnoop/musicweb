@@ -31,18 +31,20 @@ public class UploadSongServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         boolean isArtist = req.getSession().getAttribute("isArtist") != null;
+
         if (!isArtist) {
-            resp.sendRedirect("/404");
+            resp.sendRedirect("/index");
             return;
         }
-        req.setCharacterEncoding("UTF-8");
-        String track_name = req.getParameter("track_name");
-        String genre = req.getParameter("genre");
-        int genre_selected = Integer.parseInt(req.getParameter("genre_selected")) + 1;
+
+
+        String trackName = req.getParameter("track_name");
+        int genreSelected = Integer.parseInt(req.getParameter("genre_selected")) + 1;
 
         String img_name = Utils.fileSaver(req.getPart("track_img"));
-        String music_name= Utils.fileSaver(req.getPart("track"));
+        String music_name = Utils.fileSaver(req.getPart("track"));
 
         Artist artist = (Artist) req.getSession().getAttribute("user");
 
@@ -52,16 +54,16 @@ public class UploadSongServlet extends HttpServlet {
         Song song = Song.builder()
                 .artist_id(Artist.builder()
                         .id(artist.getId()).build())
-                .title(track_name)
+                .title(trackName)
                 .music_url(music_name)
                 .cover_img(img_name)
                 .album_id(null)
-                .genre_id(Genre.builder().id(genre_selected).build())
+                .genre_id(Genre.builder().id(genreSelected).build())
                 .build();
 
         songRepositoryJdbc.save(song);
+
         resp.sendRedirect("/profile");
     }
-
 
 }

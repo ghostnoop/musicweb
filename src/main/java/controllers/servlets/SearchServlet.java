@@ -9,7 +9,6 @@ import app.Utils;
 import models.entities.Song;
 import models.repositories.SongRepositoryJdbc;
 
-import javax.rmi.CORBA.Util;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,10 +30,10 @@ public class SearchServlet extends HttpServlet {
         DataSource dataSource = (DataSource) req.getServletContext().getAttribute("datasource");
         SongRepositoryJdbc songRepositoryJdbc = new SongRepositoryJdbc(dataSource);
 
-        List<Song> songs = songRepositoryJdbc.searchByWords(words==null?"":words, Utils.parseFilter(filter));
+        List<Song> songs = songRepositoryJdbc.searchByWords(words == null ? "" : words, Utils.parseFilter(filter));
 
-        req.setAttribute("searchField",words);
-        req.setAttribute("songs",songs.isEmpty()?null:songs);
+        req.setAttribute("searchField", words);
+        req.setAttribute("songs", songs.isEmpty() ? null : songs);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/searcher.ftl");
         requestDispatcher.forward(req, resp);

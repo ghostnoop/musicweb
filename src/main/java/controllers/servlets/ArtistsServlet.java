@@ -26,7 +26,6 @@ public class ArtistsServlet extends HttpServlet {
 
         List<Artist> artists = artistRepositoryJdbc.getAll();
 
-
         req.setAttribute("artists", artists);
         req.getRequestDispatcher("/artists.ftl").forward(req, resp);
     }

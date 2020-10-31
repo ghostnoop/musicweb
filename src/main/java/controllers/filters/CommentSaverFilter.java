@@ -1,12 +1,9 @@
-
-
 package controllers.filters;
 
 import models.entities.Comment;
 import models.entities.Song;
 import models.entities.User;
 import models.repositories.CommentRepositoryJdbc;
-import models.repositories.UserRepositoryJdbc;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -42,12 +39,11 @@ public class CommentSaverFilter implements Filter {
                             .song_id(Song.builder().id(song_id).build())
                             .user_text(user_text).build());
 
-            resp.sendRedirect("/detail/song?id="+song_id);
+            resp.sendRedirect("/detail/song?id=" + song_id);
 
         } catch (Exception e) {
             filterChain.doFilter(servletRequest, servletResponse);
         }
 
-//        filterChain.doFilter(servletRequest, servletResponse);
     }
 }

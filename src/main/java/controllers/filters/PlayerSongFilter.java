@@ -11,7 +11,6 @@ import models.repositories.SongRepositoryJdbc;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpFilter;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,7 +19,6 @@ import java.io.PrintWriter;
 public class PlayerSongFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
 
     @Override
@@ -38,7 +36,6 @@ public class PlayerSongFilter implements Filter {
             servletResponse.setCharacterEncoding("UTF-8");
             PrintWriter out = servletResponse.getWriter();
             out.print(json);
-
 
 
         } catch (NumberFormatException ex) {

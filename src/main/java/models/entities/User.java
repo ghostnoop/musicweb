@@ -2,11 +2,8 @@ package models.entities;
 
 import annotation.Constraint;
 import annotation.Table;
-import app.Utils;
 import lombok.*;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
 
 @Data

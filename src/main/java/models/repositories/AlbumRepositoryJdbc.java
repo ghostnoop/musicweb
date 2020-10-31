@@ -5,12 +5,12 @@
 
 package models.repositories;
 
+import app.SQLGenerator;
 import models.entities.Album;
 import models.entities.Artist;
 import models.repositories.interfaces.AlbumRepository;
 import models.repositories.interfaces.RowMapper;
 import models.repositories.jdbcUtils.SimpleJdbc;
-import app.SQLGenerator;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -18,11 +18,6 @@ import java.util.List;
 public class AlbumRepositoryJdbc implements AlbumRepository {
     private final DataSource dataSource;
     private final SimpleJdbc simpleJdbc;
-
-    public AlbumRepositoryJdbc(DataSource dataSource) {
-        this.dataSource = dataSource;
-        this.simpleJdbc = new SimpleJdbc(dataSource);
-    }
 
     private final RowMapper<Album> albumRowMapper = row -> Album.builder()
             .id(row.getInt(1))
@@ -39,6 +34,10 @@ public class AlbumRepositoryJdbc implements AlbumRepository {
                     .created_at(row.getDate("created_at")).build()
             ).build();
 
+    public AlbumRepositoryJdbc(DataSource dataSource) {
+        this.dataSource = dataSource;
+        this.simpleJdbc = new SimpleJdbc(dataSource);
+    }
 
     @Override
     public List<Album> getAll() {

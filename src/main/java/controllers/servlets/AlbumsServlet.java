@@ -6,9 +6,7 @@
 package controllers.servlets;
 
 import models.entities.Album;
-import models.entities.Song;
 import models.repositories.AlbumRepositoryJdbc;
-import models.repositories.SongRepositoryJdbc;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,7 +27,7 @@ public class AlbumsServlet extends HttpServlet {
         List<Album> albums = albumRepositoryJdbc.getAll();
 
         req.setAttribute("albums", albums);
-        
+
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/albums.ftl");
         requestDispatcher.forward(req, resp);
 

@@ -22,8 +22,8 @@ public class Liked {
     @ManyToOne
     private Song song_id;
 
-    public Liked(int id,User user_id, Song song_id) {
-        this.id=id;
+    public Liked(int id, User user_id, Song song_id) {
+        this.id = id;
         this.user_id = user_id;
         this.song_id = song_id;
     }
