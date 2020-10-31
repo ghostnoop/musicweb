@@ -19,9 +19,7 @@
 
                     </div>
                     <div class="music-buttons">
-                        <a href="" class="play">
-                            <i class="far fa-play-circle" aria-hidden="true"></i>
-                        </a>
+                            <i class="far fa-play-circle play" onclick="playTrack(${song.getId()})" aria-hidden="true"></i>
                         <#if user??>
 
                         <button class="favorite-button" id="favorite">

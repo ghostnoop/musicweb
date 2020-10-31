@@ -10,7 +10,8 @@
                     <form method="post" id="avatar_form" action="/changeavatar" enctype="multipart/form-data">
                         <div class="col-sm-4 artist-image">
                             <img src="/img/get?name=${user.getAvatar_img()}" alt="">
-                            <input type="file" name="avatar" class="file_upload" id="file_upload" accept=".png, .jpg, .jpeg"/>
+                            <input type="file" name="avatar" class="file_upload" id="file_upload"
+                                   accept=".png, .jpg, .jpeg"/>
 
                         </div>
                     </form>
@@ -34,9 +35,8 @@
                         <div class="music-img">
                             <div class="overlay">
                                 <div class="item-overlay">
-                                    <a href="/detail/song?id=${song.getId()}">
-                                        <i class="far fa-play-circle" aria-hidden="true"></i>
-                                    </a>
+                                    <i class="far fa-play-circle" onclick="playTrack(${song.getId()})"
+                                       aria-hidden="true"></i>
                                 </div>
                             </div>
                             <a href="">
@@ -45,7 +45,7 @@
                             </a>
                         </div>
                         <div class="item-name">
-                            <a href="#"><strong>${song.getTitle()}</strong></a>
+                            <a href="/detail/song?id=${song.getId()}"><strong>${song.getTitle()}</strong></a>
                             <div class="item-author">
                                 by
                                 <a href="#">${song.getArtist_id().getName()}</a>

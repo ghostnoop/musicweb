@@ -31,10 +31,14 @@ public class DetailAlbumServlet extends HttpServlet {
             DataSource dataSource = (DataSource) req.getServletContext().getAttribute("datasource");
             SongRepositoryJdbc songRepositoryJdbc = new SongRepositoryJdbc(dataSource);
             ArtistRepositoryJdbc artistRepositoryJdbc = new ArtistRepositoryJdbc(dataSource);
+            AlbumRepositoryJdbc albumRepositoryJdbc = new AlbumRepositoryJdbc(dataSource);
 
+            Album album = albumRepositoryJdbc.getById(album_id);
             List<Song> songs = songRepositoryJdbc.getByAlbumId(album_id);
             List<Artist> topArtists = artistRepositoryJdbc.getTopArtistByLiked();
 
+
+            req.setAttribute("album", album);
             req.setAttribute("songs", songs);
             req.setAttribute("topArtists", topArtists);
 
