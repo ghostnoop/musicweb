@@ -36,7 +36,7 @@ public class UploadSongServlet extends HttpServlet {
             resp.sendRedirect("/404");
             return;
         }
-
+        req.setCharacterEncoding("UTF-8");
         String track_name = req.getParameter("track_name");
         String genre = req.getParameter("genre");
         int genre_selected = Integer.parseInt(req.getParameter("genre_selected")) + 1;
