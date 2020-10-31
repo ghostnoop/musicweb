@@ -12,9 +12,6 @@ public class TestJDBC {
         DataSourcePick dataSourcePick = new DataSourcePick(Constants.jdbcUrl,Constants.jdbcUser,Constants.jdbcPassword);
         ArtistRepositoryJdbc artistRepositoryJdbc = new ArtistRepositoryJdbc(dataSourcePick.getDataSourcePick());
 
-        System.out.println(artistRepositoryJdbc.getTopArtistByLiked());
-
-
 
     }
 

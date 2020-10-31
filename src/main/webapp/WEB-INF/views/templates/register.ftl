@@ -1,7 +1,7 @@
 <#ftl encoding="UTF-8"/>
 <#import "layouts/base.ftl" as base>
 
-<@base.main css=["register_page"]>
+<@base.main css=["register_page","login_page"]>
 <div class="col content-col">
 
     <div class="container-fluid login-container2">

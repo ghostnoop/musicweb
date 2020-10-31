@@ -34,6 +34,7 @@ public class ExitFilter implements Filter {
                 resp.addCookie(cookie);
             }
         }
+        req.getSession().setAttribute("isArtist",null);
         req.getSession().setAttribute("user", null);
         resp.sendRedirect("/index");
 

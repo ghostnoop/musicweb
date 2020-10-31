@@ -25,7 +25,6 @@ public class ArtistsServlet extends HttpServlet {
         ArtistRepositoryJdbc artistRepositoryJdbc = new ArtistRepositoryJdbc(dataSource);
 
         List<Artist> artists = artistRepositoryJdbc.getAll();
-        System.out.println(artists);
 
 
         req.setAttribute("artists", artists);

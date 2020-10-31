@@ -38,16 +38,13 @@ public class SearcherFilter implements Filter {
         }
         String words = servletRequest.getParameter("searchField");
         String filter = servletRequest.getParameter("filter");
-        System.out.println(filter);
 
         DataSource dataSource = (DataSource) servletRequest.getServletContext().getAttribute("datasource");
         SongRepositoryJdbc songRepositoryJdbc = new SongRepositoryJdbc(dataSource);
 
         List<Song> songs = songRepositoryJdbc.searchByWords(words == null ? "" : words, Utils.parseFilter(filter));
-        System.out.println(songs);
 
         String json = new Gson().toJson(songs);
-        System.out.println(json);
         servletResponse.setContentType("application/json; charset=UTF-8");
         servletResponse.setCharacterEncoding("UTF-8");
         PrintWriter out = servletResponse.getWriter();

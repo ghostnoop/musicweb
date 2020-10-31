@@ -34,7 +34,6 @@ public class PlayerSongFilter implements Filter {
             Song song = songRepositoryJdbc.getById(songId);
 
             String json = new Gson().toJson(song);
-            System.out.println(json);
             servletResponse.setContentType("application/json; charset=UTF-8");
             servletResponse.setCharacterEncoding("UTF-8");
             PrintWriter out = servletResponse.getWriter();

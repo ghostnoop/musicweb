@@ -29,7 +29,7 @@ import static app.Constants.regexEmail;
 public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        req.setAttribute("title", "Register - Music");
+        req.setAttribute("auth", true);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/register.ftl");
         requestDispatcher.forward(req, resp);

@@ -22,6 +22,7 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("auth", true);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.ftl");
         requestDispatcher.forward(req, resp);
     }
@@ -47,8 +48,6 @@ public class LoginServlet extends HttpServlet {
                 return;
             }
             String passwordVerify = isArtist ? ((Artist) user).getPassword() : ((User) user).getPassword();
-            System.out.println(password);
-            System.out.println(passwordVerify);
 
             if (!password.equals(passwordVerify)) {
                 setError(req, resp, "Password mismatch");

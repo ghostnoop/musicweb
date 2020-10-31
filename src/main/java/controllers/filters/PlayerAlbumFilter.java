@@ -28,14 +28,12 @@ public class PlayerAlbumFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         try {
             int albumId = Integer.parseInt(servletRequest.getParameter("id"));
-            System.out.println(albumId);
 
             DataSource dataSource = (DataSource) servletRequest.getServletContext().getAttribute("datasource");
             SongRepositoryJdbc songRepositoryJdbc = new SongRepositoryJdbc(dataSource);
             List<Song> songs=songRepositoryJdbc.getByAlbumId(albumId);
 
             String json = new Gson().toJson(songs);
-            System.out.println(json);
             servletResponse.setContentType("application/json; charset=UTF-8");
             servletResponse.setCharacterEncoding("UTF-8");
             PrintWriter out = servletResponse.getWriter();

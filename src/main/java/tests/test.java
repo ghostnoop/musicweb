@@ -26,10 +26,8 @@ public class test {
         };
         String filterName=null;
         Integer filterIndex=filterItems.get(filterName);
-        System.out.println(filterIndex);
 //        return filterIndex!=null?filterIndex:0;
 
-        System.out.println(filterItems.get("--3"));
 //        User user = new User(1, "test@email", "фвфыв", "фвфывфыв", "вффывфыв", "йуйцуйцвыф23424", new Date());
 
 

@@ -17,10 +17,7 @@ public class MySQLService {
              Statement st = con.createStatement();
              ResultSet rs = st.executeQuery(query)) {
 
-            if (rs.next()) {
 
-                System.out.println(rs.getString(1));
-            }
 
         } catch (SQLException ex) {
 

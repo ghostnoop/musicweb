@@ -11,8 +11,6 @@ public class Parser {
     public static ArrayList<Object> parser(Object object, ResultSet resultSet) {
         ArrayList<Object> list = new ArrayList<>();
         for (Field field : object.getClass().getDeclaredFields()) {
-            System.out.println(field.getType().getSimpleName());
-            System.out.println(field.getName());
 
 
             try {
@@ -29,7 +27,6 @@ public class Parser {
                         break;
                 }
             } catch (SQLException ex) {
-                System.out.println("Ex");
             }
 
 

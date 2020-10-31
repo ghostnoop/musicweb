@@ -59,7 +59,6 @@ public class DBCreator {
                     });
 
             String finalSql = sql.substring(0, sql.length() - 2) + ");";
-            System.out.println(finalSql);
             try {
                 execute(finalSql);
             } catch (ClassNotFoundException e) {

@@ -50,7 +50,6 @@ public class DetailArtistServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/details/artistpage.ftl");
             requestDispatcher.forward(req, resp);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             resp.sendRedirect("/404");
         }
     }
