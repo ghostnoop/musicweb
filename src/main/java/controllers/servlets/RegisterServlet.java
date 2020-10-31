@@ -58,7 +58,7 @@ public class RegisterServlet extends HttpServlet {
         boolean ans = isArtist ? artistRepositoryJdbc.emailExist(email) : usersRepository.emailExist(email);
 
         if (ans) {
-            setError(req, resp,"User is exist");
+            setError(req, resp,"Account with this email is exist");
             return;
         }
 

@@ -60,7 +60,7 @@ public class UploadSongServlet extends HttpServlet {
                 .build();
 
         songRepositoryJdbc.save(song);
-        resp.sendRedirect("/detail/artist?id=" + artist.getId());
+        resp.sendRedirect("/profile");
     }
 
 

@@ -1,7 +1,6 @@
 package service;
 
 import annotation.Table;
-import app.MySQLService;
 import app.SqlUtils;
 import caster.Castable;
 import caster.IntegerCaster;
