@@ -26,7 +26,6 @@ $(function () {
             side_logo.hide();
             side_login.hide();
             side_menu.hide();
-
         } else {
             unside_logo.hide();
             unside_login.hide();

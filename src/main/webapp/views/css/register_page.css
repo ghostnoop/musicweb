@@ -1,8 +1,8 @@
-[type="email"] {
-    border: 1px solid #ddd !important;
+fieldset input [type="email"] {
+    border: 1px solid #ddd;
     color: #788188;
-    background-color: #fff !important;
-    padding: 6px 10px !important;
+    background-color: #fff;
+    padding: 6px 10px;
     margin-bottom: 10px;
     outline: 0;
 }

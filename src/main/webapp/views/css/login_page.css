@@ -50,7 +50,7 @@ label {
     color: #788188;
 }
 
-fieldset input[type="text"], fieldset input[type="password"] {
+fieldset input[type="text"], fieldset input[type="password"] , fieldset input[type="email"]{
     border: 1px solid #ddd ;
     color: #788188;
     background-color: #fff;

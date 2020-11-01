@@ -490,8 +490,8 @@ header .row {
 
 .item-image img {
     border-radius: 3px;
-    width: 250px !important;
-    height: 250px !important;
+    width: 250px;
+    height: 250px;
 }
 
 .item-desc {
