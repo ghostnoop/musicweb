@@ -1,0 +1,122 @@
+.meta {
+    margin-bottom: 15px;
+}
+
+.meta span {
+    margin-right: 10px;
+    color: #788188;
+}
+
+.meta span a {
+    color: #303437;
+}
+
+.meta span a:hover {
+    color: #000;
+}
+
+.music-buttons {
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.music-buttons .play {
+    width: 34px;
+}
+
+.music-buttons .play, .favorite-button {
+    text-align: center;
+    font-weight: 500;
+    border-radius: 2px;
+    color: #788188;
+    background-color: #fff;
+    border: 1px solid #dbe2e7;
+    box-shadow: 0 1px 1px rgba(90, 90, 90, 0.1);
+    display: inline-block;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.music-buttons .play:hover, .favorite-button:hover {
+    color: #788188;
+    background-color: #f2f2f2;
+    border-color: #c2ced6;
+}
+
+.favorite-button:focus {
+    outline: none;
+}
+
+.playing_count {
+    padding-left: 15px;
+    color: #939aa0;
+    font-size: 14px;
+}
+
+.music-text {
+    margin-top: 25px;
+    font-size: 14px;
+    color: #788188;
+}
+
+.comment_area {
+    margin-top: 30px;
+}
+
+.comment_area{
+    font-size: 14px;
+    color: #788188;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+}
+
+.form-group textarea {
+    border-radius: 2px;
+    display: block;
+    width: 100%;
+    height: 200px;
+    padding: 6px 12px;
+    resize: none;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+}
+
+.form-group textarea:focus, .form-control:focus {
+    border-color: #545ca6;
+    outline: none;
+    box-shadow: none;
+}
+
+.comment-submit {
+    outline: 0;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    background: #fff;
+    padding: 6px 16px;
+    margin-bottom: 15px;
+    color: #788188;
+    line-height: 20px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    border-radius: 3px;
+}
+
+.comment {
+    margin-top: 30px;
+    background-color: white;
+    border: 1px solid #dbe2e7;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.item-author {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

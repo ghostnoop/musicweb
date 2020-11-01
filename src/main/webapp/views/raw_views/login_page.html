@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../WEB-INF/static/bootsrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/home_page.css">
+    <link rel="stylesheet" href="../css/login_page.css">
+    <title>Login - Music</title>
+</head>
+<body>
+<section>
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-auto logo unside" id="unside_logo">
+                    <a href="main_page.html" class="logo-ref">
+                        <i class="fas fa-headphones-alt"></i>
+                        <span>MusicPlayer</span>
+                    </a>
+                </div>
+                <div class="col-auto logo side" id="side_logo">
+                    <a href="main_page.html" class="logo-ref">
+                        <i class="fas fa-headphones-alt"></i>
+                    </a>
+                </div>
+                <div class="col right_bar">
+                    <a href="#" class="text-muted" id="side_button">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                    <form action="" role="search" class="search">
+                        <div class="input-group">
+		            <span class="input__btn">
+		              <button type="submit" class="btn btn-sm bg-white btn-icon rounded"><i
+                              class="fa fa-search"></i></button>
+		            </span>
+                            <input type="text" autocomplete="off" class="rounded input-search" name="search"
+                                   placeholder="Search...">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+</section>
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-auto menu unside" id="unside_menu">
+                <aside>
+                    <nav class="navigation">
+                        <ul class="menu-list">
+                            <li class="menu-item header-list">
+                                <span>Discover music</span>
+                            </li>
+                            <li class="menu-item">
+                                <a href="main_page.html">
+                                    <i class="fas fa-music music-icon-green" aria-hidden="true"></i>
+                                    <span>Discover</span>
+                                </a>
+                            </li>
+                            <li class="menu-item"><a href="genres_page.html">
+                                <i class="fas fa-align-left music-icon-blue" aria-hidden="true"></i>
+                                <span>Genres</span>
+                            </a></li>
+                            <li class="menu-item"><a href="albums_page.html">
+                                <i class="fas fa-compact-disc music-icon-green" aria-hidden="true"></i>
+                                <span>Albums</span>
+                            </a></li>
+                            <li class="menu-item"><a href="artists_page.html">
+                                <i class="fas fa-user-friends music-icon-blue" aria-hidden="true"></i>
+                                <span>Artists</span>
+                            </a></li>
+                            <li class="menu-item-border"></li>
+                        </ul>
+                    </nav>
+                    <section>
+                        <div class="empty-block"></div>
+                    </section>
+                </aside>
+            </div>
+            <div class="col-auto menu side" id="side_menu">
+                <aside>
+                    <nav class="navigation">
+                        <ul class="menu-list">
+                            <li class="menu-item">
+                                <a href="main_page.html">
+                                    <i class="fas fa-music music-icon-green"></i>
+                                </a>
+                            </li>
+                            <li class="menu-item"><a href="genres_page.html">
+                                <i class="fas fa-align-left music-icon-blue"></i>
+                            </a></li>
+                            <li class="menu-item"><a href="albums_page.html">
+                                <i class="fas fa-compact-disc music-icon-green"></i>
+                            </a></li>
+                            <li class="menu-item"><a href="artists_page.html">
+                                <i class="fas fa-user-friends music-icon-blue"></i>
+                            </a></li>
+                            <li class="menu-item-border"></li>
+                        </ul>
+                    </nav>
+                    <section>
+                        <div class="empty-block"></div>
+                    </section>
+                </aside>
+            </div>
+            <div class="col content-col">
+                <div class="container-fluid login-container2">
+                    <section class="login-section">
+                        <article>
+                            <h1>Login</h1>
+                            <div class="error-block"> <!-- .error-active -->
+                                <!-- Сообщение об ошибке
+                                <span class="error-text">
+                                <strong>Error:</strong>
+                                some error text
+                                </span>
+                                -->
+
+                            </div>
+                            <form action="" class="login-form" method="post">
+                                <fieldset>
+                                    <legend>Log into Your Account</legend>
+                                    <p class="login-username">
+                                        <label for="user-login">Username or Email</label>
+                                        <input id="user-login" name="user-login" type="text" class="required in-user-login">
+                                    </p>
+                                    <p class="login-password">
+                                        <label for="user-password">Password</label>
+                                        <input id="user-password" name="user-password" type="password" class="required in-user-password">
+                                    </p>
+                                    <p class="login-remember">
+                                        <label>
+                                            <input type="checkbox" name="rememberme" id="rememberme" value="forever">
+                                            Remember Me
+                                        </label>
+                                    </p>
+                                    <p class="login-submit">
+                                        <input id="user_submit" type="submit" class="in-user-submit" value="Log In">
+                                    </p>
+                                    <!-- lost your password ?
+                                        <p class="login-lost-password"></p>
+                                    -->
+                                    <a href="register_page.html" class="text-info">Register New Account</a>
+                                </fieldset>
+                            </form>
+                        </article>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="https://kit.fontawesome.com/ed6c81c467.js" crossorigin="anonymous"></script>
+<script src="../../WEB-INF/static/jquery/jquery-3.5.1.min.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>
