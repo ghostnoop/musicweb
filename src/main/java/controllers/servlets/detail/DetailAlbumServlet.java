@@ -45,7 +45,7 @@ public class DetailAlbumServlet extends HttpServlet {
             req.getRequestDispatcher("/details/albumpage.ftl").forward(req, resp);
 
         } catch (NumberFormatException except) {
-            resp.sendRedirect("/404");
+            resp.sendRedirect("/index");
         }
 
     }

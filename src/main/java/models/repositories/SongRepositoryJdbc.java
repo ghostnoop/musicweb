@@ -20,11 +20,6 @@ public class SongRepositoryJdbc implements SongRepository {
     private final DataSource dataSource;
     private final SimpleJdbc simpleJdbc;
 
-    public SongRepositoryJdbc(DataSource dataSource) {
-        this.dataSource = dataSource;
-        this.simpleJdbc = new SimpleJdbc(dataSource);
-    }
-
     private final RowMapper<Song> songRowMapper = row -> Song.builder()
             .id(row.getInt(1))
             .artist_id(Artist.builder()
@@ -51,7 +46,6 @@ public class SongRepositoryJdbc implements SongRepository {
                     .build())
             .build();
 
-
     private final String GET_ALL = "SELECT song.id,song.artist_id,artist.email,artist.name,artist.lastname," +
             " artist.avatar_img,artist.created_at, song.title,song.cover_img,song.music_url,song.album_id" +
             " AS album_id, album.title AS album_title, album.description as album_description, album.cover_img" +
@@ -59,6 +53,11 @@ public class SongRepositoryJdbc implements SongRepository {
             "genre.type as genre_type FROM song INNER JOIN artist on song.artist_id=artist.id LEFT JOIN album on " +
             "song.album_id=album.id LEFT JOIN genre on song.genre_id = genre.id ";
 
+
+    public SongRepositoryJdbc(DataSource dataSource) {
+        this.dataSource = dataSource;
+        this.simpleJdbc = new SimpleJdbc(dataSource);
+    }
 
     @Override
     public List<Song> getAll() {
@@ -102,7 +101,7 @@ public class SongRepositoryJdbc implements SongRepository {
                 " or artist.name LIKE \"%" + words + "%\" or genre.name LIKE \"%" + words + "%\"";
         switch (filt) {
             case (1):
-                searchByWords=GET_ALL + " LEFT JOIN liked ON song.id=liked.song_id WHERE song.id=liked.song_id and ( song.title LIKE \"%" + words + "%\" or album.title LIKE \"%" + words + "%\"" +
+                searchByWords = GET_ALL + " LEFT JOIN liked ON song.id=liked.song_id WHERE song.id=liked.song_id and ( song.title LIKE \"%" + words + "%\" or album.title LIKE \"%" + words + "%\"" +
                         " or artist.name LIKE \"%" + words + "%\" or genre.name LIKE \"%" + words + "%\" ) GROUP BY song.id LIMIT 100";
                 break;
             case (2):

@@ -1,5 +1,3 @@
-
-
 package models.entities;
 
 import annotation.Constraint;
@@ -31,6 +29,7 @@ public class Album {
         this.cover_img = cover_img;
         this.artist_id = artist_id;
     }
+
     public Album(int id, String title, String description, String cover_img, String artistName) {
         this.id = id;
         this.title = title;
@@ -39,7 +38,6 @@ public class Album {
         this.artist_id = new Artist(artistName);
 
     }
-
 
 
 }

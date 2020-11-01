@@ -18,8 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 @WebFilter(urlPatterns = {"/login", "/register"})
 public class AuthFilter implements Filter {
@@ -35,14 +33,17 @@ public class AuthFilter implements Filter {
 
         DataSource dataSource = (DataSource) req.getServletContext().getAttribute("datasource");
 
-
         UserRepositoryJdbc usersRepository = new UserRepositoryJdbc(dataSource);
         ArtistRepositoryJdbc artistRepositoryJdbc = new ArtistRepositoryJdbc(dataSource);
 
         HttpSession session = req.getSession();
+
         if (session != null && session.getAttribute("user") != null) {
+
             resp.sendRedirect("/index");
+
         } else {
+
             String email = null;
             String password = null;
             boolean isArtist = false;
@@ -53,18 +54,21 @@ public class AuthFilter implements Filter {
                 if (cookie.getName().equals("password")) password = cookie.getValue();
                 if (cookie.getName().equals("isArtist")) isArtist = cookie.getValue().equals("true");
             }
+
             if (email != null && password != null) {
                 Object user = isArtist ? artistRepositoryJdbc.getByEmail(email) : usersRepository.getByEmail(email);
+
                 if (user != null && password.equals(isArtist ? ((Artist) user).getPassword() : ((User) user).getPassword())) {
                     req.getSession().setAttribute("user", user);
+
                     if (isArtist)
                         req.getSession().setAttribute("isArtist", true);
                     resp.sendRedirect("/index");
                 }
             }
         }
-        filterChain.doFilter(servletRequest, servletResponse);
 
+        filterChain.doFilter(servletRequest, servletResponse);
 
 
     }

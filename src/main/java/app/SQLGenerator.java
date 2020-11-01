@@ -2,8 +2,6 @@
 
 package app;
 
-import app.Constants;
-
 import java.lang.reflect.Field;
 import java.util.LinkedList;
 
@@ -11,7 +9,7 @@ public class SQLGenerator {
     public static String generateSave(Class us) {
         LinkedList<String> availableFields = new LinkedList<>();
         for (Field field : us.getDeclaredFields()) {
-            if (!Constants.IGNFIELDS.contains(field.getName())) {
+            if (!Constants.IGNORFIELDS.contains(field.getName())) {
                 availableFields.add(field.getName());
 
             }
@@ -50,7 +48,7 @@ public class SQLGenerator {
     public static String generateUpdateById(Class us) {
         LinkedList<String> availableFields = new LinkedList<>();
         for (Field field : us.getDeclaredFields()) {
-            if (!Constants.IGNFIELDS.contains(field.getName())) {
+            if (!Constants.IGNORFIELDS.contains(field.getName())) {
                 availableFields.add(field.getName());
             }
         }
@@ -61,9 +59,9 @@ public class SQLGenerator {
         int k = 0;
         for (String field : availableFields) {
             if (k < size - 1) {
-                s.append(field + "= ?, ");
+                s.append(field).append("= ?, ");
             } else
-                s.append(field + "= ? where id= ?");
+                s.append(field).append("= ? where id= ?");
             k++;
 
         }

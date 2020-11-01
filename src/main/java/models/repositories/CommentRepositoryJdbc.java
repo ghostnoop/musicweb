@@ -18,11 +18,6 @@ public class CommentRepositoryJdbc implements CommentRepository {
     private final DataSource dataSource;
     private final SimpleJdbc simpleJdbc;
 
-    public CommentRepositoryJdbc(DataSource dataSource) {
-        this.dataSource = dataSource;
-        this.simpleJdbc = new SimpleJdbc(dataSource);
-    }
-
     private final RowMapper<Comment> commentRowMapperWithoutSong = row -> Comment.builder()
             .id(row.getInt("comment_id"))
             .user_id(User.builder()
@@ -33,6 +28,10 @@ public class CommentRepositoryJdbc implements CommentRepository {
             .created_at(row.getDate("created_at"))
             .build();
 
+    public CommentRepositoryJdbc(DataSource dataSource) {
+        this.dataSource = dataSource;
+        this.simpleJdbc = new SimpleJdbc(dataSource);
+    }
 
     @Override
     public List<Comment> getAllBySongId(int _id) {
@@ -55,7 +54,7 @@ public class CommentRepositoryJdbc implements CommentRepository {
     @Override
     public boolean save(Comment entity) {
         String SaveSql = "Insert into comment(user_id, song_id, user_text) Values(?,?,?)";
-        return simpleJdbc.update(SaveSql,entity.getUser_id().getId(),entity.getSong_id().getId(),entity.getUser_text());
+        return simpleJdbc.update(SaveSql, entity.getUser_id().getId(), entity.getSong_id().getId(), entity.getUser_text());
     }
 
     @Override

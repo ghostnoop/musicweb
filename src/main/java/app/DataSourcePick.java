@@ -4,39 +4,75 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 import javax.sql.DataSource;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.logging.Logger;
 
 
-public class DataSourcePick {
-    public HikariDataSource getDataSourcePick() {
-        return hikariDataSource;
+public class DataSourcePick implements DataSource {
+    private String url;
+    private String username;
+    private String password;
+
+
+    public DataSourcePick(String jdbcUrl, String jdbcUser, String jdbcPassword) {
+        this.url = jdbcUrl;
+        this.username = jdbcUser;
+        this.password = jdbcPassword;
     }
 
-    private HikariDataSource hikariDataSource;
-    public Connection openConnection(String url, String username, String pass) {
+
+    @Override
+    public Connection getConnection() throws SQLException {
         try {
-            return DriverManager.getConnection(url, username, pass);
-        } catch (SQLException e) {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
             throw new IllegalArgumentException();
         }
-    }
-    public DataSourcePick(String jdbcUrl,String jdbcUser,String jdbcPassword){
-        HikariConfig hikariConfig = new HikariConfig();
-        hikariConfig.setJdbcUrl(jdbcUrl);
-        hikariConfig.setUsername(jdbcUser);
-        hikariConfig.setPassword(jdbcPassword);
-        hikariConfig.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        hikariConfig.setMaximumPoolSize(20);
-        hikariDataSource=new HikariDataSource(hikariConfig);
+        return DriverManager.getConnection(url, username, password);
+
     }
 
-    public void closeConnection(Connection connection) {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            throw new IllegalArgumentException();
-        }
+    @Override
+    public Connection getConnection(String username, String password) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public <T> T unwrap(Class<T> iface) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean isWrapperFor(Class<?> iface) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public PrintWriter getLogWriter() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setLogWriter(PrintWriter out) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setLoginTimeout(int seconds) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public int getLoginTimeout() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Logger getParentLogger() {
+        throw new UnsupportedOperationException();
     }
 }
